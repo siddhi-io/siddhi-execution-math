@@ -46,7 +46,8 @@ public class AtanFunctionExtension extends FunctionExecutor {
                     || (attributeType == Attribute.Type.INT)
                     || (attributeType == Attribute.Type.FLOAT)
                     || (attributeType == Attribute.Type.LONG))) {
-                throw new ExecutionPlanValidationException("Invalid parameter type found for the argument at index "+attributeIndex+" of math:atan() function," +
+                throw new ExecutionPlanValidationException("Invalid parameter type found for the argument at index " +
+                        attributeIndex + " of math:atan() function," +
                         "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
                         " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
                         ", but found " + attributeType.toString());

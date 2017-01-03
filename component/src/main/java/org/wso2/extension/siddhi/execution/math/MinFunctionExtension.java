@@ -31,7 +31,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): INT,LONG,FLOAT,DOUBLE
 * Return Type(s): DOUBLE
 */
-public class MinFunctionExtension extends FunctionExecutor{
+public class MinFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 2) {

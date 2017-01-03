@@ -72,20 +72,20 @@ public class PercentileFunctionExtension extends AttributeAggregator {
 
         // This approach is used to avoid per event type check as it has a negative performance impact.
         switch (attributeType) {
-        case FLOAT:
-            valueParser = new FloatValueParser();
-            break;
-        case INT:
-            valueParser = new IntValueParser();
-            break;
-        case LONG:
-            valueParser = new LongValueParser();
-            break;
-        case DOUBLE:
-            valueParser = new DoubleValueParser();
-            break;
-        default:
-            throw new OperationNotSupportedException("Percentile not supported for " + attributeType);
+            case FLOAT:
+                valueParser = new FloatValueParser();
+                break;
+            case INT:
+                valueParser = new IntValueParser();
+                break;
+            case LONG:
+                valueParser = new LongValueParser();
+                break;
+            case DOUBLE:
+                valueParser = new DoubleValueParser();
+                break;
+            default:
+                throw new OperationNotSupportedException("Percentile not supported for " + attributeType);
         }
 
         valuesList = new ArrayList<Double>();
@@ -141,7 +141,7 @@ public class PercentileFunctionExtension extends AttributeAggregator {
 
     @Override
     public Object[] currentState() {
-        return new Object[] { valuesList };
+        return new Object[]{valuesList};
     }
 
     @Override
@@ -151,7 +151,7 @@ public class PercentileFunctionExtension extends AttributeAggregator {
 
     /**
      * Percentile calculation method.
-     *
+     * <p>
      * To calculate the pth percentile (where p is any number greater than 0 or less than or equal to 100), do the
      * following steps:
      * 1. Order all the values in the data set from smallest to largest.
@@ -197,7 +197,7 @@ public class PercentileFunctionExtension extends AttributeAggregator {
      * Adding values to the sorted ArrayList.
      *
      * @param arrayList sorted ArrayList
-     * @param value new value
+     * @param value     new value
      */
     private void sortedArrayListAdd(List<Double> arrayList, double value) {
 
@@ -213,7 +213,7 @@ public class PercentileFunctionExtension extends AttributeAggregator {
      * Removing values from the sorted ArrayList.
      *
      * @param arrayList Sorted ArrayList
-     * @param value expired value
+     * @param value     expired value
      */
     private void sortedArrayListRemove(List<Double> arrayList, double value) {
 

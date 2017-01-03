@@ -30,6 +30,7 @@ import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 import java.util.concurrent.CountDownLatch;
+
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class PercentileFunctionExtensionTestCase {
@@ -38,10 +39,10 @@ public class PercentileFunctionExtensionTestCase {
     private CountDownLatch countDownLatch;
     private volatile int count;
     private volatile boolean eventArrived;
-    private static final String INPUT_STREAM_DOUBLE= "define stream inputStream (sensorId int, temperature double);";
-    private static final String INPUT_STREAM_FLOAT= "define stream inputStream (sensorId int, temperature float);";
-    private static final String INPUT_STREAM_INT= "define stream inputStream (sensorId int, temperature int);";
-    private static final String INPUT_STREAM_LONG= "define stream inputStream (sensorId int, temperature long);";
+    private static final String INPUT_STREAM_DOUBLE = "define stream inputStream (sensorId int, temperature double);";
+    private static final String INPUT_STREAM_FLOAT = "define stream inputStream (sensorId int, temperature float);";
+    private static final String INPUT_STREAM_INT = "define stream inputStream (sensorId int, temperature int);";
+    private static final String INPUT_STREAM_LONG = "define stream inputStream (sensorId int, temperature long);";
 
     @Before
     public void init() {
@@ -72,38 +73,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -112,16 +113,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10d });
-        inputHandler.send(new Object[] { 2, 30d });
-        inputHandler.send(new Object[] { 3, 50d });
-        inputHandler.send(new Object[] { 4, 40d });
-        inputHandler.send(new Object[] { 5, 80d });
-        inputHandler.send(new Object[] { 6, 60d });
-        inputHandler.send(new Object[] { 7, 20d });
-        inputHandler.send(new Object[] { 8, 90d });
-        inputHandler.send(new Object[] { 9, 70d });
-        inputHandler.send(new Object[] { 10, 100d });
+        inputHandler.send(new Object[]{1, 10d});
+        inputHandler.send(new Object[]{2, 30d});
+        inputHandler.send(new Object[]{3, 50d});
+        inputHandler.send(new Object[]{4, 40d});
+        inputHandler.send(new Object[]{5, 80d});
+        inputHandler.send(new Object[]{6, 60d});
+        inputHandler.send(new Object[]{7, 20d});
+        inputHandler.send(new Object[]{8, 90d});
+        inputHandler.send(new Object[]{9, 70d});
+        inputHandler.send(new Object[]{10, 100d});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -152,38 +153,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -192,16 +193,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10d });
-        inputHandler.send(new Object[] { 2, 30d });
-        inputHandler.send(new Object[] { 3, 100d });
-        inputHandler.send(new Object[] { 4, 40d });
-        inputHandler.send(new Object[] { 5, 80d });
-        inputHandler.send(new Object[] { 6, 60d });
-        inputHandler.send(new Object[] { 7, 20d });
-        inputHandler.send(new Object[] { 8, 90d });
-        inputHandler.send(new Object[] { 9, 70d });
-        inputHandler.send(new Object[] { 10, 50d });
+        inputHandler.send(new Object[]{1, 10d});
+        inputHandler.send(new Object[]{2, 30d});
+        inputHandler.send(new Object[]{3, 100d});
+        inputHandler.send(new Object[]{4, 40d});
+        inputHandler.send(new Object[]{5, 80d});
+        inputHandler.send(new Object[]{6, 60d});
+        inputHandler.send(new Object[]{7, 20d});
+        inputHandler.send(new Object[]{8, 90d});
+        inputHandler.send(new Object[]{9, 70d});
+        inputHandler.send(new Object[]{10, 50d});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -232,14 +233,14 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -248,16 +249,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10d });
-        inputHandler.send(new Object[] { 2, 30d });
-        inputHandler.send(new Object[] { 3, 100d });
-        inputHandler.send(new Object[] { 4, 40d });
-        inputHandler.send(new Object[] { 5, 80d });
-        inputHandler.send(new Object[] { 6, 60d });
-        inputHandler.send(new Object[] { 7, 20d });
-        inputHandler.send(new Object[] { 8, 90d });
-        inputHandler.send(new Object[] { 9, 70d });
-        inputHandler.send(new Object[] { 10, 50d });
+        inputHandler.send(new Object[]{1, 10d});
+        inputHandler.send(new Object[]{2, 30d});
+        inputHandler.send(new Object[]{3, 100d});
+        inputHandler.send(new Object[]{4, 40d});
+        inputHandler.send(new Object[]{5, 80d});
+        inputHandler.send(new Object[]{6, 60d});
+        inputHandler.send(new Object[]{7, 20d});
+        inputHandler.send(new Object[]{8, 90d});
+        inputHandler.send(new Object[]{9, 70d});
+        inputHandler.send(new Object[]{10, 50d});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(2, count);
@@ -288,38 +289,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -328,16 +329,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10f });
-        inputHandler.send(new Object[] { 2, 30f });
-        inputHandler.send(new Object[] { 3, 50f });
-        inputHandler.send(new Object[] { 4, 40f });
-        inputHandler.send(new Object[] { 5, 80f });
-        inputHandler.send(new Object[] { 6, 60f });
-        inputHandler.send(new Object[] { 7, 20f });
-        inputHandler.send(new Object[] { 8, 90f });
-        inputHandler.send(new Object[] { 9, 70f });
-        inputHandler.send(new Object[] { 10, 100f });
+        inputHandler.send(new Object[]{1, 10f});
+        inputHandler.send(new Object[]{2, 30f});
+        inputHandler.send(new Object[]{3, 50f});
+        inputHandler.send(new Object[]{4, 40f});
+        inputHandler.send(new Object[]{5, 80f});
+        inputHandler.send(new Object[]{6, 60f});
+        inputHandler.send(new Object[]{7, 20f});
+        inputHandler.send(new Object[]{8, 90f});
+        inputHandler.send(new Object[]{9, 70f});
+        inputHandler.send(new Object[]{10, 100f});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -368,38 +369,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -408,16 +409,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10f });
-        inputHandler.send(new Object[] { 2, 30f });
-        inputHandler.send(new Object[] { 3, 100f });
-        inputHandler.send(new Object[] { 4, 40f });
-        inputHandler.send(new Object[] { 5, 80f });
-        inputHandler.send(new Object[] { 6, 60f });
-        inputHandler.send(new Object[] { 7, 20f });
-        inputHandler.send(new Object[] { 8, 90f });
-        inputHandler.send(new Object[] { 9, 70f });
-        inputHandler.send(new Object[] { 10, 50f });
+        inputHandler.send(new Object[]{1, 10f});
+        inputHandler.send(new Object[]{2, 30f});
+        inputHandler.send(new Object[]{3, 100f});
+        inputHandler.send(new Object[]{4, 40f});
+        inputHandler.send(new Object[]{5, 80f});
+        inputHandler.send(new Object[]{6, 60f});
+        inputHandler.send(new Object[]{7, 20f});
+        inputHandler.send(new Object[]{8, 90f});
+        inputHandler.send(new Object[]{9, 70f});
+        inputHandler.send(new Object[]{10, 50f});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -448,14 +449,14 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -464,16 +465,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10f });
-        inputHandler.send(new Object[] { 2, 30f });
-        inputHandler.send(new Object[] { 3, 100f });
-        inputHandler.send(new Object[] { 4, 40f });
-        inputHandler.send(new Object[] { 5, 80f });
-        inputHandler.send(new Object[] { 6, 60f });
-        inputHandler.send(new Object[] { 7, 20f });
-        inputHandler.send(new Object[] { 8, 90f });
-        inputHandler.send(new Object[] { 9, 70f });
-        inputHandler.send(new Object[] { 10, 50f });
+        inputHandler.send(new Object[]{1, 10f});
+        inputHandler.send(new Object[]{2, 30f});
+        inputHandler.send(new Object[]{3, 100f});
+        inputHandler.send(new Object[]{4, 40f});
+        inputHandler.send(new Object[]{5, 80f});
+        inputHandler.send(new Object[]{6, 60f});
+        inputHandler.send(new Object[]{7, 20f});
+        inputHandler.send(new Object[]{8, 90f});
+        inputHandler.send(new Object[]{9, 70f});
+        inputHandler.send(new Object[]{10, 50f});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(2, count);
@@ -504,38 +505,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -544,16 +545,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10 });
-        inputHandler.send(new Object[] { 2, 30 });
-        inputHandler.send(new Object[] { 3, 50 });
-        inputHandler.send(new Object[] { 4, 40 });
-        inputHandler.send(new Object[] { 5, 80 });
-        inputHandler.send(new Object[] { 6, 60 });
-        inputHandler.send(new Object[] { 7, 20 });
-        inputHandler.send(new Object[] { 8, 90 });
-        inputHandler.send(new Object[] { 9, 70 });
-        inputHandler.send(new Object[] { 10, 100 });
+        inputHandler.send(new Object[]{1, 10});
+        inputHandler.send(new Object[]{2, 30});
+        inputHandler.send(new Object[]{3, 50});
+        inputHandler.send(new Object[]{4, 40});
+        inputHandler.send(new Object[]{5, 80});
+        inputHandler.send(new Object[]{6, 60});
+        inputHandler.send(new Object[]{7, 20});
+        inputHandler.send(new Object[]{8, 90});
+        inputHandler.send(new Object[]{9, 70});
+        inputHandler.send(new Object[]{10, 100});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -584,38 +585,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -624,16 +625,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10 });
-        inputHandler.send(new Object[] { 2, 30 });
-        inputHandler.send(new Object[] { 3, 100 });
-        inputHandler.send(new Object[] { 4, 40 });
-        inputHandler.send(new Object[] { 5, 80 });
-        inputHandler.send(new Object[] { 6, 60 });
-        inputHandler.send(new Object[] { 7, 20 });
-        inputHandler.send(new Object[] { 8, 90 });
-        inputHandler.send(new Object[] { 9, 70 });
-        inputHandler.send(new Object[] { 10, 50 });
+        inputHandler.send(new Object[]{1, 10});
+        inputHandler.send(new Object[]{2, 30});
+        inputHandler.send(new Object[]{3, 100});
+        inputHandler.send(new Object[]{4, 40});
+        inputHandler.send(new Object[]{5, 80});
+        inputHandler.send(new Object[]{6, 60});
+        inputHandler.send(new Object[]{7, 20});
+        inputHandler.send(new Object[]{8, 90});
+        inputHandler.send(new Object[]{9, 70});
+        inputHandler.send(new Object[]{10, 50});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -664,14 +665,14 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -680,16 +681,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10 });
-        inputHandler.send(new Object[] { 2, 30 });
-        inputHandler.send(new Object[] { 3, 100 });
-        inputHandler.send(new Object[] { 4, 40 });
-        inputHandler.send(new Object[] { 5, 80 });
-        inputHandler.send(new Object[] { 6, 60 });
-        inputHandler.send(new Object[] { 7, 20 });
-        inputHandler.send(new Object[] { 8, 90 });
-        inputHandler.send(new Object[] { 9, 70 });
-        inputHandler.send(new Object[] { 10, 50 });
+        inputHandler.send(new Object[]{1, 10});
+        inputHandler.send(new Object[]{2, 30});
+        inputHandler.send(new Object[]{3, 100});
+        inputHandler.send(new Object[]{4, 40});
+        inputHandler.send(new Object[]{5, 80});
+        inputHandler.send(new Object[]{6, 60});
+        inputHandler.send(new Object[]{7, 20});
+        inputHandler.send(new Object[]{8, 90});
+        inputHandler.send(new Object[]{9, 70});
+        inputHandler.send(new Object[]{10, 50});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(2, count);
@@ -720,38 +721,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(50.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(80.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(50.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(80.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -760,16 +761,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10l });
-        inputHandler.send(new Object[] { 2, 30l });
-        inputHandler.send(new Object[] { 3, 50l });
-        inputHandler.send(new Object[] { 4, 40l });
-        inputHandler.send(new Object[] { 5, 80l });
-        inputHandler.send(new Object[] { 6, 60l });
-        inputHandler.send(new Object[] { 7, 20l });
-        inputHandler.send(new Object[] { 8, 90l });
-        inputHandler.send(new Object[] { 9, 70l });
-        inputHandler.send(new Object[] { 10, 100l });
+        inputHandler.send(new Object[]{1, 10L});
+        inputHandler.send(new Object[]{2, 30L});
+        inputHandler.send(new Object[]{3, 50L});
+        inputHandler.send(new Object[]{4, 40L});
+        inputHandler.send(new Object[]{5, 80L});
+        inputHandler.send(new Object[]{6, 60L});
+        inputHandler.send(new Object[]{7, 20L});
+        inputHandler.send(new Object[]{8, 90L});
+        inputHandler.send(new Object[]{9, 70L});
+        inputHandler.send(new Object[]{10, 100L});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -800,38 +801,38 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(10.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(30.0, event.getData(0));
-                        break;
-                    case 3:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 4:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 5:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 6:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 7:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 8:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 9:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    case 10:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(10.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(30.0, event.getData(0));
+                            break;
+                        case 3:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 4:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 5:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 6:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 7:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 8:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 9:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        case 10:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -840,16 +841,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10l });
-        inputHandler.send(new Object[] { 2, 30l });
-        inputHandler.send(new Object[] { 3, 100l });
-        inputHandler.send(new Object[] { 4, 40l });
-        inputHandler.send(new Object[] { 5, 80l });
-        inputHandler.send(new Object[] { 6, 60l });
-        inputHandler.send(new Object[] { 7, 20l });
-        inputHandler.send(new Object[] { 8, 90l });
-        inputHandler.send(new Object[] { 9, 70l });
-        inputHandler.send(new Object[] { 10, 50l });
+        inputHandler.send(new Object[]{1, 10L});
+        inputHandler.send(new Object[]{2, 30L});
+        inputHandler.send(new Object[]{3, 100L});
+        inputHandler.send(new Object[]{4, 40L});
+        inputHandler.send(new Object[]{5, 80L});
+        inputHandler.send(new Object[]{6, 60L});
+        inputHandler.send(new Object[]{7, 20L});
+        inputHandler.send(new Object[]{8, 90L});
+        inputHandler.send(new Object[]{9, 70L});
+        inputHandler.send(new Object[]{10, 50L});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(10, count);
@@ -880,14 +881,14 @@ public class PercentileFunctionExtensionTestCase {
                     countDownLatch.countDown();
                     count++;
                     switch (count) {
-                    case 1:
-                        Assert.assertEquals(100.0, event.getData(0));
-                        break;
-                    case 2:
-                        Assert.assertEquals(90.0, event.getData(0));
-                        break;
-                    default:
-                        Assert.fail();
+                        case 1:
+                            Assert.assertEquals(100.0, event.getData(0));
+                            break;
+                        case 2:
+                            Assert.assertEquals(90.0, event.getData(0));
+                            break;
+                        default:
+                            Assert.fail();
                     }
                 }
             }
@@ -896,16 +897,16 @@ public class PercentileFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
         executionPlanRuntime.start();
 
-        inputHandler.send(new Object[] { 1, 10l });
-        inputHandler.send(new Object[] { 2, 30l });
-        inputHandler.send(new Object[] { 3, 100l });
-        inputHandler.send(new Object[] { 4, 40l });
-        inputHandler.send(new Object[] { 5, 80l });
-        inputHandler.send(new Object[] { 6, 60l });
-        inputHandler.send(new Object[] { 7, 20l });
-        inputHandler.send(new Object[] { 8, 90l });
-        inputHandler.send(new Object[] { 9, 70l });
-        inputHandler.send(new Object[] { 10, 50l });
+        inputHandler.send(new Object[]{1, 10L});
+        inputHandler.send(new Object[]{2, 30L});
+        inputHandler.send(new Object[]{3, 100L});
+        inputHandler.send(new Object[]{4, 40L});
+        inputHandler.send(new Object[]{5, 80L});
+        inputHandler.send(new Object[]{6, 60L});
+        inputHandler.send(new Object[]{7, 20L});
+        inputHandler.send(new Object[]{8, 90L});
+        inputHandler.send(new Object[]{9, 70L});
+        inputHandler.send(new Object[]{10, 50L});
 
         countDownLatch.await(1000, MILLISECONDS);
         Assert.assertEquals(2, count);

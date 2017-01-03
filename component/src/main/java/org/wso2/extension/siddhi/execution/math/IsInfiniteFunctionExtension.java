@@ -31,7 +31,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): FLOAT,DOUBLE
 * Return Type(s): BOOLEAN
 */
-public class IsInfiniteFunctionExtension extends FunctionExecutor{
+public class IsInfiniteFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
@@ -40,9 +40,9 @@ public class IsInfiniteFunctionExtension extends FunctionExecutor{
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.FLOAT
                 && attributeExpressionExecutors[0].getReturnType() != Attribute.Type.DOUBLE) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:is_infinite() function, " +
-                    "required "+Attribute.Type.FLOAT+" or "+
-                    Attribute.Type.DOUBLE+", but found "+attributeExpressionExecutors[0].getReturnType().toString());
+            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
+                    "math:is_infinite() function, " + "required " + Attribute.Type.FLOAT + " or " +
+                    Attribute.Type.DOUBLE + ", but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
@@ -56,9 +56,9 @@ public class IsInfiniteFunctionExtension extends FunctionExecutor{
         if (data != null) {
             //type-conversion
             if (data instanceof Float) {
-                return Float.isInfinite((Float)data);
+                return Float.isInfinite((Float) data);
             } else {
-                return Double.isInfinite((Double)data);
+                return Double.isInfinite((Double) data);
             }
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:is_infinite() function cannot be null");

@@ -36,12 +36,12 @@ public class ParseLongFunctionExtension extends FunctionExecutor {
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
             throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:parseLong() function, " +
-                                                       "required 1, but found " + attributeExpressionExecutors.length);
+                    "required 1, but found " + attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
-                                                       "math:parseLong() function, required " + Attribute.Type.STRING +
-                                                       " but found " + attributeExpressionExecutors[0].getReturnType().toString());
+                    "math:parseLong() function, required " + Attribute.Type.STRING +
+                    " but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 

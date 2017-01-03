@@ -31,7 +31,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): INT,LONG,FLOAT,DOUBLE
 * Return Type(s): DOUBLE
 */
-public class MaxFunctionExtension extends FunctionExecutor{
+public class MaxFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 2) {
@@ -98,7 +98,7 @@ public class MaxFunctionExtension extends FunctionExecutor{
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:max() function cannot be null");
         }
-        return Math.max(inputVal1,inputVal2);
+        return Math.max(inputVal1, inputVal2);
     }
 
     @Override

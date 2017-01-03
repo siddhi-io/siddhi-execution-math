@@ -62,15 +62,15 @@ public class Log2FunctionExtension extends FunctionExecutor {
             //type-conversion
             if (data instanceof Integer) {
                 int inputInt = (Integer) data;
-                return Math.log((double) inputInt)/Math.log(2d);
+                return Math.log((double) inputInt) / Math.log(2d);
             } else if (data instanceof Long) {
                 long inputLong = (Long) data;
-                return Math.log((double) inputLong)/Math.log(2d);
+                return Math.log((double) inputLong) / Math.log(2d);
             } else if (data instanceof Float) {
                 float inputFloat = (Float) data;
-                return Math.log((double) inputFloat)/Math.log(2d);
+                return Math.log((double) inputFloat) / Math.log(2d);
             } else if (data instanceof Double) {
-                return Math.log((Double) data)/Math.log(2d);
+                return Math.log((Double) data) / Math.log(2d);
             }
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:log2() function cannot be null");

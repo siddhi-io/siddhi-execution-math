@@ -52,7 +52,7 @@ public class RoundFunctionExtensionTestCase {
                 Long result;
                 for (Event event : inEvents) {
                     result = (Long) event.getData(0);
-                    Assert.assertEquals((Long) 6l, result);
+                    Assert.assertEquals((Long) 6L, result);
                 }
             }
         });

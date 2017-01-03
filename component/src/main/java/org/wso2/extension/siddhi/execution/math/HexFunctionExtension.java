@@ -60,13 +60,13 @@ public class HexFunctionExtension extends FunctionExecutor {
     protected Object execute(Object data) {
         if (data != null) {
             if (data instanceof Integer) {
-                return Integer.toHexString((Integer)data);
+                return Integer.toHexString((Integer) data);
             } else if (data instanceof Long) {
-                return Long.toHexString((Long)data);
+                return Long.toHexString((Long) data);
             } else if (data instanceof Float) {
-                return Float.toHexString((Float)data);
+                return Float.toHexString((Float) data);
             } else if (data instanceof Double) {
-                return Double.toHexString((Double)data);
+                return Double.toHexString((Double) data);
             }
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:hex() function cannot be null");

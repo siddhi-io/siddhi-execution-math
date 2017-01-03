@@ -102,11 +102,11 @@ public class LogFunctionExtension extends FunctionExecutor {
         } else {
             throw new ExecutionPlanRuntimeException("The second argument to the math:log() function cannot be null");
         }
-        if(base==1){
+        if (base == 1) {
             throw new ExecutionPlanRuntimeException("The base argument supplied to the math:log() function is equal to zero. " +
-                    "Since the logarithms to the base 1 is undefined, the result of math:log("+number+","+base+") is undefined");
+                    "Since the logarithms to the base 1 is undefined, the result of math:log(" + number + "," + base + ") is undefined");
         }
-        return Math.log(number)/Math.log(base);
+        return Math.log(number) / Math.log(base);
     }
 
     @Override

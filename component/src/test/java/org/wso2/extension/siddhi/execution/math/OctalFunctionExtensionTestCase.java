@@ -59,7 +59,7 @@ public class OctalFunctionExtensionTestCase {
         InputHandler inputHandler = executionPlanRuntime
                 .getInputHandler("InValueStream");
         executionPlanRuntime.start();
-        inputHandler.send(new Object[]{99l});
+        inputHandler.send(new Object[]{99L});
         Thread.sleep(100);
         executionPlanRuntime.shutdown();
     }

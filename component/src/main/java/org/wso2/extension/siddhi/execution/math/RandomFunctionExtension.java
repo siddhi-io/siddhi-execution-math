@@ -36,24 +36,24 @@ import java.util.Random;
 public class RandomFunctionExtension extends FunctionExecutor {
 
     //state-variables
-    Random random;
+    private Random random;
 
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length > 1) {
             throw new ExecutionPlanValidationException("Invalid no of Arguments Passed. Required 0 or 1. Found " + attributeExpressionExecutors.length);
         }
-        if(attributeExpressionExecutors.length == 1){
-            if(attributeExpressionExecutors[0] == null){
+        if (attributeExpressionExecutors.length == 1) {
+            if (attributeExpressionExecutors[0] == null) {
                 throw new ExecutionPlanValidationException("Invalid input given to math:rand() function. The 'seed' argument cannot be null");
             }
             Attribute.Type type = attributeExpressionExecutors[0].getReturnType();
-            if(type != Attribute.Type.INT && type != Attribute.Type.LONG){
+            if (type != Attribute.Type.INT && type != Attribute.Type.LONG) {
                 throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:rand() function, " +
-                        "required "+Attribute.Type.INT+" or "+Attribute.Type.LONG+", but found "+type.toString());
+                        "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " + type.toString());
             }
             long seed;
-            if(attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor){
+            if (attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor) {
                 Object constantObj = ((ConstantExpressionExecutor) attributeExpressionExecutors[0]).getValue();
                 if (type == Attribute.Type.INT) {
                     int intSeed;
@@ -64,8 +64,8 @@ public class RandomFunctionExtension extends FunctionExecutor {
                 }
             } else {
                 throw new ExecutionPlanValidationException("The seed argument of math:rand() function should be a constant," +
-                        " but found "+attributeExpressionExecutors[0].getClass().toString());
-                        //This should be a constant because the instantiation of java.util.Random should be done in the init() method.
+                        " but found " + attributeExpressionExecutors[0].getClass().toString());
+                //This should be a constant because the instantiation of java.util.Random should be done in the init() method.
             }
             random = new Random(seed);
         } else {

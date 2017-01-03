@@ -31,7 +31,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): STRING
 * Return Type(s): INT
 */
-public class ParseIntFunctionExtension extends FunctionExecutor{
+public class ParseIntFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
@@ -40,8 +40,8 @@ public class ParseIntFunctionExtension extends FunctionExecutor{
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
-                                                       "math:parseInt() function, required " + Attribute.Type.STRING +
-                                                       " but found " + attributeExpressionExecutors[0].getReturnType().toString());
+                    "math:parseInt() function, required " + Attribute.Type.STRING +
+                    " but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
@@ -54,7 +54,7 @@ public class ParseIntFunctionExtension extends FunctionExecutor{
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            return Integer.parseInt((String)data);
+            return Integer.parseInt((String) data);
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:parseInt() function cannot be null");
         }

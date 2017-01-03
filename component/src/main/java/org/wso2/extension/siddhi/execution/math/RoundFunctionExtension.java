@@ -34,7 +34,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 */
 public class RoundFunctionExtension extends FunctionExecutor {
 
-    Attribute.Type returnType;
+    private Attribute.Type returnType;
 
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
