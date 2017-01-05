@@ -67,15 +67,15 @@ public class SignFunctionExtension extends FunctionExecutor {
             //type-conversion
             if (data instanceof Integer) {
                 int inputInt = (Integer) data;
-                return (int)Math.signum((double) inputInt);
+                return (int) Math.signum((double) inputInt);
             } else if (data instanceof Long) {
                 long inputLong = (Long) data;
-                return (int)Math.signum((double) inputLong);
+                return (int) Math.signum((double) inputLong);
             } else if (data instanceof Float) {
                 float inputFloat = (Float) data;
-                return (int)Math.signum((double) inputFloat);
+                return (int) Math.signum((double) inputFloat);
             } else if (data instanceof Double) {
-                return (int)Math.signum((Double) data);
+                return (int) Math.signum((Double) data);
             }
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:signum() function cannot be null");

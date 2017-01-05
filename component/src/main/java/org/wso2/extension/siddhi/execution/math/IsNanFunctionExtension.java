@@ -31,7 +31,7 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): FLOAT,DOUBLE
 * Return Type(s): BOOLEAN
 */
-public class IsNanFunctionExtension extends FunctionExecutor{
+public class IsNanFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
@@ -41,8 +41,8 @@ public class IsNanFunctionExtension extends FunctionExecutor{
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.FLOAT
                 && attributeExpressionExecutors[0].getReturnType() != Attribute.Type.DOUBLE) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:is_nan() function, " +
-                    "required "+Attribute.Type.FLOAT+" or "+
-                    Attribute.Type.DOUBLE+", but found "+attributeExpressionExecutors[0].getReturnType().toString());
+                    "required " + Attribute.Type.FLOAT + " or " +
+                    Attribute.Type.DOUBLE + ", but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
@@ -56,9 +56,9 @@ public class IsNanFunctionExtension extends FunctionExecutor{
         if (data != null) {
             //type-conversion
             if (data instanceof Float) {
-                return Float.isNaN((Float)data);
+                return Float.isNaN((Float) data);
             } else {
-                return Double.isNaN((Double)data);
+                return Double.isNaN((Double) data);
             }
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:is_nan() function cannot be null");

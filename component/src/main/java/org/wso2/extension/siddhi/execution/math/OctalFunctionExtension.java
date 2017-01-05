@@ -43,7 +43,7 @@ public class OctalFunctionExtension extends FunctionExecutor {
         if (!((attributeType == Attribute.Type.INT)
                 || (attributeType == Attribute.Type.LONG))) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:oct() function, " +
-                    "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +", but found " + attributeType.toString());
+                    "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " + attributeType.toString());
         }
     }
 

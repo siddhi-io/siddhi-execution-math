@@ -31,18 +31,19 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): STRING
 * Return Type(s): DOUBLE
 */
-public class ParseDoubleFunctionExtension extends FunctionExecutor{
+public class ParseDoubleFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
             throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:parseDouble() " +
-                                                       "function, " +
+                    "function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
-                                                       "math:parseDouble() function, " +
-                    "required "+Attribute.Type.STRING+" but found "+attributeExpressionExecutors[0].getReturnType().toString());
+                    "math:parseDouble() function, " +
+                    "required " + Attribute.Type.STRING + " but found " +
+                    attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
@@ -55,7 +56,7 @@ public class ParseDoubleFunctionExtension extends FunctionExecutor{
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            return Double.parseDouble((String)data);
+            return Double.parseDouble((String) data);
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:parseDouble() function cannot be null");
         }

@@ -52,7 +52,7 @@ public class ParseLongFunctionExtensionTestCase {
                 Long result;
                 for (Event event : inEvents) {
                     result = (Long) event.getData(0);
-                    Assert.assertEquals((Long) 123l, result);
+                    Assert.assertEquals((Long) 123L, result);
                 }
             }
         });

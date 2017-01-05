@@ -52,7 +52,7 @@ public class IsInfiniteFunctionExtensionTestCase {
                 Boolean result;
                 for (Event event : inEvents) {
                     result = (Boolean) event.getData(0);
-                    Assert.assertEquals( true, result);
+                    Assert.assertEquals(true, result);
                 }
             }
         });

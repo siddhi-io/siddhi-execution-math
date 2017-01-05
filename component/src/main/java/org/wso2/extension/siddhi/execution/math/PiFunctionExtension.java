@@ -30,7 +30,7 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 */
 public class PiFunctionExtension extends FunctionExecutor {
 
-    Attribute.Type returnType = Attribute.Type.DOUBLE;
+    private Attribute.Type returnType = Attribute.Type.DOUBLE;
 
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {

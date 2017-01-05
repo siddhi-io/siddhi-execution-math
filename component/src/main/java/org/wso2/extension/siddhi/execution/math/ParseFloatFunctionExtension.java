@@ -31,17 +31,17 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
 * Accept Type(s): STRING
 * Return Type(s): FLOAT
 */
-public class ParseFloatFunctionExtension extends FunctionExecutor{
+public class ParseFloatFunctionExtension extends FunctionExecutor {
     @Override
     protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
         if (attributeExpressionExecutors.length != 1) {
             throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:parseFloat() function," +
-                                                       " required 1, but found " + attributeExpressionExecutors.length);
+                    " required 1, but found " + attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
             throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
-                                                       "math:parseFloat() function, " +
-                    "required "+Attribute.Type.STRING+" but found "+attributeExpressionExecutors[0].getReturnType().toString());
+                    "math:parseFloat() function, " +
+                    "required " + Attribute.Type.STRING + " but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
@@ -53,7 +53,7 @@ public class ParseFloatFunctionExtension extends FunctionExecutor{
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            return Float.parseFloat((String)data);
+            return Float.parseFloat((String) data);
         } else {
             throw new ExecutionPlanRuntimeException("Input to the math:parseFloat() function cannot be null");
         }
