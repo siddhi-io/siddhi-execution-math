@@ -19,16 +19,23 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.wso2.extension.siddhi.execution.math.util.ValueParser;
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.exception.OperationNotSupportedException;
 import org.wso2.siddhi.core.executor.ConstantExpressionExecutor;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggregator;
+import org.wso2.siddhi.core.util.config.ConfigReader;
+import org.wso2.siddhi.query.api.definition.Attribute;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 /**
  * AttributeAggregator which implements the following function.
@@ -37,14 +44,28 @@ import java.util.List;
  * Accept Type(s): value: FLOAT,INT,LONG,DOUBLE / p: DOUBLE
  * Return Type: DOUBLE
  */
+@Extension(
+        name = "percentile",
+        namespace = "math",
+        description = "Returns the pth percentile value of the arg values.",
+        parameters = {
+                @Parameter(name = "arg", description = "TBD", type = {DataType.INT, DataType.LONG,
+                        DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(name = "p", description = "TBD", type = {DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
+        examples = @Example(description = "math:percentile(temperature, 97.0)", syntax = "TBD")
+)
 public class PercentileFunctionExtension extends AttributeAggregator {
 
+    private static final String VALUES_LIST = "VALUES_LIST";
     private ValueParser valueParser;
     private double percentileValue;
     private List<Double> valuesList;
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
 
         if (attributeExpressionExecutors.length != 2) {
             throw new OperationNotSupportedException("Percentile function has to have exactly 2 parameter, currently "
@@ -140,13 +161,13 @@ public class PercentileFunctionExtension extends AttributeAggregator {
     }
 
     @Override
-    public Object[] currentState() {
-        return new Object[]{valuesList};
+    public Map<String, Object> currentState() {
+        return Collections.singletonMap(VALUES_LIST, valuesList);
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        valuesList = (List<Double>) state[0];
+    public void restoreState(Map<String, Object> map) {
+        valuesList = (List<Double>) map.get(VALUES_LIST);
     }
 
     /**

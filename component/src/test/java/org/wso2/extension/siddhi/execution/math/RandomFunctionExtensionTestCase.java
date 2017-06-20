@@ -19,9 +19,10 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
-import org.junit.Before;
-import org.junit.Test;
-import org.wso2.siddhi.core.ExecutionPlanRuntime;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
@@ -29,11 +30,11 @@ import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 public class RandomFunctionExtensionTestCase {
-    static final Logger log = Logger.getLogger(RandomFunctionExtensionTestCase.class);
+    static final Logger LOG = Logger.getLogger(RandomFunctionExtensionTestCase.class);
     private volatile int count;
     private volatile boolean eventArrived;
 
-    @Before
+    @BeforeMethod
     public void init() {
         count = 0;
         eventArrived = false;
@@ -41,13 +42,13 @@ public class RandomFunctionExtensionTestCase {
 
     @Test
     public void testRandomFunctionExtensionWithoutSeed() throws InterruptedException {
-        log.info("RandomFunctionExtension TestCase, without seed");
+        LOG.info("RandomFunctionExtension TestCase, without seed");
         SiddhiManager siddhiManager = new SiddhiManager();
 
         String inStreamDefinition = "define stream inputStream (symbol string, price long, volume long);";
         String query = ("@info(name = 'query1') from inputStream select symbol , math:rand() as randNumber " +
                 "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inStreamDefinition + query);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -66,7 +67,7 @@ public class RandomFunctionExtensionTestCase {
                             randNumbers[1] == randNumbers[2]) {
                         isDuplicatePresent = true;
                     }
-                    junit.framework.Assert.assertEquals(false, isDuplicatePresent);
+                    AssertJUnit.assertEquals(false, isDuplicatePresent);
                 }
             }
         });
@@ -77,20 +78,20 @@ public class RandomFunctionExtensionTestCase {
         inputHandler.send(new Object[]{"WSO2", 60.5f, 200L});
         inputHandler.send(new Object[]{"XYZ", 60.5f, 200L});
         Thread.sleep(100);
-        junit.framework.Assert.assertEquals(3, count);
-        junit.framework.Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(3, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
     @Test
     public void testRandomFunctionExtensionWithSeed() throws InterruptedException {
-        log.info("RandomFunctionExtension TestCase, with seed");
+        LOG.info("RandomFunctionExtension TestCase, with seed");
         SiddhiManager siddhiManager = new SiddhiManager();
 
         String inStreamDefinition = "define stream inputStream (symbol string, price long, volume long);";
         String query = ("@info(name = 'query1') from inputStream select symbol , math:rand(12) as randNumber " +
                 "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inStreamDefinition + query);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager.createSiddhiAppRuntime(inStreamDefinition + query);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -104,13 +105,13 @@ public class RandomFunctionExtensionTestCase {
                     randNumbers[1] = (Double) inEvents[1].getData(1);
                     randNumbers[2] = (Double) inEvents[2].getData(1);
                     boolean isDuplicatePresent = false;
-                    System.out.println(randNumbers[0] + ", " + randNumbers[1]);
+                    LOG.info(randNumbers[0] + ", " + randNumbers[1]);
                     if (randNumbers[0] == randNumbers[1] ||
                             randNumbers[0] == randNumbers[2] ||
                             randNumbers[1] == randNumbers[2]) {
                         isDuplicatePresent = true;
                     }
-                    junit.framework.Assert.assertEquals(false, isDuplicatePresent);
+                    AssertJUnit.assertEquals(false, isDuplicatePresent);
                 }
             }
         });
@@ -122,7 +123,7 @@ public class RandomFunctionExtensionTestCase {
         inputHandler.send(new Object[]{"XYZ", 60.5f, 200L});
         Thread.sleep(500);
         executionPlanRuntime.shutdown();
-        junit.framework.Assert.assertEquals(3, count);
-        junit.framework.Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(3, count);
+        AssertJUnit.assertTrue(eventArrived);
     }
 }

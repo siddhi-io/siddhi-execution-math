@@ -18,25 +18,44 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
-/*
-* to_degrees(a);
-* Converts the given parameter from radians to degrees. 1 radian = 180º/π =
-* 57.295779513 degrees
-* Accept Type(s) :DOUBLE/INT/FLOAT/LONG
-* Return Type(s): DOUBLE
-*/
+import java.util.Map;
+
+/**
+ * to_degrees(a);
+ * Converts the given parameter from radians to degrees. 1 radian = 180º/π =
+ * 57.295779513 degrees
+ * Accept Type(s) :DOUBLE/INT/FLOAT/LONG
+ * Return Type(s): DOUBLE
+ */
+@Extension(
+        name = "toDegrees",
+        namespace = "math",
+        description = "Converts p1 from radians to degrees. This function wraps the " +
+                "java.lang.Math.toDegrees() function.",
+        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
+                DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
+        examples = @Example(description = "toDegrees(6d) returns 343.77467707849394.", syntax = "TBD")
+)
 public class ToDegreesFunctionExtension extends FunctionExecutor {
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:to_degrees() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:to_degrees() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
@@ -44,7 +63,8 @@ public class ToDegreesFunctionExtension extends FunctionExecutor {
                 || (attributeType == Attribute.Type.INT)
                 || (attributeType == Attribute.Type.FLOAT)
                 || (attributeType == Attribute.Type.LONG))) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:to_degrees() function, " +
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of " +
+                    "math:to_degrees() function, " +
                     "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
                     " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
                     ", but found " + attributeType.toString());
@@ -53,7 +73,7 @@ public class ToDegreesFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the to_degrees function takes in only 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -73,7 +93,7 @@ public class ToDegreesFunctionExtension extends FunctionExecutor {
                 return Math.toDegrees((Double) data);
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:to_degrees() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:to_degrees() function cannot be null");
         }
         return null;
     }
@@ -94,12 +114,12 @@ public class ToDegreesFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

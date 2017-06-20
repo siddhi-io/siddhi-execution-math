@@ -18,12 +18,20 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import java.util.Map;
 
 /**
  * signum(a);
@@ -33,12 +41,23 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
  * Return Type(s): INT
  * Returning an INT rather than a DOUBLE because an INT is *sufficient* to represent -1,0 and 1
  */
+@Extension(
+        name = "signum",
+        namespace = "math",
+        description = "If a is a positive, this returns the sign of p1 as 1.0. " +
+                "This function wraps the java.lang.Math.signum() function.",
+        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
+                DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.INT}),
+        examples = @Example(description = "signum(-6.32d) returns -1.", syntax = "TBD")
+)
 public class SignFunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:signum() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:signum() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
@@ -46,8 +65,8 @@ public class SignFunctionExtension extends FunctionExecutor {
                 || (attributeType == Attribute.Type.INT)
                 || (attributeType == Attribute.Type.FLOAT)
                 || (attributeType == Attribute.Type.LONG))) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:signum() function, " +
-                    "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of math:signum() " +
+                    "function, required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
                     " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
                     ", but found " + attributeType.toString());
         }
@@ -55,7 +74,7 @@ public class SignFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the signum function takes in only 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -78,7 +97,7 @@ public class SignFunctionExtension extends FunctionExecutor {
                 return (int) Math.signum((Double) data);
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:signum() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:signum() function cannot be null");
         }
         return null;
     }
@@ -99,12 +118,12 @@ public class SignFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

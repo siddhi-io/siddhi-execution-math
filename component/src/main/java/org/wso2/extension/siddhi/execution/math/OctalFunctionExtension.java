@@ -18,12 +18,20 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import java.util.Map;
 
 /**
  * oct(a)
@@ -31,25 +39,35 @@ import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
  * Accept Type(s):INT,LONG
  * Return Type(s): STRING
  */
+@Extension(
+        name = "oct",
+        namespace = "math",
+        description = "Converts p1 to octal.",
+        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.STRING}),
+        examples = @Example(description = "oct(99l) returns \"143\".", syntax = "TBD")
+)
 public class OctalFunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:oct() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:oct() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
         if (!((attributeType == Attribute.Type.INT)
                 || (attributeType == Attribute.Type.LONG))) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:oct() function, " +
-                    "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " + attributeType.toString());
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of math:oct() " +
+                    "function, required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " +
+                    attributeType.toString());
         }
     }
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the oct function takes in only 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -61,7 +79,7 @@ public class OctalFunctionExtension extends FunctionExecutor {
                 return Long.toOctalString((Long) data);
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:oct() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:oct() function cannot be null");
         }
     }
 
@@ -81,12 +99,12 @@ public class OctalFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

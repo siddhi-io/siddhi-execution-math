@@ -19,9 +19,9 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Test;
-import org.wso2.siddhi.core.ExecutionPlanRuntime;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
+import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
@@ -41,7 +41,8 @@ public class AtanFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:atan(inValue) as atanValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -51,7 +52,7 @@ public class AtanFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) 1.4056476493802699, results);
+                    AssertJUnit.assertEquals((Double) 1.4056476493802699, results);
                 }
             }
         });
@@ -73,7 +74,8 @@ public class AtanFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:atan(inValue1, inValue2) as convertedValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -83,7 +85,7 @@ public class AtanFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) 1.1760052070951352, results);
+                    AssertJUnit.assertEquals((Double) 1.1760052070951352, results);
                 }
             }
         });

@@ -19,10 +19,10 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.wso2.siddhi.core.ExecutionPlanRuntime;
+import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
@@ -34,17 +34,17 @@ import java.util.concurrent.CountDownLatch;
 import static java.util.concurrent.TimeUnit.MILLISECONDS;
 
 public class PercentileFunctionExtensionTestCase {
-    private static Logger logger = Logger.getLogger(PercentileFunctionExtensionTestCase.class);
-    protected static SiddhiManager siddhiManager;
-    private CountDownLatch countDownLatch;
-    private volatile int count;
-    private volatile boolean eventArrived;
     private static final String INPUT_STREAM_DOUBLE = "define stream inputStream (sensorId int, temperature double);";
     private static final String INPUT_STREAM_FLOAT = "define stream inputStream (sensorId int, temperature float);";
     private static final String INPUT_STREAM_INT = "define stream inputStream (sensorId int, temperature int);";
     private static final String INPUT_STREAM_LONG = "define stream inputStream (sensorId int, temperature long);";
+    protected static SiddhiManager siddhiManager;
+    private static Logger logger = Logger.getLogger(PercentileFunctionExtensionTestCase.class);
+    private CountDownLatch countDownLatch;
+    private volatile int count;
+    private volatile boolean eventArrived;
 
-    @Before
+    @BeforeMethod
     public void init() {
         count = 0;
         eventArrived = false;
@@ -54,15 +54,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionDouble1() throws Exception {
         logger.info("PercentileFunctionExtension no window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_DOUBLE + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -74,37 +74,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -125,8 +125,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 100d});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -134,15 +134,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionDouble2() throws Exception {
         logger.info("PercentileFunctionExtension length window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_DOUBLE + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -154,37 +154,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -205,8 +205,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50d});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -214,15 +214,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionDouble3() throws Exception {
         logger.info("PercentileFunctionExtension lengthBatch window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 2;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 2;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_DOUBLE + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -234,13 +234,13 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -261,8 +261,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50d});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(2, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(2, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -270,15 +270,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionFloat1() throws Exception {
         logger.info("PercentileFunctionExtension no window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_FLOAT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -290,37 +290,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -341,8 +341,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 100f});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -350,15 +350,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionFloat2() throws Exception {
         logger.info("PercentileFunctionExtension length window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_FLOAT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -370,37 +370,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -421,8 +421,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50f});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -430,15 +430,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionFloat3() throws Exception {
         logger.info("PercentileFunctionExtension lengthBatch window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 2;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 2;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_FLOAT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -450,13 +450,13 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -477,8 +477,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50f});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(2, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(2, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -486,15 +486,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionInt1() throws Exception {
         logger.info("PercentileFunctionExtension no window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_INT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -506,37 +506,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -557,8 +557,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 100});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -566,15 +566,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionInt2() throws Exception {
         logger.info("PercentileFunctionExtension length window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_INT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -586,37 +586,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -637,8 +637,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -646,15 +646,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionInt3() throws Exception {
         logger.info("PercentileFunctionExtension lengthBatch window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 2;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 2;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_INT + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -666,13 +666,13 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -693,8 +693,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(2, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(2, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -702,15 +702,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionLong1() throws Exception {
         logger.info("PercentileFunctionExtension no window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_LONG + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -722,37 +722,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(50.0, event.getData(0));
+                            AssertJUnit.assertEquals(50.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(80.0, event.getData(0));
+                            AssertJUnit.assertEquals(80.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -773,8 +773,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 100L});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -782,15 +782,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionLong2() throws Exception {
         logger.info("PercentileFunctionExtension length window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 10;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 10;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_LONG + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -802,37 +802,37 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(10.0, event.getData(0));
+                            AssertJUnit.assertEquals(10.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(30.0, event.getData(0));
+                            AssertJUnit.assertEquals(30.0, event.getData(0));
                             break;
                         case 3:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 4:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 5:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 6:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 7:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 8:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 9:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         case 10:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -853,8 +853,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50L});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(10, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(10, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 
@@ -862,15 +862,15 @@ public class PercentileFunctionExtensionTestCase {
     public void testPercentileFunctionExtensionLong3() throws Exception {
         logger.info("PercentileFunctionExtension lengthBatch window test case.");
 
-        final int EXPECTED_NO_OF_EVENTS = 2;
-        countDownLatch = new CountDownLatch(EXPECTED_NO_OF_EVENTS);
+        final int expectedNoOfEvents = 2;
+        countDownLatch = new CountDownLatch(expectedNoOfEvents);
         siddhiManager = new SiddhiManager();
 
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager
-                .createExecutionPlanRuntime(INPUT_STREAM_LONG + executionPlan);
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+                .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -882,13 +882,13 @@ public class PercentileFunctionExtensionTestCase {
                     count++;
                     switch (count) {
                         case 1:
-                            Assert.assertEquals(100.0, event.getData(0));
+                            AssertJUnit.assertEquals(100.0, event.getData(0));
                             break;
                         case 2:
-                            Assert.assertEquals(90.0, event.getData(0));
+                            AssertJUnit.assertEquals(90.0, event.getData(0));
                             break;
                         default:
-                            Assert.fail();
+                            AssertJUnit.fail();
                     }
                 }
             }
@@ -909,8 +909,8 @@ public class PercentileFunctionExtensionTestCase {
         inputHandler.send(new Object[]{10, 50L});
 
         countDownLatch.await(1000, MILLISECONDS);
-        Assert.assertEquals(2, count);
-        Assert.assertTrue(eventArrived);
+        AssertJUnit.assertEquals(2, count);
+        AssertJUnit.assertTrue(eventArrived);
         executionPlanRuntime.shutdown();
     }
 }

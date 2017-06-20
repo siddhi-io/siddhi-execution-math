@@ -18,28 +18,45 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
-/*
-* parseLong(string);
-* Returns the 'string' as a LONG
-* Accept Type(s): STRING
-* Return Type(s): LONG
-*/
+import java.util.Map;
+
+/**
+ * parseLong(string);
+ * Returns the 'string' as a LONG
+ * Accept Type(s): STRING
+ * Return Type(s): LONG
+ */
+@Extension(
+        name = "parseLong",
+        namespace = "math",
+        description = "Returns str as a long.",
+        parameters = {@Parameter(name = "str", description = "TBD", type = {DataType.STRING})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.LONG}),
+        examples = @Example(description = "parseLong(\"123\") returns 123.", syntax = "TBD")
+)
 public class ParseLongFunctionExtension extends FunctionExecutor {
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:parseLong() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:parseLong() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of " +
                     "math:parseLong() function, required " + Attribute.Type.STRING +
                     " but found " + attributeExpressionExecutors[0].getReturnType().toString());
         }
@@ -47,8 +64,7 @@ public class ParseLongFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the parseLong function takes in only 1 parameter, this method does not get called.
-        // Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -56,7 +72,7 @@ public class ParseLongFunctionExtension extends FunctionExecutor {
         if (data != null) {
             return Long.parseLong((String) data);
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:parseLong() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:parseLong() function cannot be null");
         }
     }
 
@@ -76,12 +92,12 @@ public class ParseLongFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }
