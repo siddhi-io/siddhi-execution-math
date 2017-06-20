@@ -18,39 +18,58 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import java.util.Map;
 
 /**
  * bin(a)
  * This class wraps the java.lang.Integer.toBinaryString and java.lang.Long.toBinaryString methods,
- *      which return a string representation of the integer/long argument as an unsigned integer in base 2.
+ * which return a string representation of the integer/long argument as an unsigned integer in base 2.
  * Accept Type(s):INT, LONG
  * Return Type(s): STRING
  */
+@Extension(
+        name = "bin",
+        namespace = "math",
+        description = "Returns a string representation of the integer/long p1 argument as an unsigned integer in " +
+                "base 2. This function wraps the java.lang.Integer.toBinaryString and " +
+                "java.lang.Long.toBinaryString methods.",
+        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.STRING}),
+        examples = @Example(description = "bin(9) returns \"1001\".", syntax = "TBD")
+)
 public class BinaryFunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:bin() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:bin() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
         }
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
         if (attributeType != Attribute.Type.INT && attributeType != Attribute.Type.LONG) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:bin() function, " +
-                    "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of math:bin() " +
+                    "function, required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
                     ", but found " + attributeType.toString());
         }
     }
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the bin function takes in only 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -62,7 +81,7 @@ public class BinaryFunctionExtension extends FunctionExecutor {
                 return Long.toBinaryString((Long) data);
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:bin() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:bin() function cannot be null");
         }
     }
 
@@ -81,13 +100,14 @@ public class BinaryFunctionExtension extends FunctionExecutor {
         return Attribute.Type.STRING;
     }
 
+
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

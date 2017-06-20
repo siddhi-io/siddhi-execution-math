@@ -19,9 +19,9 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Test;
-import org.wso2.siddhi.core.ExecutionPlanRuntime;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
+import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
@@ -29,8 +29,8 @@ import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 public class AcosFunctionExtensionTestCase {
-    private static Logger logger = Logger.getLogger(AcosFunctionExtensionTestCase.class);
     protected static SiddhiManager siddhiManager;
+    private static Logger logger = Logger.getLogger(AcosFunctionExtensionTestCase.class);
 
     @Test
     public void testProcess1() throws Exception {
@@ -42,7 +42,8 @@ public class AcosFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:acos(inValue) as acosValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -52,7 +53,7 @@ public class AcosFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) 1.4474840516030247, results);
+                    AssertJUnit.assertEquals((Double) 1.4474840516030247, results);
                 }
             }
         });
@@ -74,7 +75,8 @@ public class AcosFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:acos(inValue) as convertedValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -83,7 +85,7 @@ public class AcosFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) Double.NaN, results);
+                    AssertJUnit.assertEquals((Double) Double.NaN, results);
                 }
             }
         });
@@ -105,7 +107,8 @@ public class AcosFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:acos(inValue) as convertedValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -114,7 +117,7 @@ public class AcosFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) Double.NaN, results);
+                    AssertJUnit.assertEquals((Double) Double.NaN, results);
                 }
             }
         });
@@ -136,7 +139,8 @@ public class AcosFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:acos(inValue) as convertedValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -145,7 +149,7 @@ public class AcosFunctionExtensionTestCase {
                 Double results;
                 for (Event event : inEvents) {
                     results = (Double) event.getData(0);
-                    Assert.assertEquals((Double) 1.4474840481795643, results);
+                    AssertJUnit.assertEquals((Double) 1.4474840481795643, results);
                 }
             }
         });

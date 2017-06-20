@@ -19,9 +19,9 @@
 package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
-import org.junit.Test;
-import org.wso2.siddhi.core.ExecutionPlanRuntime;
+import org.testng.AssertJUnit;
+import org.testng.annotations.Test;
+import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
@@ -29,8 +29,8 @@ import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 public class CubeRootFunctionExtensionTestCase {
-    private static Logger logger = Logger.getLogger(CubeRootFunctionExtensionTestCase.class);
     protected static SiddhiManager siddhiManager;
+    private static Logger logger = Logger.getLogger(CubeRootFunctionExtensionTestCase.class);
 
     @Test
     public void testProcess() throws Exception {
@@ -42,7 +42,8 @@ public class CubeRootFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:cbrt(inValue) as cbrtValue "
                 + "insert into OutMediationStream;");
-        ExecutionPlanRuntime executionPlanRuntime = siddhiManager.createExecutionPlanRuntime(inValueStream + eventFuseExecutionPlan);
+        SiddhiAppRuntime executionPlanRuntime =
+                siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
         executionPlanRuntime.addCallback("query1", new QueryCallback() {
             @Override
@@ -52,7 +53,7 @@ public class CubeRootFunctionExtensionTestCase {
                 Double result;
                 for (Event event : inEvents) {
                     result = (Double) event.getData(0);
-                    Assert.assertEquals((Double) 2.5712815906582356, result);
+                    AssertJUnit.assertEquals((Double) 2.5712815906582356, result);
                 }
             }
         });

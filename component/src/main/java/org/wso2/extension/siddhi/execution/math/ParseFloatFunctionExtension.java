@@ -18,36 +18,54 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
-/*
-* parseFloat(string);
-* Returns the 'string' as a FLOAT
-* Accept Type(s): STRING
-* Return Type(s): FLOAT
-*/
+import java.util.Map;
+
+/**
+ * parseFloat(string);
+ * Returns the 'string' as a FLOAT
+ * Accept Type(s): STRING
+ * Return Type(s): FLOAT
+ */
+@Extension(
+        name = "parseFloat",
+        namespace = "math",
+        description = "Returns str as a float.",
+        parameters = {@Parameter(name = "str", description = "TBD", type = {DataType.STRING})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.FLOAT}),
+        examples = @Example(description = "parseFloat(\"123\") returns 123.0.", syntax = "TBD")
+)
 public class ParseFloatFunctionExtension extends FunctionExecutor {
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length != 1) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:parseFloat() function," +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:parseFloat() function," +
                     " required 1, but found " + attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors[0].getReturnType() != Attribute.Type.STRING) {
-            throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of " +
+            throw new SiddhiAppValidationException("Invalid parameter type found for the argument of " +
                     "math:parseFloat() function, " +
-                    "required " + Attribute.Type.STRING + " but found " + attributeExpressionExecutors[0].getReturnType().toString());
+                    "required " + Attribute.Type.STRING + " but found " +
+                    attributeExpressionExecutors[0].getReturnType().toString());
         }
     }
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the parse_float function takes in only 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -55,7 +73,7 @@ public class ParseFloatFunctionExtension extends FunctionExecutor {
         if (data != null) {
             return Float.parseFloat((String) data);
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:parseFloat() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:parseFloat() function cannot be null");
         }
     }
 
@@ -75,12 +93,12 @@ public class ParseFloatFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

@@ -18,25 +18,51 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
-import org.wso2.siddhi.core.exception.ExecutionPlanRuntimeException;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
+import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
-/*
-* atan(a); or atan(a,b);
-* Returns the arc-tangent(inverse tangent). The return value is in radian scale.
-* Accept Type(s) :DOUBLE/INT/FLOAT/LONG
-* Return Type(s): DOUBLE
-*/
+import java.util.Map;
+
+/**
+ * atan(a); or atan(a,b);
+ * Returns the arc-tangent(inverse tangent). The return value is in radian scale.
+ * Accept Type(s) :DOUBLE/INT/FLOAT/LONG
+ * Return Type(s): DOUBLE
+ */
+@Extension(
+        name = "atan",
+        namespace = "math",
+        description = "1. math:atan(p1) Returns the arc-tangent (inverse tangent) of p1. " +
+                "The return value is in radian scale. This function wraps the java.lang.Math.atan() function." +
+                "\n" +
+                "2. Returns the arc-tangent (inverse tangent) of  p1 and p2 coordinates. The return value is in " +
+                "radian scale. This function wraps the java.lang.Math.atan2() function.",
+        parameters = {
+                @Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG, DataType.FLOAT,
+                        DataType.DOUBLE}),
+                @Parameter(name = "p1", description = "TBD", optional = true, defaultValue = "0D",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT,
+                                DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
+        examples = @Example(description = "atan(12d, 5d) returns 1.1760052070951352.", syntax = "TBD")
+)
 public class AtanFunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length < 1 || attributeExpressionExecutors.length > 2) {
-            throw new ExecutionPlanValidationException("Invalid no of arguments passed to math:atan() function, " +
+            throw new SiddhiAppValidationException("Invalid no of arguments passed to math:atan() function, " +
                     "required 1 or 2, but found " + attributeExpressionExecutors.length);
         }
         int attributeIndex = 0;
@@ -46,7 +72,7 @@ public class AtanFunctionExtension extends FunctionExecutor {
                     || (attributeType == Attribute.Type.INT)
                     || (attributeType == Attribute.Type.FLOAT)
                     || (attributeType == Attribute.Type.LONG))) {
-                throw new ExecutionPlanValidationException("Invalid parameter type found for the argument at index " +
+                throw new SiddhiAppValidationException("Invalid parameter type found for the argument at index " +
                         attributeIndex + " of math:atan() function," +
                         "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
                         " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
@@ -76,7 +102,7 @@ public class AtanFunctionExtension extends FunctionExecutor {
                 inputVal1 = (Double) data[0];
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:atan() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
         }
 
         if (data[1] != null) {
@@ -94,7 +120,7 @@ public class AtanFunctionExtension extends FunctionExecutor {
                 inputVal2 = (Double) data[1];
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:atan() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
         }
         return Math.atan2(inputVal1, inputVal2);
     }
@@ -116,7 +142,7 @@ public class AtanFunctionExtension extends FunctionExecutor {
                 return Math.atan((Double) data);
             }
         } else {
-            throw new ExecutionPlanRuntimeException("Input to the math:atan() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
         }
         return null;
     }
@@ -137,12 +163,12 @@ public class AtanFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return null;    //No need to maintain state.
+    public Map<String, Object> currentState() {
+        return null;
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        //Since there's no need to maintain a state, nothing needs to be done here.
+    public void restoreState(Map<String, Object> map) {
+
     }
 }

@@ -18,39 +18,65 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.core.config.ExecutionPlanContext;
+import org.wso2.siddhi.annotation.Example;
+import org.wso2.siddhi.annotation.Extension;
+import org.wso2.siddhi.annotation.Parameter;
+import org.wso2.siddhi.annotation.ReturnAttribute;
+import org.wso2.siddhi.annotation.util.DataType;
+import org.wso2.siddhi.core.config.SiddhiAppContext;
 import org.wso2.siddhi.core.executor.ConstantExpressionExecutor;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
+import org.wso2.siddhi.core.util.config.ConfigReader;
 import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.ExecutionPlanValidationException;
+import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
+import java.util.Collections;
+import java.util.Map;
 import java.util.Random;
 
-/*
-* rand() or rand(seed);
-* A sequence of calls to rand(seed) generates a stream of pseudo-random numbers.
-* Accept Type(s): INT/LONG
-* Return Type(s): DOUBLE
-*/
+/**
+ * rand() or rand(seed);
+ * A sequence of calls to rand(seed) generates a stream of pseudo-random numbers.
+ * Accept Type(s): INT/LONG
+ * Return Type(s): DOUBLE
+ */
+@Extension(
+        name = "rand",
+        namespace = "math",
+        description = "1.  A sequence of calls to rand() generates a stream of pseudo-random numbers. " +
+                "This function uses the java.util.Random class internally." +
+                "\n" +
+                "2. A sequence of calls to rand(seed) generates a stream of pseudo-random numbers. " +
+                "This function uses the java.util.Random class internally. ",
+        parameters = {@Parameter(name = "seed", optional = true, defaultValue = "defaultSeed", description = "TBD",
+                type = {DataType.INT, DataType.LONG})},
+        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
+        examples = @Example(description = "TBD", syntax = "TBD")
+)
 public class RandomFunctionExtension extends FunctionExecutor {
 
+    private static final String RANDOM = "RANDOM";
     //state-variables
     private Random random;
 
     @Override
-    protected void init(ExpressionExecutor[] attributeExpressionExecutors, ExecutionPlanContext executionPlanContext) {
+    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                        SiddhiAppContext siddhiAppContext) {
         if (attributeExpressionExecutors.length > 1) {
-            throw new ExecutionPlanValidationException("Invalid no of Arguments Passed. Required 0 or 1. Found " + attributeExpressionExecutors.length);
+            throw new SiddhiAppValidationException("Invalid no of Arguments Passed. Required 0 or 1. Found " +
+                    attributeExpressionExecutors.length);
         }
         if (attributeExpressionExecutors.length == 1) {
             if (attributeExpressionExecutors[0] == null) {
-                throw new ExecutionPlanValidationException("Invalid input given to math:rand() function. The 'seed' argument cannot be null");
+                throw new SiddhiAppValidationException("Invalid input given to math:rand() function. The 'seed' " +
+                        "argument cannot be null");
             }
             Attribute.Type type = attributeExpressionExecutors[0].getReturnType();
             if (type != Attribute.Type.INT && type != Attribute.Type.LONG) {
-                throw new ExecutionPlanValidationException("Invalid parameter type found for the argument of math:rand() function, " +
-                        "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " + type.toString());
+                throw new SiddhiAppValidationException("Invalid parameter type found for the argument of math:rand() " +
+                        "function, required " + Attribute.Type.INT + " or " + Attribute.Type.LONG + ", but found " +
+                        type.toString());
             }
             long seed;
             if (attributeExpressionExecutors[0] instanceof ConstantExpressionExecutor) {
@@ -63,9 +89,10 @@ public class RandomFunctionExtension extends FunctionExecutor {
                     seed = (Long) constantObj;
                 }
             } else {
-                throw new ExecutionPlanValidationException("The seed argument of math:rand() function should be a constant," +
-                        " but found " + attributeExpressionExecutors[0].getClass().toString());
-                //This should be a constant because the instantiation of java.util.Random should be done in the init() method.
+                throw new SiddhiAppValidationException("The seed argument of math:rand() function should be a " +
+                        "constant, but found " + attributeExpressionExecutors[0].getClass().toString());
+                //This should be a constant because the instantiation of
+                // java.util.Random should be done in the init() method.
             }
             random = new Random(seed);
         } else {
@@ -76,7 +103,7 @@ public class RandomFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        return null;  //Since the rand function takes in 0 or 1 parameter, this method does not get called. Hence, not implemented.
+        return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
@@ -100,12 +127,12 @@ public class RandomFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    public Object[] currentState() {
-        return new Object[]{random};
+    public Map<String, Object> currentState() {
+        return Collections.singletonMap(RANDOM, random);
     }
 
     @Override
-    public void restoreState(Object[] state) {
-        random = (Random) state[0];
+    public void restoreState(Map<String, Object> map) {
+        random = (Random) map.get(RANDOM);
     }
 }
