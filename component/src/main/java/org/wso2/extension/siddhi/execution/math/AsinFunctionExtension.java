@@ -35,7 +35,7 @@ import java.util.Map;
 
 /**
  * asin(a);
- * Returns the arc sin(inverse sine) of a if -1<=a<=1 or NULL otherwise. The return value is in radian scale.
+ * Returns the arc sin(inverse sine) of a if -1&lt;=a&lt;=1 or NULL otherwise. The return value is in radian scale.
  * Accept Type(s) :DOUBLE/FLOAT
  * Return Type(s): DOUBLE
  */

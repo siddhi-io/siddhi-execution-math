@@ -26,8 +26,8 @@ public interface ValueParser {
     /**
      * Method to return parsed value
      *
-     * @param value
-     * @return
+     * @param value value to be parsed
+     * @return parsed value
      */
     double parseValue(Object value);
 }
