@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * abs(a);
  * Returns the absolute value of 'a'. For example, the absolute value of 3 is
- * 3, and the absolute value of −3 is also 3.
+ * 3, and the absolute value of -3 is also 3.
  * Accept Type(s):DOUBLE/INT/FLOAT/LONG
  * Return Type(s): DOUBLE
  */
