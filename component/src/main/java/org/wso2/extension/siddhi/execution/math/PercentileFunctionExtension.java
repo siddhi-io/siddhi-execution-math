@@ -86,7 +86,7 @@ public class PercentileFunctionExtension extends AttributeAggregator {
 
         if (percentileValue <= 0 || percentileValue > 100) {
             throw new OperationNotSupportedException(
-                    "Percentile value should be in 0 < p ≤ 100 range. But found " + percentileValue);
+                    "Percentile value should be in 0 < p <= 100 range. But found " + percentileValue);
         }
 
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
@@ -173,16 +173,16 @@ public class PercentileFunctionExtension extends AttributeAggregator {
     /**
      * Percentile calculation method.
      * <p>
-     * To calculate the pth percentile (where p is any number greater than 0 or less than or equal to 100), do the
+     * To calculate the pth percentile (where p is any number greater than 0 or less than or equal to 100), do the
      * following steps:
      * 1. Order all the values in the data set from smallest to largest.
-     * 2. Multiply p percent by the total number of values, n. This number is called the index.
+     * 2. Multiply p percent by the total number of values, n. This number is called the index.
      * 3. If the index obtained in Step 2 is not a whole number, round it up to the nearest whole number and go to Step
      * 4a. If the index obtained in Step 2 is a whole number, go to Step 4b.
      * 4a. Count the values in your data set from left to right (from the smallest to the largest value) until you reach
-     * the number indicated by Step 3. The corresponding value in your data set is the pth percentile.
+     * the number indicated by Step 3. The corresponding value in your data set is the pth percentile.
      * 4b. Count the values in your data set from left to right until you reach the number indicated by Step 2.
-     * The pth percentile is the average of that corresponding value in your data set and the value that directly
+     * The pth percentile is the average of that corresponding value in your data set and the value that directly
      * follows it.
      *
      * @param valuesList values list

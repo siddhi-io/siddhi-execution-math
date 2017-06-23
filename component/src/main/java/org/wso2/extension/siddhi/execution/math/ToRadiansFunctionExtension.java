@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * to_radians(a)
  * Converts a from degrees to radians.
- * 1 degrees = π/180º = 0.005555556π = 0.0174532925 radians
+ * 1 degrees = Pi / 180 = 0.005555556Pi = 0.0174532925 rad
  * Accept Type(s) :DOUBLE/INT/FLOAT/LONG
  * Return Type(s): DOUBLE
  */
