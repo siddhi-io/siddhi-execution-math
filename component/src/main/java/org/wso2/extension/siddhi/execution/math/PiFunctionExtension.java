@@ -40,8 +40,15 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the java.lang.Math.PI constant, which is the closest value to pi " +
                 "(i.e. the ratio of the circumference of a circle to its diameter). ",
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "pi() always returns 3.141592653589793.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "The value 3.141592653589793, which is the closest value of pi",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "pi() always returns 3.141592653589793.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:pi() as piValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class PiFunctionExtension extends FunctionExecutor {
 

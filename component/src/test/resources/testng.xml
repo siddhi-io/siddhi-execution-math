@@ -1,0 +1,51 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="MathTestSuit" verbose="1">
+    <test name="MathTest">
+        <classes>
+            <class name="org.wso2.extension.siddhi.execution.math.AbsFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.AcosFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.AsinFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.AtanFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.BinaryFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.CeilingFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ConvertFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.CopySignFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.CosFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.CoshFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.CubeRootFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.EFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ExponentFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.FloorFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.GetExponentFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.HexFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.IsInfiniteFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.IsNanFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.LnFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.Log2FunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.Log10FunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.LogFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.MaxFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.MinFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.OctalFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ParseDoubleFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ParseFloatFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ParseIntFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ParseLongFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.PercentileFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.PiFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.PowerFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.RandomFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.RoundFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.SignFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.SinFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.SinhFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.SquareRootFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.TanFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.TanhFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ToDegreesFunctionExtensionTestCase" />
+            <class name="org.wso2.extension.siddhi.execution.math.ToRadiansFunctionExtensionTestCase" />
+        </classes>
+    </test>
+</suite>
+

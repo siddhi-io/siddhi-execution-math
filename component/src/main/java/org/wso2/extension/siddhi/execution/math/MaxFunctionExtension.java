@@ -44,13 +44,24 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the greater value out of p1 and p2.",
         parameters = {
-                @Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "p2", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE})
+                @Parameter(
+                        name = "p1",
+                        description = "Value one to be compared in finding largest value",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "p2",
+                        description = "Value two to be compared in finding largest value",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "max(123.67d, 91) returns 123.67.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "Returns the greater value from the two input parameters",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "max(123.67d, 91) returns 123.67.",
+                syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
+                        "from InValueStream \n" +
+                        "select math:max(inValue1,inValue2) as maxValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class MaxFunctionExtension extends FunctionExecutor {
     @Override

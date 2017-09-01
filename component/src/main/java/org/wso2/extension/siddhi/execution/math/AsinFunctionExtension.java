@@ -44,9 +44,21 @@ import java.util.Map;
         namespace = "math",
         description = "If -1 <= p1 <= 1, this function returns the arc-sin (inverse sine) of p1. If not, it returns" +
                 " NULL. The return value is in radian scale. This function wraps the java.lang.Math.asin() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "asin(0.5) returns 0.5235987755982989.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of which the arc-sin (inverse sine) should be found",
+                        type = {DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The arc-sin (inverse sine) value of the input parameter, output in radian scale",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "asin(0.5) returns 0.5235987755982989.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:asin(inValue) as asinValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class AsinFunctionExtension extends FunctionExecutor {
     @Override

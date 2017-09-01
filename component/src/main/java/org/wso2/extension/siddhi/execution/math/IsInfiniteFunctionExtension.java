@@ -44,10 +44,21 @@ import java.util.Map;
         namespace = "math",
         description = "This function wraps the java.lang.Float.isInfinite() and java.lang.Double.isInfinite() " +
                 "functions that return true if p1 is infinitely large in magnitude, or return false otherwise.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.BOOL}),
-        examples = @Example(description = "isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.",
-                syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be checked if infinite",
+                        type = {DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "Returns true of input parameter is infinitely large. Returns false otherwise",
+                type = {DataType.BOOL}),
+        examples = @Example(
+                description = "isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.",
+                syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
+                        "from InValueStream \n" +
+                        "select math:isInfinite(inValue1) as isInfinite \n" +
+                        "insert into OutMediationStream;")
 )
 public class IsInfiniteFunctionExtension extends FunctionExecutor {
     @Override

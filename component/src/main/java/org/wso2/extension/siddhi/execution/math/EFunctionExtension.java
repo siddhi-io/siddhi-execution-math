@@ -40,8 +40,15 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the java.lang.Math.E constant, which is the closest double value to e " +
                 "(which is the base of the natural logarithms).",
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "e() returns 2.7182818284590452354.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "The closest double value to e (The base of the natural logarithm)",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "e() returns 2.7182818284590452354.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:e() as eValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class EFunctionExtension extends FunctionExecutor {
 

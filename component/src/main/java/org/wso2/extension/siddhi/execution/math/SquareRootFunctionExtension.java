@@ -43,10 +43,20 @@ import java.util.Map;
         name = "sqrt",
         namespace = "math",
         description = "Returns the square-root of p1. This function wraps the java.lang.Math.sqrt() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "sqrt(4d) returns 2.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose square-root value should be found.",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The square-root value of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "sqrt(4d) returns 2.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:sqrt(inValue) as sqrtValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class SquareRootFunctionExtension extends FunctionExecutor {
 

@@ -45,10 +45,22 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the absolute value of first parameter. " +
                 "This function wraps the java.lang.Math.abs() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.BOOL})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "Both abs(3) and abs(-3) queries return 3 since the absolute value of " +
-                "both 3 and -3 is 3.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of which the absolute value should be found",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The absolute value of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "Both abs(3) and abs(-3) queries return 3 since the absolute value of " +
+                "both 3 and -3 is 3.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:abs(inValue) as absValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class AbsFunctionExtension extends FunctionExecutor {
 

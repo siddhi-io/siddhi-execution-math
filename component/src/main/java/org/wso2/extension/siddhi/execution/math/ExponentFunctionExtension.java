@@ -44,10 +44,20 @@ import java.util.Map;
         namespace = "math",
         description = "Returns Euler's number e raised to the power of p1. This function wraps the " +
                 "java.lang.Math.exp() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "exp(10.23) returns 27722.51006805505.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The power that the Euler's number e should be raised to",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The Euler's number e raised to the power of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "exp(10.23) returns 27722.51006805505.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:exp(inValue) as expValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class ExponentFunctionExtension extends FunctionExecutor {
     @Override

@@ -46,10 +46,21 @@ import java.util.Map;
         namespace = "math",
         description = "If a is a positive, this returns the sign of p1 as 1.0. " +
                 "This function wraps the java.lang.Math.signum() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.INT}),
-        examples = @Example(description = "signum(-6.32d) returns -1.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be checked if positive or negative or otherwise",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "Returns 1.0 if input parameter is positive. Returns -1.0 if same is negative. " +
+                        "Return 0.0 otherwise",
+                type = {DataType.INT}),
+        examples = @Example(
+                description = "signum(-6.32d) returns -1.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:signum(inValue) as sign \n" +
+                        "insert into OutMediationStream;")
 )
 public class SignFunctionExtension extends FunctionExecutor {
 

@@ -45,9 +45,10 @@
     </profiles>
 
     <properties>
-        <siddhi.version>4.0.0-M13</siddhi.version>
+        <siddhi.version>4.0.0-M53</siddhi.version>
         <log4j.version>1.2.17.wso2v1</log4j.version>
-        <testng.version>6.8</testng.version>
+        <testng.version>6.11</testng.version>
+        <jacoco.version>0.7.9</jacoco.version>
         <org.apache.maven.wagon.verstion>2.1</org.apache.maven.wagon.verstion>
         <carbon.feature.plugin.version>3.1.0</carbon.feature.plugin.version>
         <maven.paxexam.plugin.version>1.2.4</maven.paxexam.plugin.version>
@@ -110,6 +111,12 @@
                 <artifactId>testng</artifactId>
                 <version>${testng.version}</version>
                 <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>org.jacoco.agent</artifactId>
+                <classifier>runtime</classifier>
+                <version>${jacoco.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -174,6 +181,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>${maven.shadeplugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.wso2.siddhi</groupId>
+                <artifactId>siddhi-doc-gen</artifactId>
+                <version>${siddhi.version}</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-md-docs</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
         <pluginManagement>

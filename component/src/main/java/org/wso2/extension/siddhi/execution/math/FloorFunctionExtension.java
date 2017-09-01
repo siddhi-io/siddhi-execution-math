@@ -44,10 +44,22 @@ import java.util.Map;
         namespace = "math",
         description = "This function wraps the java.lang.Math.floor() function that returns the largest (closest to " +
                 "positive infinity) value that is less that or equal to p1, and is equal to a mathematical integer.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "floor(10.23) returns 10.0.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose floor value should be found",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The largest (closest to positive infinity) double value that is less than or " +
+                        "equal to the p1 argument, and is equal to a mathematical integer",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "floor(10.23) returns 10.0.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:floor(inValue) as floorValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class FloorFunctionExtension extends FunctionExecutor {
 

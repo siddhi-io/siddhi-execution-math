@@ -39,7 +39,7 @@ import java.util.Map;
  * Accept Type(s) :DOUBLE/INT/FLOAT/LONG
  * Return Type(s): DOUBLE
  */
-@Extension(
+@Extension(//TODO: How The Parameter Descriptions should be given
         name = "atan",
         namespace = "math",
         description = "1. math:atan(p1) Returns the arc-tangent (inverse tangent) of p1. " +
@@ -48,13 +48,28 @@ import java.util.Map;
                 "2. Returns the arc-tangent (inverse tangent) of  p1 and p2 coordinates. The return value is in " +
                 "radian scale. This function wraps the java.lang.Math.atan2() function.",
         parameters = {
-                @Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG, DataType.FLOAT,
-                        DataType.DOUBLE}),
-                @Parameter(name = "p1", description = "TBD", optional = true, defaultValue = "0D",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT,
-                                DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "atan(12d, 5d) returns 1.1760052070951352.", syntax = "TBD")
+                @Parameter(
+                        name = "p1",
+                        description = "The value of which the arc-tangent (inverse tangent) should be found. " +
+                                "If the optional second parameter is given this represents the x coordinate of the " +
+                                "(x,y) coordinate pair",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "p1",
+                        description = "This optional parameter represents the y coordinate of the (x,y)" +
+                                " coordinate pair",
+                        optional = true,
+                        defaultValue = "0D",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The arc-tangent (inverse tangent) value of the input, output in radian scale",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "atan(12d, 5d) returns 1.1760052070951352.",
+                syntax = "define stream InValueStream (inValue1 double, inValue2 double); \n" +
+                        "from InValueStream \n" +
+                        "select math:atan(inValue1, inValue2) as convertedValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class AtanFunctionExtension extends FunctionExecutor {
 

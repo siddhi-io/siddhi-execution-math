@@ -43,10 +43,20 @@ import java.util.Map;
         name = "log10",
         namespace = "math",
         description = "Returns the base 10 logarithm of p1.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "log10(19.234) returns 1.2840696117100832.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose base 10 logarithm should be found.",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The base 10 logarithm of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "log10(19.234) returns 1.2840696117100832.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:log10(inValue) as lnValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class Log10FunctionExtension extends FunctionExecutor {
 

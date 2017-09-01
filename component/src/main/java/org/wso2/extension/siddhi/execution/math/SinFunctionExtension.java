@@ -44,10 +44,20 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the sine of p1 (p1 is in radians). This function wraps the " +
                 "java.lang.Math.sin() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "sin(6d) returns -0.27941549819892586.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose sine value should be found. Input should be in radians",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The sine value of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "sin(6d) returns -0.27941549819892586.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:sin(inValue) as sinValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class SinFunctionExtension extends FunctionExecutor {
 

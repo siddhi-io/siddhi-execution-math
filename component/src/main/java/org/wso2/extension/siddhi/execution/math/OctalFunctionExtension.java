@@ -43,9 +43,20 @@ import java.util.Map;
         name = "oct",
         namespace = "math",
         description = "Converts p1 to octal.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.STRING}),
-        examples = @Example(description = "oct(99l) returns \"143\".", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose octal representation should be found.",
+                        type = {DataType.INT, DataType.LONG})},
+        returnAttributes = @ReturnAttribute(
+                description = "The octal value of input parameter",
+                type = {DataType.STRING}),
+        examples = @Example(
+                description = "oct(99l) returns \"143\".",
+                syntax = "define stream InValueStream (inValue long); \n" +
+                        "from InValueStream \n" +
+                        "select math:oct(inValue) as octValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class OctalFunctionExtension extends FunctionExecutor {
 

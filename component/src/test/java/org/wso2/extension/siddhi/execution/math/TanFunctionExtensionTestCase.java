@@ -40,7 +40,7 @@ public class TanFunctionExtensionTestCase {
         String inValueStream = "define stream InValueStream (inValue double);";
 
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
-                + "select math:tan(inValue) as sinValue "
+                + "select math:tan(inValue) as tanValue "
                 + "insert into OutMediationStream;");
         SiddhiAppRuntime executionPlanRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);

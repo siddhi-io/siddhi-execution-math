@@ -49,10 +49,22 @@ import java.util.Random;
                 "\n" +
                 "2. A sequence of calls to rand(seed) generates a stream of pseudo-random numbers. " +
                 "This function uses the java.util.Random class internally. ",
-        parameters = {@Parameter(name = "seed", optional = true, defaultValue = "defaultSeed", description = "TBD",
-                type = {DataType.INT, DataType.LONG})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "TBD", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "seed",
+                        optional = true,
+                        defaultValue = "defaultSeed",
+                        description = "An optional seed value that will be used to generate the random number sequence",
+                        type = {DataType.INT, DataType.LONG})},
+        returnAttributes = @ReturnAttribute(
+                description = "A stream of pseudo-random numbers",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "A random double value between 0 and 1 will be generated using math:rand()",
+                syntax = "define stream InValueStream (symbol string, price long, volume long); \n" +
+                        "from InValueStream select symbol, math:rand() as randNumber \n" +
+                        "select math:oct(inValue) as octValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class RandomFunctionExtension extends FunctionExecutor {
 

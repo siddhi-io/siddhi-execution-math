@@ -40,7 +40,7 @@ public class SquareRootFunctionExtensionTestCase {
         String inValueStream = "define stream InValueStream (inValue double);";
 
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
-                + "select math:sqrt(inValue) as sinValue "
+                + "select math:sqrt(inValue) as sqrtValue "
                 + "insert into OutMediationStream;");
         SiddhiAppRuntime executionPlanRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);

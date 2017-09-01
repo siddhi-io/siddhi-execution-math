@@ -44,10 +44,20 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the cube-root of p1 (p1 is in radians). This function wraps the " +
                 "java.lang.Math.cbrt() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "cbrt(17d) returns 2.5712815906582356.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose cube-root should be found. Input must be in radians",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The cube-root of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "cbrt(17d) returns 2.5712815906582356.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:cbrt(inValue) as cbrtValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class CubeRootFunctionExtension extends FunctionExecutor {
     @Override
