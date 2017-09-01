@@ -44,9 +44,21 @@ import java.util.Map;
         namespace = "math",
         description = "This function wraps the java.lang.Float.isNaN() and java.lang.Double.isNaN() functions that " +
                 "return true if p1 is a NaN (Not-a-Number) value, or return false otherwise.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.BOOL}),
-        examples = @Example(description = "isNan(java.lang.Math.log(-12d)) returns true.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be checked if it is a number",
+                        type = {DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "Returns true if input parameter is a NaN (Not-a-Number). Returns false otherwise",
+                type = {DataType.BOOL}),
+        examples = @Example(
+                description = "isNan(java.lang.Math.log(-12d)) returns true.",
+                syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
+                        "from InValueStream \n" +
+                        "select math:isNan(inValue1) as isNaN \n" +
+                        "insert into OutMediationStream;")
 )
 public class IsNanFunctionExtension extends FunctionExecutor {
     @Override

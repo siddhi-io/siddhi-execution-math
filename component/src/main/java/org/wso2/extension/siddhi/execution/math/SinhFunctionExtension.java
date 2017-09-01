@@ -44,10 +44,21 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the hyperbolic sine of p1 (p1 is in radians). This function wraps the " +
                 "java.lang.Math.sinh() function. ",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "sinh(6d) returns 201.71315737027922.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose hyperbolic sine value should be found. " +
+                                "Input should be in radians",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The hyperbolic sine value of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "sinh(6d) returns 201.71315737027922.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:sinh(inValue) as sinhValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class SinhFunctionExtension extends FunctionExecutor {
 

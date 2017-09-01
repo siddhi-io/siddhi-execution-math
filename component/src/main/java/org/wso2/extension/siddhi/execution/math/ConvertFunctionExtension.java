@@ -44,12 +44,29 @@ import java.util.Map;
         namespace = "math",
         description = "Converts a from the fromBase base to the toBase base.",
         parameters = {
-                @Parameter(name = "a", description = "TBD", type = {DataType.STRING}),
-                @Parameter(name = "from.base", description = "TBD", type = {DataType.INT}),
-                @Parameter(name = "to.base", description = "TBD", type = {DataType.INT})
+                @Parameter(
+                        name = "a",
+                        description = "The value whose base should be changed. Input should be as a String",
+                        type = {DataType.STRING}),
+                @Parameter(
+                        name = "from.base",
+                        description = "The source base of the input parameter 'a'",
+                        type = {DataType.INT}),
+                @Parameter(
+                        name = "to.base",
+                        description = "The target base that input parameter 'a' should be converted to",
+                        type = {DataType.INT})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.STRING}),
-        examples = @Example(description = "conv(\"7f\", 16, 10) returns \"127\".", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "The value of parameter 'a' converted from source base to target base. " +
+                        "Output as a String variable",
+                type = {DataType.STRING}),
+        examples = @Example(
+                description = "conv(\"7f\", 16, 10) returns \"127\".",
+                syntax = "define stream InValueStream (inValue string,fromBase int,toBase int); \n" +
+                        "from InValueStream \n" +
+                        "select math:conv(inValue,fromBase,toBase) as convertedValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class ConvertFunctionExtension extends FunctionExecutor {
 

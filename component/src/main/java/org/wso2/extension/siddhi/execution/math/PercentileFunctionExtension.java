@@ -49,12 +49,25 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the pth percentile value of the arg values.",
         parameters = {
-                @Parameter(name = "arg", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "p", description = "TBD", type = {DataType.DOUBLE})
+                @Parameter(
+                        name = "arg",
+                        description = "The values of which the percentile should be found",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "p",
+                        description = "Estimate of which percentile to be found (pth percentile) " +
+                                "where p is any number greater than 0 or less than or equal to 100",
+                        type = {DataType.DOUBLE})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "math:percentile(temperature, 97.0)", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "Estimate of the 'p'th percentile value of the 'arg' values",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "math:percentile(temperature, 97.0)",
+                syntax = "define stream InValueStream (sensorId int, temperature double); \n" +
+                        "from InValueStream \n" +
+                        "select math:percentile(temperature, 97.0) as percentile \n" +
+                        "insert into OutMediationStream;")
 )
 public class PercentileFunctionExtension extends AttributeAggregator {
 

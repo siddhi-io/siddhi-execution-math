@@ -44,10 +44,21 @@ import java.util.Map;
         namespace = "math",
         description = "This function wraps the java.lang.Double.toHexString() function that returns a hexadecimal " +
                 "string representation of p1.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.STRING}),
-        examples = @Example(description = "hex(200) returns \"c8\".", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose hexadecimal representation should be found",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The hexadecimal representation of the input parameter",
+                type = {DataType.STRING}),
+        examples = @Example(
+                description = "hex(200) returns \"c8\".",
+                syntax = "define stream InValueStream (inValue int); \n" +
+                        "from InValueStream \n" +
+                        "select math:hex(inValue) as hexString \n" +
+                        "insert into OutMediationStream;")
 )
 public class HexFunctionExtension extends FunctionExecutor {
 

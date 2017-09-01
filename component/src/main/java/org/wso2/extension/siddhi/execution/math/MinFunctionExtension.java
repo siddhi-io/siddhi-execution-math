@@ -44,13 +44,24 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the smaller value out of p1 and p2.",
         parameters = {
-                @Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "p2", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE})
+                @Parameter(
+                        name = "p1",
+                        description = "Value one to be compared in finding smallest value",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "p2",
+                        description = "Value two to be compared in finding smallest value",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "min(123.67d, 91) returns 91.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "Returns the smaller value from the two input parameters",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "min(123.67d, 91) returns 91.",
+                syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
+                        "from InValueStream \n" +
+                        "select math:min(inValue1,inValue2) as minValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class MinFunctionExtension extends FunctionExecutor {
     @Override

@@ -47,9 +47,22 @@ import java.util.Map;
         description = "Returns the smallest (closest to negative infinity) double value that is greater than or " +
                 "equal to the p1 argument, and is equal to a mathematical integer. This function wraps the" +
                 "java.lang.Math.ceil() method.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "ceil(423.187d) returns 424.0.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose ceiling value should be found",
+                        type = {DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The smallest (closest to negative infinity) double value that is greater than or " +
+                        "equal to the p1 argument, and is equal to a mathematical integer",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "ceil(423.187d) returns 424.0.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:ceil(inValue) as ceilingValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class CeilingFunctionExtension extends FunctionExecutor {
 

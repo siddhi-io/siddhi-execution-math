@@ -43,9 +43,20 @@ import java.util.Map;
         name = "parseFloat",
         namespace = "math",
         description = "Returns str as a float.",
-        parameters = {@Parameter(name = "str", description = "TBD", type = {DataType.STRING})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.FLOAT}),
-        examples = @Example(description = "parseFloat(\"123\") returns 123.0.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be converted to a float",
+                        type = {DataType.STRING})},
+        returnAttributes = @ReturnAttribute(
+                description = "The float value of input parameter",
+                type = {DataType.FLOAT}),
+        examples = @Example(
+                description = "parseFloat(\"123\") returns 123.0.",
+                syntax = "define stream InValueStream (inValue string); \n" +
+                        "from InValueStream \n" +
+                        "select math:parseFloat(inValue) as output \n" +
+                        "insert into OutMediationStream;")
 )
 public class ParseFloatFunctionExtension extends FunctionExecutor {
     @Override

@@ -45,10 +45,20 @@ import java.util.Map;
         namespace = "math",
         description = "Converts p1 from degrees to radians. This function wraps the " +
                 "java.lang.Math.toRadians() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "toRadians(6d) returns 0.10471975511965977.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The degrees value that should be converted to radians",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The converted radians value of the input degrees value",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "toRadians(6d) returns 0.10471975511965977.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:toRadians(inValue) as radiansValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class ToRadiansFunctionExtension extends FunctionExecutor {
     @Override

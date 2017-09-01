@@ -45,13 +45,24 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the logarithm (base=base) of number.",
         parameters = {
-                @Parameter(name = "number", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "base", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE})
+                @Parameter(
+                        name = "number",
+                        description = "The value of whose base should be changed",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "base",
+                        description = "The base value of the ouput",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "log(34, 2f) returns 5.08746284125034.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "The logarithm value of 'number' parameter to the base 'base' parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "log(34, 2f) returns 5.08746284125034.",
+                syntax = "define stream InValueStream (number double, base double); \n" +
+                        "from InValueStream \n" +
+                        "select math:log(number, base) as logValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class LogFunctionExtension extends FunctionExecutor {
 

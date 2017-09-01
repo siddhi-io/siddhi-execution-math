@@ -45,13 +45,24 @@ import java.util.Map;
         namespace = "math",
         description = "Returns value raised to the power of toPower.",
         parameters = {
-                @Parameter(name = "value", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "to.power", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE})
+                @Parameter(
+                        name = "value",
+                        description = "The value that should be raised to the power of 'to.power' input parameter",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "to.power",
+                        description = "The power that 'value' input parameter should be raised to",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "power(5.6d, 3.0d) returns 175.61599999999996.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "The 'value' input parameter raised to the power of 'to.power' input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "power(5.6d, 3.0d) returns 175.61599999999996.",
+                syntax = "define stream InValueStream (inValue1 double, inValue2 double); \n" +
+                        "from InValueStream \n" +
+                        "select math:power(inValue1,inValue2) as powerValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class PowerFunctionExtension extends FunctionExecutor {
 

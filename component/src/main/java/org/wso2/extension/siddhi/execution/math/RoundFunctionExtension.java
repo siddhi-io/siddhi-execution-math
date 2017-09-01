@@ -44,9 +44,20 @@ import java.util.Map;
         name = "round",
         namespace = "math",
         description = "Returns the closest integer/long (depending on the input) value to the argument.",
-        parameters = {@Parameter(name = "value", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.INT, DataType.LONG}),
-        examples = @Example(description = "round(3252.353) returns 3252.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be rounded to the closest integer/long.",
+                        type = {DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The closest integer/long value to the input parameter",
+                type = {DataType.INT, DataType.LONG}),
+        examples = @Example(
+                description = "round(3252.353) returns 3252.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:round(inValue) as roundValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class RoundFunctionExtension extends FunctionExecutor {
 

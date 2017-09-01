@@ -43,9 +43,20 @@ import java.util.Map;
         name = "parseDouble",
         namespace = "math",
         description = "Returns str as a double.",
-        parameters = {@Parameter(name = "str", description = "TBD", type = {DataType.STRING})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "parseDouble(\"123\") returns 123.0.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be converted to a double",
+                        type = {DataType.STRING})},
+        returnAttributes = @ReturnAttribute(
+                description = "The double value of input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "parseDouble(\"123\") returns 123.0.",
+                syntax = "define stream InValueStream (inValue string); \n" +
+                        "from InValueStream \n" +
+                        "select math:parseDouble(inValue) as output \n" +
+                        "insert into OutMediationStream;")
 )
 public class ParseDoubleFunctionExtension extends FunctionExecutor {
     @Override

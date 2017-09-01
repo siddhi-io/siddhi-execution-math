@@ -44,10 +44,20 @@ import java.util.Map;
         namespace = "math",
         description = "Returns the hyperbolic cosine of p1 (p1 is in radians). " +
                 "This function wraps the java.lang.Math.cosh() function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.INT, DataType.LONG,
-                DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "cosh (6d) returns 201.7156361224559.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of whose hyperbolic cosine should be found. Input must be in radians",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+        returnAttributes = @ReturnAttribute(
+                description = "The hyperbolic cosine value of the input parameter",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "cosh (6d) returns 201.7156361224559.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:cosh(inValue) as cosValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class CoshFunctionExtension extends FunctionExecutor {
     @Override

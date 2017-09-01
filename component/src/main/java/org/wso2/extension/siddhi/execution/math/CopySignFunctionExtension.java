@@ -46,13 +46,24 @@ import java.util.Map;
         description = "Returns the magnitude of magnitude with the sign of sign . " +
                 "This function wraps the java.lang.Math.copySign() function.",
         parameters = {
-                @Parameter(name = "magnitude", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
-                @Parameter(name = "sign", description = "TBD", type = {DataType.INT, DataType.LONG,
-                        DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "magnitude",
+                        description = "This parameters magnitude will be used for output attribute",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                @Parameter(
+                        name = "sign",
+                        description = "This parameters sign will be used for output attribute",
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
         },
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "copySign(5.6d, -3.0d) returns -5.6.", syntax = "TBD")
+        returnAttributes = @ReturnAttribute(
+                description = "Returns the first argument with the sign of the second argument",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "copySign(5.6d, -3.0d) returns -5.6.",
+                syntax = "define stream InValueStream (inValue1 double, inValue2 double); \n" +
+                        "from InValueStream \n" +
+                        "select math:copySign(inValue1,inValue2) as copysignValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class CopySignFunctionExtension extends FunctionExecutor {
     @Override

@@ -46,9 +46,21 @@ import java.util.Map;
         description = "If -1 <= p1 <= 1, this function returns the arc-cosine (inverse cosine) of p1. " +
                 "If not, it returns NULL. The return value is in radian scale. This function wraps the " +
                 "java.lang.Math.acos()function.",
-        parameters = {@Parameter(name = "p1", description = "TBD", type = {DataType.FLOAT, DataType.DOUBLE})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.DOUBLE}),
-        examples = @Example(description = "acos(0.5) returns 1.0471975511965979.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value of which the arc-cosine (inverse cosine) should be found",
+                        type = {DataType.FLOAT, DataType.DOUBLE})
+        },
+        returnAttributes = @ReturnAttribute(
+                description = "The arc-cosine (inverse cosine) value of the input parameter, output in radian scale",
+                type = {DataType.DOUBLE}),
+        examples = @Example(
+                description = "acos(0.5) returns 1.0471975511965979.",
+                syntax = "define stream InValueStream (inValue double); \n" +
+                        "from InValueStream \n" +
+                        "select math:acos(inValue) as acosValue \n" +
+                        "insert into OutMediationStream;")
 )
 public class AcosFunctionExtension extends FunctionExecutor {
 

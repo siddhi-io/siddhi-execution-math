@@ -43,9 +43,20 @@ import java.util.Map;
         name = "parseInt",
         namespace = "math",
         description = "Returns str as a int.",
-        parameters = {@Parameter(name = "str", description = "TBD", type = {DataType.STRING})},
-        returnAttributes = @ReturnAttribute(description = "TBD", type = {DataType.INT}),
-        examples = @Example(description = "parseInt(\"123\") returns 123.", syntax = "TBD")
+        parameters = {
+                @Parameter(
+                        name = "p1",
+                        description = "The value that should be converted to a int",
+                        type = {DataType.STRING})},
+        returnAttributes = @ReturnAttribute(
+                description = "The int value of input parameter",
+                type = {DataType.INT}),
+        examples = @Example(
+                description = "parseInt(\"123\") returns 123.",
+                syntax = "define stream InValueStream (inValue string); \n" +
+                        "from InValueStream \n" +
+                        "select math:parseInt(inValue) as output \n" +
+                        "insert into OutMediationStream;")
 )
 public class ParseIntFunctionExtension extends FunctionExecutor {
     @Override
