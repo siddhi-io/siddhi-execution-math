@@ -158,19 +158,14 @@ public class PercentileFunctionExtension extends AttributeAggregator {
     }
 
     @Override
+    public boolean canDestroy() {
+        return valuesList.size() == 0;
+    }
+
+    @Override
     public Object reset() {
         valuesList.clear();
         return 0.0;
-    }
-
-    @Override
-    public void start() {
-        // Nothing to start
-    }
-
-    @Override
-    public void stop() {
-        // nothing to stop
     }
 
     @Override
