@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
+import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
@@ -31,6 +32,7 @@ import org.wso2.siddhi.core.util.EventPrinter;
 public class IsInfiniteFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(IsInfiniteFunctionExtensionTestCase.class);
+    private boolean eventArrived;
 
     @Test
     public void testProcess() throws Exception {
@@ -42,10 +44,10 @@ public class IsInfiniteFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:isInfinite(inValue1) as isInfinite "
                 + "insert into OutMediationStream;");
-        SiddhiAppRuntime executionPlanRuntime =
+        SiddhiAppRuntime siddhiAppRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
@@ -57,11 +59,100 @@ public class IsInfiniteFunctionExtensionTestCase {
                 }
             }
         });
-        InputHandler inputHandler = executionPlanRuntime
+        InputHandler inputHandler = siddhiAppRuntime
                 .getInputHandler("InValueStream");
-        executionPlanRuntime.start();
+        siddhiAppRuntime.start();
         inputHandler.send(new Object[]{Double.POSITIVE_INFINITY, 91});
         Thread.sleep(100);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase1() throws Exception {
+        logger.info("IsInfiniteFunctionExtension exceptionTestCase1");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue1 double,inValue2 int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:isInfinite(inValue1,inValue1) as isInfinite "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase2() throws Exception {
+        logger.info("IsInfiniteFunctionExtension exceptionTestCase2");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue1 object,inValue2 int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:isInfinite(inValue1) as isInfinite "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test
+    public void exceptionTestCase3() throws Exception {
+        logger.info("IsInfiniteFunctionExtension exceptionTestCase3");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue1 double,inValue2 int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:isInfinite(inValue1) as isInfinite "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{null, 91});
+        Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcessFloat() throws Exception {
+        logger.info("IsInfiniteFunctionExtension testProcessFloat");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue1 float,inValue2 int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:isInfinite(inValue1) as isInfinite "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Boolean result;
+                for (Event event : inEvents) {
+                    result = (Boolean) event.getData(0);
+                    AssertJUnit.assertEquals(Boolean.TRUE, result);
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Object[]{Float.POSITIVE_INFINITY, 91});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
     }
 }
