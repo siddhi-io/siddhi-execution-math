@@ -61,10 +61,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -110,8 +110,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10d});
         inputHandler.send(new Object[]{2, 30d});
@@ -127,7 +127,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -141,10 +141,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -190,8 +190,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10d});
         inputHandler.send(new Object[]{2, 30d});
@@ -207,7 +207,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -221,10 +221,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_DOUBLE + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -246,8 +246,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10d});
         inputHandler.send(new Object[]{2, 30d});
@@ -263,7 +263,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(2, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -277,10 +277,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -326,8 +326,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10f});
         inputHandler.send(new Object[]{2, 30f});
@@ -343,7 +343,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -357,10 +357,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -406,8 +406,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10f});
         inputHandler.send(new Object[]{2, 30f});
@@ -423,7 +423,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -437,10 +437,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_FLOAT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -462,8 +462,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10f});
         inputHandler.send(new Object[]{2, 30f});
@@ -479,7 +479,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(2, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -493,10 +493,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -542,8 +542,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10});
         inputHandler.send(new Object[]{2, 30});
@@ -559,7 +559,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -573,10 +573,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -622,8 +622,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10});
         inputHandler.send(new Object[]{2, 30});
@@ -639,7 +639,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -653,10 +653,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_INT + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -678,8 +678,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10});
         inputHandler.send(new Object[]{2, 30});
@@ -695,7 +695,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(2, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -709,10 +709,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -758,8 +758,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10L});
         inputHandler.send(new Object[]{2, 30L});
@@ -775,7 +775,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -789,10 +789,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.length(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -838,8 +838,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10L});
         inputHandler.send(new Object[]{2, 30L});
@@ -855,7 +855,7 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(10, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 
     @Test
@@ -869,10 +869,10 @@ public class PercentileFunctionExtensionTestCase {
         String executionPlan = ("@info(name = 'query1') from inputStream#window.lengthBatch(5) "
                 + "select math:percentile(temperature, 97.0) as percentile "
                 + "insert into outputStream;");
-        SiddhiAppRuntime executionPlanRuntime = siddhiManager
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager
                 .createSiddhiAppRuntime(INPUT_STREAM_LONG + executionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents, Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
@@ -894,8 +894,8 @@ public class PercentileFunctionExtensionTestCase {
             }
         });
 
-        InputHandler inputHandler = executionPlanRuntime.getInputHandler("inputStream");
-        executionPlanRuntime.start();
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("inputStream");
+        siddhiAppRuntime.start();
 
         inputHandler.send(new Object[]{1, 10L});
         inputHandler.send(new Object[]{2, 30L});
@@ -911,6 +911,6 @@ public class PercentileFunctionExtensionTestCase {
         countDownLatch.await(1000, MILLISECONDS);
         AssertJUnit.assertEquals(2, count);
         AssertJUnit.assertTrue(eventArrived);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 }

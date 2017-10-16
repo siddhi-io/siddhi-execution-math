@@ -42,10 +42,10 @@ public class ParseDoubleFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:parseDouble(inValue) as output "
                 + "insert into OutMediationStream;");
-        SiddhiAppRuntime executionPlanRuntime =
+        SiddhiAppRuntime siddhiAppRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
@@ -57,11 +57,11 @@ public class ParseDoubleFunctionExtensionTestCase {
                 }
             }
         });
-        InputHandler inputHandler = executionPlanRuntime
+        InputHandler inputHandler = siddhiAppRuntime
                 .getInputHandler("InValueStream");
-        executionPlanRuntime.start();
+        siddhiAppRuntime.start();
         inputHandler.send(new Object[]{"123"});
         Thread.sleep(100);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 }

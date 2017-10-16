@@ -42,10 +42,10 @@ public class PiFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:pi() as piValue "
                 + "insert into OutMediationStream;");
-        SiddhiAppRuntime executionPlanRuntime =
+        SiddhiAppRuntime siddhiAppRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
@@ -57,11 +57,11 @@ public class PiFunctionExtensionTestCase {
                 }
             }
         });
-        InputHandler inputHandler = executionPlanRuntime
+        InputHandler inputHandler = siddhiAppRuntime
                 .getInputHandler("InValueStream");
-        executionPlanRuntime.start();
+        siddhiAppRuntime.start();
         inputHandler.send(new Double[]{6d});
         Thread.sleep(100);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
     }
 }

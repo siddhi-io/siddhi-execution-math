@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
+import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
@@ -31,6 +32,7 @@ import org.wso2.siddhi.core.util.EventPrinter;
 public class GetExponentFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(GetExponentFunctionExtensionTestCase.class);
+    private boolean eventArrived;
 
     @Test
     public void testProcess() throws Exception {
@@ -42,10 +44,10 @@ public class GetExponentFunctionExtensionTestCase {
         String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
                 + "select math:getExponent(inValue) as expValue "
                 + "insert into OutMediationStream;");
-        SiddhiAppRuntime executionPlanRuntime =
+        SiddhiAppRuntime siddhiAppRuntime =
                 siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
 
-        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
@@ -57,11 +59,166 @@ public class GetExponentFunctionExtensionTestCase {
                 }
             }
         });
-        InputHandler inputHandler = executionPlanRuntime
+        InputHandler inputHandler = siddhiAppRuntime
                 .getInputHandler("InValueStream");
-        executionPlanRuntime.start();
+        siddhiAppRuntime.start();
         inputHandler.send(new Double[]{60984.1});
         Thread.sleep(100);
-        executionPlanRuntime.shutdown();
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase1() throws Exception {
+        logger.info("GetExponentFunctionExtension exceptionTestCase1");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue double);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue,inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase2() throws Exception {
+        logger.info("GetExponentFunctionExtension exceptionTestCase2");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue object);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test
+    public void exceptionTestCase3() throws Exception {
+        logger.info("GetExponentFunctionExtension exceptionTestCase3");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue double);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Double[]{null});
+        Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcess2() throws Exception {
+        logger.info("GetExponentFunctionExtension testProcess2");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Integer result;
+                for (Event event : inEvents) {
+                    result = (Integer) event.getData(0);
+                    AssertJUnit.assertEquals((Integer) 15, result);
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Integer[]{60984});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcess3() throws Exception {
+        logger.info("GetExponentFunctionExtension testProcess3");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue long);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Integer result;
+                for (Event event : inEvents) {
+                    result = (Integer) event.getData(0);
+                    AssertJUnit.assertEquals((Integer) 29, result);
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Long[]{609843242L});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcess4() throws Exception {
+        logger.info("GetExponentFunctionExtension testProcess4");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue float);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:getExponent(inValue) as expValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Integer result;
+                for (Event event : inEvents) {
+                    result = (Integer) event.getData(0);
+                    AssertJUnit.assertEquals((Integer) 19, result);
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Float[]{609843.242f});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
     }
 }
