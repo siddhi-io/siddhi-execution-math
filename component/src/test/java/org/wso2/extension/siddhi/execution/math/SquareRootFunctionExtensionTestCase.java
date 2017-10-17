@@ -24,6 +24,7 @@ import org.testng.annotations.Test;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
+import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
@@ -31,6 +32,7 @@ import org.wso2.siddhi.core.util.EventPrinter;
 public class SquareRootFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(SquareRootFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
 
     @Test
     public void testProcess() throws Exception {
@@ -63,5 +65,160 @@ public class SquareRootFunctionExtensionTestCase {
         inputHandler.send(new Double[]{4d});
         Thread.sleep(100);
         executionPlanRuntime.shutdown();
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase1() throws Exception {
+        logger.info("SquareRootFunctionExtension exceptionTestCase1");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue double);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue,inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test(expectedExceptions = SiddhiAppCreationException.class)
+    public void exceptionTestCase2() throws Exception {
+        logger.info("SquareRootFunctionExtension exceptionTestCase2");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue object);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        siddhiManager.createSiddhiAppRuntime(inValueStream + eventFuseExecutionPlan);
+    }
+
+    @Test
+    public void exceptionTestCase3() throws Exception {
+        logger.info("SquareRootFunctionExtension exceptionTestCase3");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue double);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Double[]{4d});
+        Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcessInteger() throws Exception {
+        logger.info("SquareRootFunctionExtension testProcessInteger");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue int);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Double result;
+                for (Event event : inEvents) {
+                    result = (Double) event.getData(0);
+                    AssertJUnit.assertEquals((Double) 2d, result);
+                }
+            }
+        });
+        InputHandler inputHandler = executionPlanRuntime
+                .getInputHandler("InValueStream");
+        executionPlanRuntime.start();
+        inputHandler.send(new Integer[]{4});
+        Thread.sleep(100);
+        executionPlanRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcessLong() throws Exception {
+        logger.info("SquareRootFunctionExtension testProcessLong");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue long);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime executionPlanRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        executionPlanRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Double result;
+                for (Event event : inEvents) {
+                    result = (Double) event.getData(0);
+                    AssertJUnit.assertEquals((Double) 650.7096126537551d, result);
+                }
+            }
+        });
+        InputHandler inputHandler = executionPlanRuntime
+                .getInputHandler("InValueStream");
+        executionPlanRuntime.start();
+        inputHandler.send(new Long[]{423423L});
+        Thread.sleep(100);
+        executionPlanRuntime.shutdown();
+    }
+
+    @Test
+    public void testProcessFloat() throws Exception {
+        logger.info("SquareRootFunctionExtension testProcessFloat");
+
+        siddhiManager = new SiddhiManager();
+        String inValueStream = "define stream InValueStream (inValue float);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
+                                         + "select math:sqrt(inValue) as sinValue "
+                                         + "insert into OutMediationStream;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
+                                                                                             eventFuseExecutionPlan);
+
+        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
+            @Override
+            public void receive(long timeStamp, Event[] inEvents,
+                                Event[] removeEvents) {
+                EventPrinter.print(timeStamp, inEvents, removeEvents);
+                Double result;
+                for (Event event : inEvents) {
+                    result = (Double) event.getData(0);
+                    AssertJUnit.assertEquals((Double) 20.577244814366928d, result);
+                }
+            }
+        });
+        InputHandler inputHandler = siddhiAppRuntime
+                .getInputHandler("InValueStream");
+        siddhiAppRuntime.start();
+        inputHandler.send(new Float[]{423.423f});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
     }
 }
