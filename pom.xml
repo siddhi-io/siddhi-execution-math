@@ -27,7 +27,7 @@
 
     <groupId>org.wso2.extension.siddhi.execution.math</groupId>
     <artifactId>siddhi-execution-math-parent</artifactId>
-    <version>4.0.12-SNAPSHOT</version>
+    <version>4.0.12</version>
     <name>Siddhi Execution Math Extension Parent</name>
     <url>http://wso2.org</url>
     <packaging>pom</packaging>
@@ -63,7 +63,7 @@
         <url>https://github.com/wso2-extensions/siddhi-execution-math.git</url>
         <developerConnection>scm:git:https://github.com/wso2-extensions/siddhi-execution-math.git
         </developerConnection>
-        <tag>HEAD</tag>
+        <tag>v4.0.12</tag>
     </scm>
 
     <dependencyManagement>
