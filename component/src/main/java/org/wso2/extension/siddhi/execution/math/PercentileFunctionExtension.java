@@ -198,7 +198,9 @@ public class PercentileFunctionExtension extends AttributeAggregator {
      * @return pth percentile value
      */
     private double getPercentileValue(List<Double> valuesList, double percentile) {
-
+        if (valuesList.isEmpty()) {
+                return 0.0;
+        }
         double percentileIndexTemp;
         int percentileIndex;
 
@@ -245,9 +247,11 @@ public class PercentileFunctionExtension extends AttributeAggregator {
      * @param value     expired value
      */
     private void sortedArrayListRemove(List<Double> arrayList, double value) {
-
+            
         int removeIndex = Collections.binarySearch(arrayList, value);
-        arrayList.remove(removeIndex);
+        if (removeIndex >= 0) {
+            arrayList.remove(removeIndex);
+        }
     }
 
     private class DoubleValueParser implements ValueParser {
