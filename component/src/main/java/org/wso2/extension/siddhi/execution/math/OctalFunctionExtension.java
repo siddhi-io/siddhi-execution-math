@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "oct",
         namespace = "math",
-        description = "Converts p1 to octal.",
+        description = "Converts `p1` to octal.",
         parameters = {
                 @Parameter(
                         name = "p1",

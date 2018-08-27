@@ -42,7 +42,8 @@ import java.util.Map;
 @Extension(
         name = "sqrt",
         namespace = "math",
-        description = "Returns the square-root of p1. This function wraps the java.lang.Math.sqrt() function.",
+        description = "Returns the square-root of the given value. This function wraps the `java.lang.Math.sqrt()`s " +
+                "function.",
         parameters = {
                 @Parameter(
                         name = "p1",

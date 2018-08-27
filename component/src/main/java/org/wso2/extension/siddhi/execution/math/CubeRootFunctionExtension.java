@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "cbrt",
         namespace = "math",
-        description = "Returns the cube-root of p1 (p1 is in radians). This function wraps the " +
-                "java.lang.Math.cbrt() function.",
+        description = "Returns the cube-root of p1 that is in radians. This function wraps the " +
+                "`java.lang.Math.cbrt()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

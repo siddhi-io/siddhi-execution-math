@@ -47,7 +47,7 @@ import java.util.Map;
 @Extension(
         name = "percentile",
         namespace = "math",
-        description = "Returns the pth percentile value of the arg values.",
+        description = "Returns the pth percentile value of the argument values.",
         parameters = {
                 @Parameter(
                         name = "arg",

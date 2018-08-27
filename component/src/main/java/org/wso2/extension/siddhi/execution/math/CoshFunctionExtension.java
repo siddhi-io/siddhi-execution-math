@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "cosh",
         namespace = "math",
-        description = "Returns the hyperbolic cosine of p1 (p1 is in radians). " +
-                "This function wraps the java.lang.Math.cosh() function.",
+        description = "Returns the hyperbolic cosine of `p1` that is in radians. This function wraps the `java.lang" +
+                ".Math.cosh()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

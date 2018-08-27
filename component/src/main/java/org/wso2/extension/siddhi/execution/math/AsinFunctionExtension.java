@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "asin",
         namespace = "math",
-        description = "If -1 <= p1 <= 1, this function returns the arc-sin (inverse sine) of p1. If not, it returns" +
-                " NULL. The return value is in radian scale. This function wraps the java.lang.Math.asin() function.",
+        description = "If -1 <= p1 <= 1, returns the arc-sin (inverse sine) of p1. If not, it returns" +
+                " NULL. The returned value is in radian scale. This function wraps the java.lang.Math.asin() function.",
         parameters = {
                 @Parameter(
                         name = "p1",

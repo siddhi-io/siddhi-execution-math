@@ -44,11 +44,9 @@ import java.util.Random;
 @Extension(
         name = "rand",
         namespace = "math",
-        description = "1.  A sequence of calls to rand() generates a stream of pseudo-random numbers. " +
-                "This function uses the java.util.Random class internally." +
-                "\n" +
-                "2. A sequence of calls to rand(seed) generates a stream of pseudo-random numbers. " +
-                "This function uses the java.util.Random class internally. ",
+        description = "Returns a stream of pseudo-random numbers when a sequence of calls are sent to the `rand()`. " +
+                "Optionally, it is possible to define a seed, i.e., `rand(seed)` using which the pseudo-random " +
+                "numbers are generated. These functions use the `java.util.Random` class internally.",
         parameters = {
                 @Parameter(
                         name = "seed",

@@ -43,8 +43,8 @@ import java.util.Map;
 @Extension(
         name = "toDegrees",
         namespace = "math",
-        description = "Converts p1 from radians to degrees. This function wraps the " +
-                "java.lang.Math.toDegrees() function.",
+        description = "Converts the value given in radians to degrees. This function wraps the " +
+                "`java.lang.Math.toDegrees()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

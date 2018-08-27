@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "tanh",
         namespace = "math",
-        description = "Returns the hyperbolic tangent of p1 (p1 is in radians). " +
-                "This function wraps the java.lang.Math.tanh() function.",
+        description = "Returns the hyperbolic tangent of the value given in radians. This function wraps the `java" +
+                ".lang.Math.tanh()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

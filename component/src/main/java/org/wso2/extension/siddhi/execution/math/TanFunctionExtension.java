@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "tan",
         namespace = "math",
-        description = "Returns the tan of p1 (p1 is in radians). " +
-                "This function wraps the java.lang.Math.tan() function.",
+        description = "Returns the tan of the given value in radians. This function wraps the `java.lang.Math.tan()` " +
+                "function.",
         parameters = {
                 @Parameter(
                         name = "p1",

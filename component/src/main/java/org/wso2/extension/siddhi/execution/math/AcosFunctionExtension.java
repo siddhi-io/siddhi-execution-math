@@ -43,8 +43,8 @@ import java.util.Map;
 @Extension(
         name = "acos",
         namespace = "math",
-        description = "If -1 <= p1 <= 1, this function returns the arc-cosine (inverse cosine) of p1. " +
-                "If not, it returns NULL. The return value is in radian scale. This function wraps the " +
+        description = "If -1 <= p1 <= 1, returns the arc-cosine (inverse cosine) of p1. " +
+                "If not, it returns NULL. The returned value is in radian scale. This function wraps the " +
                 "java.lang.Math.acos()function.",
         parameters = {
                 @Parameter(

@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "exp",
         namespace = "math",
-        description = "Returns Euler's number e raised to the power of p1. This function wraps the " +
-                "java.lang.Math.exp() function.",
+        description = "Returns the Euler's number `e` raised to the power of `p1`. This function wraps the " +
+                "`java.lang.Math.exp()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

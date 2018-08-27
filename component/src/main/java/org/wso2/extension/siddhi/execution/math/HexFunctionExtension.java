@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "hex",
         namespace = "math",
-        description = "This function wraps the java.lang.Double.toHexString() function that returns a hexadecimal " +
-                "string representation of p1.",
+        description = "Wraps the `java.lang.Double.toHexString()` function that returns a hexadecimal " +
+                "string representation of `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",

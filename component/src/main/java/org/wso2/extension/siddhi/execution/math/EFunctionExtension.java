@@ -38,8 +38,8 @@ import java.util.Map;
 @Extension(
         name = "e",
         namespace = "math",
-        description = "Returns the java.lang.Math.E constant, which is the closest double value to e " +
-                "(which is the base of the natural logarithms).",
+        description = "Returns the `java.lang.Math.E` constant, which is the closest double value to e, which is the " +
+                "base of the natural logarithms.",
         returnAttributes = @ReturnAttribute(
                 description = "The closest double value to e (The base of the natural logarithm)",
                 type = {DataType.DOUBLE}),

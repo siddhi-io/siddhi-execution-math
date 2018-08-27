@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "log10",
         namespace = "math",
-        description = "Returns the base 10 logarithm of p1.",
+        description = "Returns the base 10 logarithm of `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",

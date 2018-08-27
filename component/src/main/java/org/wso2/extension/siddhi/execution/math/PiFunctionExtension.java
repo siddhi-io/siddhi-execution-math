@@ -38,8 +38,8 @@ import java.util.Map;
 @Extension(
         name = "pi",
         namespace = "math",
-        description = "Returns the java.lang.Math.PI constant, which is the closest value to pi " +
-                "(i.e. the ratio of the circumference of a circle to its diameter). ",
+        description = "Returns the `java.lang.Math.PI` constant, which is the closest value to pi, " +
+                "i.e., the ratio of the circumference of a circle to its diameter. ",
         returnAttributes = @ReturnAttribute(
                 description = "The value 3.141592653589793, which is the closest value of pi",
                 type = {DataType.DOUBLE}),

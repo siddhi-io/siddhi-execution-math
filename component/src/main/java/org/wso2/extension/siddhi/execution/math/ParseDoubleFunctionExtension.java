@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "parseDouble",
         namespace = "math",
-        description = "Returns str as a double.",
+        description = "Returns the double value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",

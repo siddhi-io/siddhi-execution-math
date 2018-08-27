@@ -44,8 +44,8 @@ import java.util.Map;
 @Extension(
         name = "signum",
         namespace = "math",
-        description = "If a is a positive, this returns the sign of p1 as 1.0. " +
-                "This function wraps the java.lang.Math.signum() function.",
+        description = "Returns +1, 0, or -1 for the given positive, zero, and negative values respectively. This " +
+                "function wraps the `java.lang.Math.signum()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
