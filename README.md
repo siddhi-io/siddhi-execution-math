@@ -19,9 +19,7 @@ Latest API Docs is <a target="_blank" href="https://wso2-extensions.github.io/si
 
 **Using the extension with <a target="_blank" href="https://github.com/wso2/product-sp">WSO2 Stream Processor</a>**
 
-* You can use this extension with the latest <a target="_blank" href="https://github
-.com/wso2/product-sp/releases">WSO2 Stream Processor</a>, the <a target="_blank" href="http://wso2
-.com/analytics?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 Analytics</a> offering, which supports an  
+* You can use this extension with the latest <a target="_blank" href="https://wso2.com/analytics-and-stream-processing">WSO2 Stream Processor</a> offering, which supports an  
 editor, debugger, and simulator. 
 
 * By default, the latest version of this extension is shipped with WSO2 Stream Processor. If you wish to use
