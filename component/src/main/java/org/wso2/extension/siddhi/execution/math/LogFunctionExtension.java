@@ -43,7 +43,7 @@ import java.util.Map;
 @Extension(
         name = "log",
         namespace = "math",
-        description = "Returns the logarithm (base=base) of number.",
+        description = "Returns the logarithm of the received `number` as per the given `base`.",
         parameters = {
                 @Parameter(
                         name = "number",

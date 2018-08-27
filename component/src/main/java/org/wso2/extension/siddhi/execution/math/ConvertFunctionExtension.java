@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "conv",
         namespace = "math",
-        description = "Converts a from the fromBase base to the toBase base.",
+        description = "Converts `a` from the `fromBase` base to the `toBase` base.",
         parameters = {
                 @Parameter(
                         name = "a",

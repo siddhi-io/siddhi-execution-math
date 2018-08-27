@@ -43,7 +43,7 @@ import java.util.Map;
 @Extension(
         name = "round",
         namespace = "math",
-        description = "Returns the closest integer/long (depending on the input) value to the argument.",
+        description = "Returns the closest integer/long value depending on the input argument.",
         parameters = {
                 @Parameter(
                         name = "p1",

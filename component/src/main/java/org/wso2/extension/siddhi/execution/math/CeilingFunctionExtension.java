@@ -45,8 +45,8 @@ import java.util.Map;
         name = "ceil",
         namespace = "math",
         description = "Returns the smallest (closest to negative infinity) double value that is greater than or " +
-                "equal to the p1 argument, and is equal to a mathematical integer. This function wraps the" +
-                "java.lang.Math.ceil() method.",
+                "equal to the `p1` argument, and is equal to a mathematical integer. This function wraps the" +
+                "`java.lang.Math.ceil()` method.",
         parameters = {
                 @Parameter(
                         name = "p1",

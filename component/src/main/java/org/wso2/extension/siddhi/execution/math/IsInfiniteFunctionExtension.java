@@ -42,8 +42,9 @@ import java.util.Map;
 @Extension(
         name = "isInfinite",
         namespace = "math",
-        description = "This function wraps the java.lang.Float.isInfinite() and java.lang.Double.isInfinite() " +
-                "functions that return true if p1 is infinitely large in magnitude, or return false otherwise.",
+        description = "Wraps the `java.lang.Float.isInfinite()` and `java.lang.Double.isInfinite()` " +
+                "functions and returns `true` if `p1` is infinitely large in magnitude and returns `false` if " +
+                "otherwise.",
         parameters = {
                 @Parameter(
                         name = "p1",

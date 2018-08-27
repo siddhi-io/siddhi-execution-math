@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "parseFloat",
         namespace = "math",
-        description = "Returns str as a float.",
+        description = "Returns the float value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",

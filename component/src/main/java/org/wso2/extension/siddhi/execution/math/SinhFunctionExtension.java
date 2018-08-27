@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "sinh",
         namespace = "math",
-        description = "Returns the hyperbolic sine of p1 (p1 is in radians). This function wraps the " +
-                "java.lang.Math.sinh() function. ",
+        description = "Returns the hyperbolic sine of the value given in radians. This function wraps the `java.lang" +
+                ".Math.sinh()` function. ",
         parameters = {
                 @Parameter(
                         name = "p1",

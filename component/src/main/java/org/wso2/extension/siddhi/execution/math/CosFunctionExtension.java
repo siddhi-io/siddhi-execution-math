@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "cos",
         namespace = "math",
-        description = "Returns the cosine of p1 (p1 is in radians). This function wraps the " +
-                "java.lang.Math.cos() function.",
+        description = "Returns the cosine of `p1` that is in radians. This function wraps the " +
+                "`java.lang.Math.cos()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

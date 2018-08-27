@@ -43,7 +43,7 @@ import java.util.Map;
 @Extension(
         name = "power",
         namespace = "math",
-        description = "Returns value raised to the power of toPower.",
+        description = "Returns a value by raising to the given power.",
         parameters = {
                 @Parameter(
                         name = "value",

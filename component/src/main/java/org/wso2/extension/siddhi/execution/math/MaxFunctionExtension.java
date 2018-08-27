@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "max",
         namespace = "math",
-        description = "Returns the greater value out of p1 and p2.",
+        description = "Returns the greater value out of `p1` and `p2`.",
         parameters = {
                 @Parameter(
                         name = "p1",

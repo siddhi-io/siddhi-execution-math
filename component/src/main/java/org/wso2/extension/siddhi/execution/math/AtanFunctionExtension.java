@@ -42,11 +42,12 @@ import java.util.Map;
 @Extension(//TODO: How The Parameter Descriptions should be given
         name = "atan",
         namespace = "math",
-        description = "1. math:atan(p1) Returns the arc-tangent (inverse tangent) of p1. " +
-                "The return value is in radian scale. This function wraps the java.lang.Math.atan() function." +
+        description = "1. If a single `p1` is received, returns the arc-tangent (inverse tangent) of `p1`." +
                 "\n" +
-                "2. Returns the arc-tangent (inverse tangent) of  p1 and p2 coordinates. The return value is in " +
-                "radian scale. This function wraps the java.lang.Math.atan2() function.",
+                "2. If `p1` is received along with an optional `p1`, considers them as x,y coordinates and returns" +
+                "the respective arc-tangent (inverse tangent) of the `p1`, `p2` coordinates." +
+                "\n"+
+                "3.The returned value is in radian scale. This function wraps the `java.lang.Math.atan()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "parseLong",
         namespace = "math",
-        description = "Returns str as a long.",
+        description = "Returns the long value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",

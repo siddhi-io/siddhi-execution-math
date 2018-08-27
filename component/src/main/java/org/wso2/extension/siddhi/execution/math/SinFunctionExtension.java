@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "sin",
         namespace = "math",
-        description = "Returns the sine of p1 (p1 is in radians). This function wraps the " +
-                "java.lang.Math.sin() function.",
+        description = "Returns the sine of the value given in radians. This function wraps the " +
+                "`java.lang.Math.sin()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

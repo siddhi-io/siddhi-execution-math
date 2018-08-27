@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "ln",
         namespace = "math",
-        description = "Returns the natural logarithm (base e) of p1.",
+        description = "Returns the natural logarithm (base e) of `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",

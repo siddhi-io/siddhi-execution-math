@@ -42,7 +42,7 @@ import java.util.Map;
 @Extension(
         name = "parseInt",
         namespace = "math",
-        description = "Returns str as a int.",
+        description = "Returns the integer value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",

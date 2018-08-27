@@ -1,9 +1,11 @@
 siddhi-execution-math
 ======================================
 
-The **siddhi-execution-math extension** is an extension to <a target="_blank" href="https://wso2.github.io/siddhi">Siddhi</a> that contains useful mathematical functions to make your siddhi queries more flexible.
+The **siddhi-execution-math** is an extension to <a target="_blank" href="https://wso2.github
+.io/siddhi">Siddhi</a>, which provides useful mathematical functions that can make your siddhi queries more 
+flexible.
 
-Find some useful links below:
+For more information, see:
 
 * <a target="_blank" href="https://github.com/wso2-extensions/siddhi-execution-math">Source code</a>
 * <a target="_blank" href="https://github.com/wso2-extensions/siddhi-execution-math/releases">Releases</a>
@@ -15,15 +17,19 @@ Latest API Docs is <a target="_blank" href="https://wso2-extensions.github.io/si
 
 ## How to use 
 
-**Using the extension in <a target="_blank" href="https://github.com/wso2/product-sp">WSO2 Stream Processor</a>**
+**Using the extension with <a target="_blank" href="https://github.com/wso2/product-sp">WSO2 Stream Processor</a>**
 
-* You can use this extension in the latest <a target="_blank" href="https://github.com/wso2/product-sp/releases">WSO2 Stream Processor</a> that is a part of <a target="_blank" href="http://wso2.com/analytics?utm_source=gitanalytics&utm_campaign=gitanalytics_Jul17">WSO2 Analytics</a> offering, with editor, debugger and simulation support. 
+* You can use this extension with the latest <a target="_blank" href="https://wso2.com/analytics-and-stream-processing">WSO2 Stream Processor</a> offering, which supports an  
+editor, debugger, and simulator. 
 
-* This extension is shipped by default with WSO2 Stream Processor, if you wish to use an alternative version of this extension you can replace the component <a target="_blank" href="https://github.com/wso2-extensions/siddhi-execution-math/releases">jar</a> that can be found in the `<STREAM_PROCESSOR_HOME>/lib` directory.
+* By default, the latest version of this extension is shipped with WSO2 Stream Processor. If you wish to use
+ an alternative version of this extension, replace the component <a target="_blank" href="https://github
+ .com/wso2-extensions/siddhi-execution-math/releases">jar</a> that is available at the 
+ `<STREAM_PROCESSOR_HOME>/lib` directory.
 
 **Using the extension as a <a target="_blank" href="https://wso2.github.io/siddhi/documentation/running-as-a-java-library">java library</a>**
 
-* This extension can be added as a maven dependency along with other Siddhi dependencies to your project.
+* This extension can be added as a maven dependency to your project along with other Siddhi dependencies.
 
 ```
      <dependency>
@@ -39,7 +45,8 @@ Latest API Docs is <a target="_blank" href="https://wso2-extensions.github.io/si
 
 |  Branch | Build Status |
 | :------ |:------------ | 
-| master  | [![Build Status](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/badge/icon)](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/) |
+| master  | [![Build Status](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/badge/icon)](https://wso2
+.org/jenkins/job/siddhi/job/siddhi-execution-math/) |
 
 ---
 

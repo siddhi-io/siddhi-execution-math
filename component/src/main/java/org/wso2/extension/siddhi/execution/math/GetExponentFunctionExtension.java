@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "getExponent",
         namespace = "math",
-        description = "Returns the unbiased exponent used in the representation of p1. This function wraps the" +
-                " java.lang.Math.getExponent() function.",
+        description = "Returns the unbiased exponent that is used in the representation of `p1`. This function wraps " +
+                "the `java.lang.Math.getExponent()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",

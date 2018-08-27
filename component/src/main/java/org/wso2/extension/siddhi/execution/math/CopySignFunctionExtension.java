@@ -43,8 +43,8 @@ import java.util.Map;
 @Extension(
         name = "copySign",
         namespace = "math",
-        description = "Returns the magnitude of magnitude with the sign of sign . " +
-                "This function wraps the java.lang.Math.copySign() function.",
+        description = "Returs a value with the received `magnitude` and the `sign`. This function wraps the `java.lang" +
+                ".Math.copySign()` function.",
         parameters = {
                 @Parameter(
                         name = "magnitude",

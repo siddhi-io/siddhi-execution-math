@@ -43,9 +43,9 @@ import java.util.Map;
 @Extension(
         name = "bin",
         namespace = "math",
-        description = "Returns a string representation of the integer/long p1 argument as an unsigned integer in " +
-                "base 2. This function wraps the java.lang.Integer.toBinaryString and " +
-                "java.lang.Long.toBinaryString methods.",
+        description = "Returns a string representation of the integer/long `p1` argument as an unsigned integer in " +
+                "base 2. This function wraps the `java.lang.Integer.toBinaryString` and " +
+                "`java.lang.Long.toBinaryString` methods.",
         parameters = {
                 @Parameter(
                         name = "p1",

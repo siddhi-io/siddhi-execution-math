@@ -42,8 +42,8 @@ import java.util.Map;
 @Extension(
         name = "isNan",
         namespace = "math",
-        description = "This function wraps the java.lang.Float.isNaN() and java.lang.Double.isNaN() functions that " +
-                "return true if p1 is a NaN (Not-a-Number) value, or return false otherwise.",
+        description = "Wraps the `java.lang.Float.isNaN()` and `java.lang.Double.isNaN()` functions and " +
+                "returns `true` if `p1` is a NaN (Not-a-Number) value, and returns `false` if otherwise.",
         parameters = {
                 @Parameter(
                         name = "p1",

@@ -42,8 +42,9 @@ import java.util.Map;
 @Extension(
         name = "floor",
         namespace = "math",
-        description = "This function wraps the java.lang.Math.floor() function that returns the largest (closest to " +
-                "positive infinity) value that is less that or equal to p1, and is equal to a mathematical integer.",
+        description = "This function wraps the `java.lang.Math.floor()` function, which returns the largest " +
+                "(closest to positive infinity) value that is less that or equal to `p1`, and is equal to a " +
+                "mathematical integer.",
         parameters = {
                 @Parameter(
                         name = "p1",

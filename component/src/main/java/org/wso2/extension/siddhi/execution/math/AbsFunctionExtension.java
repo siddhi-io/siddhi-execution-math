@@ -43,8 +43,8 @@ import java.util.Map;
 @Extension(
         name = "abs",
         namespace = "math",
-        description = "Returns the absolute value of first parameter. " +
-                "This function wraps the java.lang.Math.abs() function.",
+        description = "Returns the absolute value of the given parameter. " +
+                "This function wraps the `java.lang.Math.abs()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
