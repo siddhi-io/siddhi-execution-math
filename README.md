@@ -45,8 +45,7 @@ editor, debugger, and simulator.
 
 |  Branch | Build Status |
 | :------ |:------------ | 
-| master  | [![Build Status](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/badge/icon)](https://wso2
-.org/jenkins/job/siddhi/job/siddhi-execution-math/) |
+| master  | [![Build Status](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/badge/icon)](https://wso2.org/jenkins/job/siddhi/job/siddhi-execution-math/) |
 
 ---
 
