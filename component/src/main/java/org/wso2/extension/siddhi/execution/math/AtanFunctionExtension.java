@@ -45,8 +45,7 @@ import java.util.Map;
         description = "1. If a single `p1` is received, returns the arc-tangent (inverse tangent) of `p1`." +
                 "\n" +
                 "2. If `p1` is received along with an optional `p1`, considers them as x,y coordinates and returns" +
-                "the respective arc-tangent (inverse tangent) of the `p1`, `p2` coordinates." +
-                "\n" +
+                "the respective arc-tangent (inverse tangent) of the `p1`, `p2` coordinates. \n" +
                 "3.The returned value is in radian scale. This function wraps the `java.lang.Math.atan()` function.",
         parameters = {
                 @Parameter(
