@@ -2,67 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
+     <changefreq>daily</changefreq>
+    </url>
+    <url>
+     <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.19/</loc>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.18/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.17/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.16/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.15/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.14/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.13/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.12/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.11/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.10/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/4.0.9/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/api/latest/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
     <url>
      <loc>https://wso2-extensions.github.io/siddhi-execution-math/license/</loc>
-     <lastmod>2018-08-30</lastmod>
+     <lastmod>2018-09-04</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
