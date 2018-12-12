@@ -42,22 +42,26 @@ import java.util.Map;
 @Extension(
         name = "cos",
         namespace = "math",
-        description = "Returns the cosine of `p1` that is in radians. This function wraps the " +
+        description = "This function returns the cosine of `p1` which is in radians. It wraps the " +
                 "`java.lang.Math.cos()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose cosine value should be found. Input must be in radians",
+                        description = "The value of the parameter whose cosine value should be found." +
+                                "The input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The cosine value of the input parameter",
+                description = "The cosine value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "cos(6d) returns 0.9601702866503661.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:cos(inValue) as cosValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' is given, the function calculates the cosine value for " +
+                        "the same and directs the output to the output stream, OutMediationStream. For example, " +
+                        "cos(6d) returns 0.9601702866503661.")
 )
 public class CosFunctionExtension extends FunctionExecutor {
 
