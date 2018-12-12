@@ -43,25 +43,29 @@ import java.util.Map;
 @Extension(
         name = "bin",
         namespace = "math",
-        description = "Returns a string representation of the integer/long `p1` argument as an unsigned integer in " +
-                "base 2. This function wraps the `java.lang.Integer.toBinaryString` and " +
-                "`java.lang.Long.toBinaryString` methods.",
+        description = "This function returns a string representation of the p1 argument, that is of" +
+                " either 'integer' or 'long' data type, as an unsigned integer in base 2. It wraps the" +
+                " `java.lang.Integer.toBinaryString` and java.lang.Long.toBinaryString` methods.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be converted to an unsigned integer of base 2",
+                        description = "The value in either 'integer' or 'long', that should be converted into" +
+                                "an unsigned integer of base 2.",
                         type = {DataType.INT, DataType.LONG})
         },
         returnAttributes = @ReturnAttribute(
-                description = "A string representation of the integer/long p1 parameter as an unsigned integer in" +
-                        "base 2",
+                description = "A string representation of the p1 parameter as an unsigned integer in" +
+                        "base 2.",
                 type = {DataType.STRING}),
         examples = @Example(
-                description = "bin(9) returns \"1001\".",
+
                 syntax = "define stream InValueStream (inValue long); \n" +
                         "from InValueStream \n" +
                         "select math:bin(inValue) as binValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, the function" +"
+                        "converts it into an unsigned integer in base 2 and directs the output to the ." +
+                        " output stream, OutMediationStream. For example, bin(9) returns '1001'.")
 )
 public class BinaryFunctionExtension extends FunctionExecutor {
 
