@@ -43,27 +43,31 @@ import java.util.Map;
 @Extension(
         name = "copySign",
         namespace = "math",
-        description = "Returs a value with the received `magnitude` and the `sign`. This function wraps the " +
-                "`java.lang.Math.copySign()` function.",
+        description = "This function returns a value of an input with the received `magnitude` and `sign` " +
+                "of another input. It wraps the `java.lang.Math.copySign()` function.",
         parameters = {
                 @Parameter(
                         name = "magnitude",
-                        description = "This parameters magnitude will be used for output attribute",
+                        description = "The magnitude of this parameter is used in the output attribute.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "sign",
-                        description = "This parameters sign will be used for output attribute",
+                        description = "The sign of this parameter is used in the output attribute.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the first argument with the sign of the second argument",
+                description = "This returns the first argument with the sign of the second argument.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "copySign(5.6d, -3.0d) returns -5.6.",
+
                 syntax = "define stream InValueStream (inValue1 double, inValue2 double); \n" +
                         "from InValueStream \n" +
                         "select math:copySign(inValue1,inValue2) as copysignValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If two values are provided as 'inValue1' and 'inValue2', the function copies" +
+                               "the magnitude and sign of the second argument into the first one and directs" +
+                               "the result to the output stream, OutMediatonStream. For example," +
+                               "copySign(5.6d, -3.0d) returns -5.6.")
 )
 public class CopySignFunctionExtension extends FunctionExecutor {
     @Override
