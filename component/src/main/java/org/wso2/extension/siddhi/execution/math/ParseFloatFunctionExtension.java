@@ -59,7 +59,7 @@ import java.util.Map;
                         "insert into OutMediationStream;",
                 description = "The function converts the " +
                         "input value given in 'inValue',into its corresponding float value and directs the" +
-                        " result into the output stream, OutMediationStream. For example," +
+                        "result into the output stream, OutMediationStream. For example," +
                         "parseFloat(\"123\") returns 123.0.")
 )
 public class ParseFloatFunctionExtension extends FunctionExecutor {
