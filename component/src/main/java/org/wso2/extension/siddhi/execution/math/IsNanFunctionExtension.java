@@ -42,23 +42,27 @@ import java.util.Map;
 @Extension(
         name = "isNan",
         namespace = "math",
-        description = "Wraps the `java.lang.Float.isNaN()` and `java.lang.Double.isNaN()` functions and " +
-                "returns `true` if `p1` is a NaN (Not-a-Number) value, and returns `false` if otherwise.",
+        description = "This function wraps the `java.lang.Float.isNaN()` and `java.lang.Double.isNaN()` " +
+                "functions and returns `true` if `p1` is NaN (Not-a-Number), and returns `false` if otherwise.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be checked if it is a number",
+                        description = "The value of the parameter which the function determines to be either NaN " +
+                                "or a number.",
                         type = {DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns true if input parameter is a NaN (Not-a-Number). Returns false otherwise",
+                description = "This returns true, if the input parameter is NaN (Not-a-Number), and false otherwise.",
                 type = {DataType.BOOL}),
         examples = @Example(
-                description = "isNan(java.lang.Math.log(-12d)) returns true.",
+
                 syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
                         "from InValueStream \n" +
                         "select math:isNan(inValue1) as isNaN \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue1' in the input stream has a value that is undefined, then the function" +
+                        " considers it as an 'NaN' value and directs 'True' to the output stream, OutMediationStream." +
+                        "For example, isNan(java.lang.Math.log(-12d)) returns true.")
 )
 public class IsNanFunctionExtension extends FunctionExecutor {
     @Override
