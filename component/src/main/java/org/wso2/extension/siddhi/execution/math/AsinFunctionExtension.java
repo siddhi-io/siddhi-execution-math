@@ -60,8 +60,8 @@ import java.util.Map;
                         "from InValueStream \n" +
                         "select math:asin(inValue) as asinValue \n" +
                         "insert into OutMediationStream;",
-                description = "If the 'inValue' in the input stream is given, the function calculates the arc-sin" +
-                        "value of it and returns the arc-sin value to the output stream, OutMediationStream. For"  +
+                description = "If the 'inValue' in the input stream is given, the function calculates the arc-sin " +
+                        "value of it and returns the arc-sin value to the output stream, OutMediationStream. For "  +
                         "example, asin(0.5) returns 0.5235987755982989.")
 )
 public class AsinFunctionExtension extends FunctionExecutor {
