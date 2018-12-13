@@ -47,7 +47,7 @@ import java.util.Map;
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of the parameter whose hyperbolic cosine should be found." +
+                        description = "The value of the parameter whose hyperbolic cosine should be found. " +
                                 "The input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(

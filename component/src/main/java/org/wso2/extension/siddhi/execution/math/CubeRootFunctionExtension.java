@@ -47,7 +47,7 @@ import java.util.Map;
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of the parameter whose cube-root should be found." +
+                        description = "The value of the parameter whose cube-root should be found. " +
                                 "Input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
@@ -59,8 +59,8 @@ import java.util.Map;
                         "from InValueStream \n" +
                         "select math:cbrt(inValue) as cbrtValue \n" +
                         "insert into OutMediationStream;",
-                description = "If the 'inValue' is given, the function calculates the cube-root value for" +
-                              "the same and directs the output to the output stream, OutMediationStream." +
+                description = "If the 'inValue' is given, the function calculates the cube-root value for " +
+                              "the same and directs the output to the output stream, OutMediationStream. " +
                               "For example, cbrt(17d) returns 2.5712815906582356.")
 )
 public class CubeRootFunctionExtension extends FunctionExecutor {

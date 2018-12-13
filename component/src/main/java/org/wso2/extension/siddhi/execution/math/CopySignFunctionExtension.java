@@ -64,9 +64,9 @@ import java.util.Map;
                         "from InValueStream \n" +
                         "select math:copySign(inValue1,inValue2) as copysignValue \n" +
                         "insert into OutMediationStream;",
-                description = "If two values are provided as 'inValue1' and 'inValue2', the function copies" +
-                               "the magnitude and sign of the second argument into the first one and directs" +
-                               "the result to the output stream, OutMediatonStream. For example," +
+                description = "If two values are provided as 'inValue1' and 'inValue2', the function copies " +
+                               "the magnitude and sign of the second argument into the first one and directs " +
+                               "the result to the output stream, OutMediatonStream. For example, " +
                                "copySign(5.6d, -3.0d) returns -5.6.")
 )
 public class CopySignFunctionExtension extends FunctionExecutor {

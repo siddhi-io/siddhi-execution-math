@@ -43,7 +43,7 @@ import java.util.Map;
 @Extension(
         name = "acos",
         namespace = "math",
-        description = "If -1 <= p1 <= 1, this function returns the arc-cosine (inverse cosine) value of p1. " +
+        description = "If -1 <= p1 <= 1, this function returns the arc-cosine (inverse cosine) value of p1." +
                 "If the domain is invalid, it returns NULL. The value returned is in radian scale. " +
                 "This function wraps the java.lang.Math.acos() function.",
         parameters = {
@@ -61,10 +61,11 @@ import java.util.Map;
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:acos(inValue) as acosValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
                 description = "If the 'inValue' in the input stream is given, the function calculates the " +
-                        "arc-cosine value of it and returns the arc-cosine value to the output stream, OutMediationStream. For " +
-                        "example, acos(0.5) returns 1.0471975511965979.",
+                        "arc-cosine value of it and returns the arc-cosine value to the output stream, " +
+                        "OutMediationStream. For " +
+                        "example, acos(0.5) returns 1.0471975511965979.")
 )
 public class AcosFunctionExtension extends FunctionExecutor {
 

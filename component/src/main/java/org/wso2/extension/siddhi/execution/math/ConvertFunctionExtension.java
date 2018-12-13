@@ -59,7 +59,7 @@ import java.util.Map;
         },
         returnAttributes = @ReturnAttribute(
                 description = "The value of the parameter 'a' when converted from the source base to the target base." +
-                        "Output is obtained as a String variable.",
+                        " Output is obtained as a String variable.",
                 type = {DataType.STRING}),
         examples = @Example(
 
@@ -67,11 +67,11 @@ import java.util.Map;
                         "from InValueStream \n" +
                         "select math:conv(inValue,fromBase,toBase) as convertedValue \n" +
                         "insert into OutMediationStream;",
-                description = "If the 'inValue' in the input stream is given, and the base in which it" +
-                              "currently resides in and the base to which it shoud be " +
-                              "converted to is specified, the function converts it into a string in the target base" +
+                description = "If the 'inValue' in the input stream is given, and the base in which it " +
+                              "currently resides in and the base to which it should be " +
+                              "converted to is specified, the function converts it into a string in the target base " +
                               "and directs it to the output stream, OutMediationStream. " +
-                              "For example,  conv(\"7f\", 16, 10) returns \"127\"." )
+                              "For example, conv(\"7f\", 16, 10) returns \"127\".")
 )
 public class ConvertFunctionExtension extends FunctionExecutor {
 
