@@ -43,26 +43,30 @@ import java.util.Map;
 @Extension(
         name = "log",
         namespace = "math",
-        description = "Returns the logarithm of the received `number` as per the given `base`.",
+        description = "This function returns the logarithm of the received `number` as per the given `base`.",
         parameters = {
                 @Parameter(
                         name = "number",
-                        description = "The value of whose base should be changed",
+                        description = "The value of the parameter whose base should be changed.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "base",
-                        description = "The base value of the ouput",
+                        description = "The base value of the ouput.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The logarithm value of 'number' parameter to the base 'base' parameter",
+                description = "The logarithm value of the 'number' parameter to the base, 'base' parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "log(34, 2f) returns 5.08746284125034.",
+
                 syntax = "define stream InValueStream (number double, base double); \n" +
                         "from InValueStream \n" +
                         "select math:log(number, base) as logValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the number and the base to which it has to be converted into is given in the " +
+                        "input stream, the function calculates the number to the base specified and directs the " +
+                        "result to the output stream, OutMediationStream. " +
+                        "For example, log(34, 2f) returns 5.08746284125034.")
 )
 public class LogFunctionExtension extends FunctionExecutor {
 
