@@ -42,26 +42,31 @@ import java.util.Map;
 @Extension(
         name = "min",
         namespace = "math",
-        description = "Returns the smaller value out of `p1` and `p2`.",
+        description = "This function returns the smaller value of `p1` and `p2`.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "Value one to be compared in finding smallest value",
+                        description = "One of the input values that are to be compared in order to find " +
+                                "the smaller value.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "p2",
-                        description = "Value two to be compared in finding smallest value",
+                        description = "The input value that is to be compared with 'p1' in order " +
+                                "to find the smaller value.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the smaller value from the two input parameters",
+                description = "This returns the smaller value of the two input parameters.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "min(123.67d, 91) returns 91.",
+
                 syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
                         "from InValueStream \n" +
                         "select math:min(inValue1,inValue2) as minValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If two input values, 'inValue1' and 'inValue2' are given, " +
+                        "the function compares them and directs the smaller value of the two to the output stream, " +
+                        "OutMediationStream. For example, min(123.67d, 91) returns 91.")
 )
 public class MinFunctionExtension extends FunctionExecutor {
     @Override
