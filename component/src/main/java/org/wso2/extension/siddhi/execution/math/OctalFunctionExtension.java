@@ -42,21 +42,24 @@ import java.util.Map;
 @Extension(
         name = "oct",
         namespace = "math",
-        description = "Converts `p1` to octal.",
+        description = "This function converts the input parameter `p1` to octal.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose octal representation should be found.",
+                        description = "The value of the parameter whose octal representation should be found.",
                         type = {DataType.INT, DataType.LONG})},
         returnAttributes = @ReturnAttribute(
-                description = "The octal value of input parameter",
+                description = "The octal value of the input parameter.",
                 type = {DataType.STRING}),
         examples = @Example(
-                description = "oct(99l) returns \"143\".",
+
                 syntax = "define stream InValueStream (inValue long); \n" +
                         "from InValueStream \n" +
                         "select math:oct(inValue) as octValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, this function calculates the " +
+                "octal value corresponding to the same and directs it to the output stream, OutMediationStream. " +
+                "For example, oct(99l) returns \"143\".")
 )
 public class OctalFunctionExtension extends FunctionExecutor {
 
