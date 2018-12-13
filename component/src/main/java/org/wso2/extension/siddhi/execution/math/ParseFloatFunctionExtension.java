@@ -42,21 +42,25 @@ import java.util.Map;
 @Extension(
         name = "parseFloat",
         namespace = "math",
-        description = "Returns the float value of the received string.",
+        description = "This function returns the float value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be converted to a float",
+                        description = "The value that should be converted into a float value.",
                         type = {DataType.STRING})},
         returnAttributes = @ReturnAttribute(
-                description = "The float value of input parameter",
+                description = "The float value of the input parameter.",
                 type = {DataType.FLOAT}),
         examples = @Example(
-                description = "parseFloat(\"123\") returns 123.0.",
+
                 syntax = "define stream InValueStream (inValue string); \n" +
                         "from InValueStream \n" +
                         "select math:parseFloat(inValue) as output \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The function converts the " +
+                        "input value given in 'inValue',into its corresponding float value and directs the" +
+                        " result into the output stream, OutMediationStream. For example," +
+                        "parseFloat(\"123\") returns 123.0.")
 )
 public class ParseFloatFunctionExtension extends FunctionExecutor {
     @Override
