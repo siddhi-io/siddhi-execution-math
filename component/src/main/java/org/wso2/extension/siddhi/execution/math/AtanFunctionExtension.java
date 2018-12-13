@@ -50,7 +50,7 @@ import java.util.Map;
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of the parameter whose arc-tangent (inverse tangent) is found." +
+                        description = "The value of the parameter whose arc-tangent (inverse tangent) is found. " +
                                 "If the optional second parameter is given this represents the x coordinate of the " +
                                 "(x,y) coordinate pair.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
@@ -71,10 +71,10 @@ import java.util.Map;
                         "select math:atan(inValue1, inValue2) as convertedValue \n" +
                         "insert into OutMediationStream;",
                  description = "If the 'inValue1' in the input stream is given, the function calculates " +
-                         "the arc-tangent value of it and returns the arc-tangent value to the output stream," +
+                         "the arc-tangent value of it and returns the arc-tangent value to the output stream, " +
                          "OutMediationStream. If both the 'inValue1' and 'inValue2' are given, then the function " +
-                         "considers them to be x and y coordinates respectively and returns the calculated" +
-                         "arc-tangent value to the output stream, OutMediationStream." +
+                         "considers them to be x and y coordinates respectively and returns the calculated " +
+                         "arc-tangent value to the output stream, OutMediationStream. " +
                          "For example, atan(12d, 5d) returns 1.1760052070951352.")
 )
 public class AtanFunctionExtension extends FunctionExecutor {
