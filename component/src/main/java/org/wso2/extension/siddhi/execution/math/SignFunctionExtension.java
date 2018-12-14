@@ -44,23 +44,26 @@ import java.util.Map;
 @Extension(
         name = "signum",
         namespace = "math",
-        description = "Returns +1, 0, or -1 for the given positive, zero, and negative values respectively. This " +
+        description = "This returns +1, 0, or -1 for the given positive, zero and negative values respectively. This " +
                 "function wraps the `java.lang.Math.signum()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be checked if positive or negative or otherwise",
+                        description = "The value that should be checked to be positive, negative or zero.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "Returns 1.0 if input parameter is positive. Returns -1.0 if same is negative. " +
-                        "Return 0.0 otherwise",
+                description = "Returns 1.0 if input parameter is positive. Returns -1.0 if the same is negative. " +
+                        "Returns 0.0 otherwise",
                 type = {DataType.INT}),
         examples = @Example(
-                description = "signum(-6.32d) returns -1.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:signum(inValue) as sign \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The function evaluates the 'inValue' given to be positive, " +
+                        "negative or zero and directs the result to the output stream, 'OutMediationStream'. " +
+                        "For example, signum(-6.32d) returns -1.")
 )
 public class SignFunctionExtension extends FunctionExecutor {
 
