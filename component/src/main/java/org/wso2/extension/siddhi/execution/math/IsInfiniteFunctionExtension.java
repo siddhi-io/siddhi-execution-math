@@ -48,12 +48,12 @@ import java.util.Map;
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "This is the value of the parameter that the function determines to" +
+                        description = "This is the value of the parameter that the function determines to " +
                                 "be either infinite or finite."   ,
                         type = {DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "This returns 'true' if the input parameter is infinitely large." +
+                description = "This returns 'true' if the input parameter is infinitely large. " +
                         "Otherwise it returns 'false'.",
                 type = {DataType.BOOL}),
         examples = @Example(

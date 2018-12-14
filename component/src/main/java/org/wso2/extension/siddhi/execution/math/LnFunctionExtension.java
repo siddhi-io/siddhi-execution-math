@@ -59,7 +59,7 @@ import java.util.Map;
                         "insert into OutMediationStream;",
                 description = "If the 'inValue' in the input stream is given, the function calculates " +
                         "its natural logarithm (base e) and directs the results to the output stream, " +
-                        "'OutMeditionStream'. For example," +
+                        "'OutMeditionStream'. For example, " +
                         "ln(11.453) returns 2.438251704415579.")
 )
 public class LnFunctionExtension extends FunctionExecutor {

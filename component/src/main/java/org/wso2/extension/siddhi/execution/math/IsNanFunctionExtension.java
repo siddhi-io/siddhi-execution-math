@@ -61,8 +61,8 @@ import java.util.Map;
                         "select math:isNan(inValue1) as isNaN \n" +
                         "insert into OutMediationStream;",
                 description = "If the 'inValue1' in the input stream has a value that is undefined, then the function" +
-                        " considers it as an 'NaN' value and directs 'True' to the output stream, OutMediationStream." +
-                        "For example, isNan(java.lang.Math.log(-12d)) returns true.")
+                        " considers it as an 'NaN' value and directs 'True' to the output stream, " +
+                        "OutMediationStream. For example, isNan(java.lang.Math.log(-12d)) returns true.")
 )
 public class IsNanFunctionExtension extends FunctionExecutor {
     @Override
