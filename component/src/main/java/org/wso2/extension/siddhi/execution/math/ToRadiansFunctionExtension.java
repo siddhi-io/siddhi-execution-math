@@ -54,7 +54,6 @@ import java.util.Map;
                 description = "The value in radians after converting the input from degrees." ,
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "toRadians(6d) returns 0.10471975511965977.",
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:toRadians(inValue) as radiansValue \n" +
