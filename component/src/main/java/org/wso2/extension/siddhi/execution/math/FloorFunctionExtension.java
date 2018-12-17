@@ -42,25 +42,27 @@ import java.util.Map;
 @Extension(
         name = "floor",
         namespace = "math",
-        description = "This function wraps the `java.lang.Math.floor()` function, which returns the largest " +
-                "(closest to positive infinity) value that is less that or equal to `p1`, and is equal to a " +
-                "mathematical integer.",
+        description = "This function wraps the `java.lang.Math.floor()` function and returns the largest " +
+                "value, i.e., closest to the positive infinity, that is less than or equal to `p1`, and is equal " +
+                "to a mathematical integer.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose floor value should be found",
+                        description = "The value of the parameter whose floor value should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The largest (closest to positive infinity) double value that is less than or " +
-                        "equal to the p1 argument, and is equal to a mathematical integer",
+                description = "The largest double value, i.e., the closest to the positive infinity, that" +
+                        " is less than or equal to the p1 argument, and is equal to a mathematical integer.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "floor(10.23) returns 10.0.",
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:floor(inValue) as floorValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function calculates the floor value of the given 'inValue' " +
+                        "input and directs the output to the 'OutMediationStream' output stream. " +
+                        "For example, (10.23) returns 10.0.")
 )
 public class FloorFunctionExtension extends FunctionExecutor {
 
