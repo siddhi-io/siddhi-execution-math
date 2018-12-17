@@ -47,7 +47,7 @@ import java.util.Map;
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The power that the Euler's number e is raised to",
+                        description = "The power that the Euler's number e is raised to.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
                 description = "The Euler's number e raised to the power of the input parameter.",
