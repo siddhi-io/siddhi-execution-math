@@ -44,7 +44,7 @@ import java.util.Map;
 @Extension(
         name = "ceil",
         namespace = "math",
-        description = "This function returns the smallest double value, i.e., the closest to negative infinity, " +
+        description = "This function returns the smallest double value, i.e., the closest to the negative infinity, " +
                 "that is greater than or equal to the `p1` argument, and is equal to a mathematical integer. " +
                 "It wraps the `java.lang.Math.ceil()` method.",
         parameters = {
@@ -54,15 +54,18 @@ import java.util.Map;
                         type = {DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The smallest double value, which is closest to the negative infinty that is greater " +
+                description = "The smallest double value, which is closest to the negative infinity that is greater " +
                         "than or equal to the p1 argument, and is equal to a mathematical integer.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "ceil(423.187d) returns 424.0.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:ceil(inValue) as ceilingValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function calculates the ceiling value of the given 'inValue' and " +
+                        "directs the result to 'OutMediationStream' output stream. For example, " +
+                        "ceil(423.187d) returns 424.0.")
 )
 public class CeilingFunctionExtension extends FunctionExecutor {
 
