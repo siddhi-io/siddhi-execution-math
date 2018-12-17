@@ -38,17 +38,19 @@ import java.util.Map;
 @Extension(
         name = "e",
         namespace = "math",
-        description = "Returns the `java.lang.Math.E` constant, which is the closest double value to e, which is the " +
-                "base of the natural logarithms.",
+        description = "This function returns the `java.lang.Math.E` constant, which is the " +
+                "closest double value to e, where e is the base of the natural logarithms. " ,
         returnAttributes = @ReturnAttribute(
-                description = "The closest double value to e (The base of the natural logarithm)",
+                description = "The closest double value to e (e being the base of the natural logarithms).",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "e() returns 2.7182818284590452354.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:e() as eValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function returns the constant, 2.7182818284590452354 which is the " +
+                        "closest double value to e and directs the output to 'OutMediationStream' output stream.")
 )
 public class EFunctionExtension extends FunctionExecutor {
 
