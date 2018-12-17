@@ -58,8 +58,8 @@ import java.util.Map;
                         "select math:parseFloat(inValue) as output \n" +
                         "insert into OutMediationStream;",
                 description = "The function converts the " +
-                        "input value given in 'inValue',into its corresponding float value and directs the" +
-                        "result into the output stream, OutMediationStream. For example," +
+                        "input value given in 'inValue',into its corresponding float value and directs the " +
+                        "result into the output stream, OutMediationStream. For example, " +
                         "parseFloat(\"123\") returns 123.0.")
 )
 public class ParseFloatFunctionExtension extends FunctionExecutor {
