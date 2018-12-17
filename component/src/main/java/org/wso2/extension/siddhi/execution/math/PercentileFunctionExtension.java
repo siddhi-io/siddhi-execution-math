@@ -47,27 +47,31 @@ import java.util.Map;
 @Extension(
         name = "percentile",
         namespace = "math",
-        description = "Returns the pth percentile value of the argument values.",
+        description = "This functions returns the pth percentile value of a given argument.",
         parameters = {
                 @Parameter(
                         name = "arg",
-                        description = "The values of which the percentile should be found",
+                        description = "The value of the parameter whose percentile should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "p",
-                        description = "Estimate of which percentile to be found (pth percentile) " +
-                                "where p is any number greater than 0 or less than or equal to 100",
+                        description = "Estimate of the percentile to be found (pth percentile) " +
+                                "where p is any number greater than 0 or lesser than or equal to 100.",
                         type = {DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Estimate of the 'p'th percentile value of the 'arg' values",
+                description = "Estimate of the 'p'th percentile value of the 'arg' values.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "math:percentile(temperature, 97.0)",
+
                 syntax = "define stream InValueStream (sensorId int, temperature double); \n" +
                         "from InValueStream \n" +
                         "select math:percentile(temperature, 97.0) as percentile \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function returns the percentile value based on the argument given." +
+                        " For example, math:percentile(temperature, 97.0) returns the 97th percentile " +
+                        "value of all the temperature events."
+        )
 )
 public class PercentileFunctionExtension extends AttributeAggregator {
 
