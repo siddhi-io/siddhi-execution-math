@@ -58,7 +58,7 @@ import java.util.Map;
                         "select math:parseDouble(inValue) as output \n" +
                         "insert into OutMediationStream;",
                 description = "If the 'inValue' in the input stream holds a value, " +
-                        "this function converts it into the corresponding double value and directs it to the" +
+                        "this function converts it into the corresponding double value and directs it to the " +
                         "output stream, OutMediationStream. For example, parseDouble(\"123\") returns 123.0.")
 )
 public class ParseDoubleFunctionExtension extends FunctionExecutor {
