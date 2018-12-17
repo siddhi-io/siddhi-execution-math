@@ -43,22 +43,25 @@ import java.util.Map;
 @Extension(
         name = "toRadians",
         namespace = "math",
-        description = "Converts the value given in degrees to radians. This function wraps the `java.lang.Math" +
+        description = "This function converts the value given in degrees to radians. It wraps the `java.lang.Math" +
                 ".toRadians()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The degrees value that should be converted to radians",
+                        description = "The input value in degrees that should be converted to radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The converted radians value of the input degrees value",
+                description = "The value in radians after converting the input from degrees." ,
                 type = {DataType.DOUBLE}),
         examples = @Example(
                 description = "toRadians(6d) returns 0.10471975511965977.",
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:toRadians(inValue) as radiansValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function converts the input, from degrees to radians and " +
+                        "directs the result to 'OutMediationStream' output stream. For example, " +
+                        "toRadians(6d) returns 0.10471975511965977.")
 )
 public class ToRadiansFunctionExtension extends FunctionExecutor {
     @Override
