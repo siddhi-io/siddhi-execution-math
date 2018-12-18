@@ -42,21 +42,24 @@ import java.util.Map;
 @Extension(
         name = "parseDouble",
         namespace = "math",
-        description = "Returns the double value of the received string.",
+        description = "This function returns the double value of the string received.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be converted to a double",
+                        description = "The value that should be converted into a double value.",
                         type = {DataType.STRING})},
         returnAttributes = @ReturnAttribute(
-                description = "The double value of input parameter",
+                description = "The double value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "parseDouble(\"123\") returns 123.0.",
+
                 syntax = "define stream InValueStream (inValue string); \n" +
                         "from InValueStream \n" +
                         "select math:parseDouble(inValue) as output \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream holds a value, " +
+                        "this function converts it into the corresponding double value and directs it to the " +
+                        "output stream, OutMediationStream. For example, parseDouble(\"123\") returns 123.0.")
 )
 public class ParseDoubleFunctionExtension extends FunctionExecutor {
     @Override

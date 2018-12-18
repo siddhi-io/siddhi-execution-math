@@ -42,21 +42,24 @@ import java.util.Map;
 @Extension(
         name = "log2",
         namespace = "math",
-        description = "Returns the base 2 logarithm of `p1`.",
+        description = "This function returns the base 2 logarithm of `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose base 2 logarithm should be found.",
+                        description = "The value of the parameter whose base 2 logarithm should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The base 2 logarithm of the input parameter",
+                description = "The base 2 logarithm of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "log2(91d) returns 6.507794640198696.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:log2(inValue) as lnValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, the function calculates " +
+                        "the base 2 logarithm of the same and returns the value to the output stream, " +
+                        "OutMediationStream. For example log2(91d) returns 6.507794640198696.")
 )
 public class Log2FunctionExtension extends FunctionExecutor {
 

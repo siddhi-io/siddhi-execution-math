@@ -42,22 +42,25 @@ import java.util.Map;
 @Extension(
         name = "sqrt",
         namespace = "math",
-        description = "Returns the square-root of the given value. This function wraps the `java.lang.Math.sqrt()`s " +
+        description = "This function returns the square-root of the given value. " +
+                "It wraps the `java.lang.Math.sqrt()`s " +
                 "function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose square-root value should be found.",
+                        description = "The value of the parameter whose square-root value should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The square-root value of the input parameter",
+                description = "The square-root value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "sqrt(4d) returns 2.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:sqrt(inValue) as sqrtValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The function calculates the square-root value of the 'inValue' and directs the " +
+                "output to the output stream, 'OutMediationStream'. For example, sqrt(4d) returns 2.")
 )
 public class SquareRootFunctionExtension extends FunctionExecutor {
 

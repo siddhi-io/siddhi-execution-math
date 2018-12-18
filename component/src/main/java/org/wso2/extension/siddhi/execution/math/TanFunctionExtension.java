@@ -42,22 +42,26 @@ import java.util.Map;
 @Extension(
         name = "tan",
         namespace = "math",
-        description = "Returns the tan of the given value in radians. This function wraps the `java.lang.Math.tan()` " +
-                "function.",
+        description = "This function returns the tan of the given value in radians. " +
+                "It wraps the `java.lang.Math.tan()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose tan value should be found. Input should be in radians",
+                        description = "The value of the parameter whose tan value should be found." +
+                                " Input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The tan value of the input parameter",
+                description = "The tan value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "tan(6d) returns -0.29100619138474915.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:tan(inValue) as tanValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function calculates the tan value of the 'inValue' given and directs " +
+                        "the output to the output stream, 'OutMediationStream'. " +
+                        "For example, tan(6d) returns -0.29100619138474915.")
 )
 public class TanFunctionExtension extends FunctionExecutor {
 

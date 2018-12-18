@@ -42,26 +42,31 @@ import java.util.Map;
 @Extension(
         name = "max",
         namespace = "math",
-        description = "Returns the greater value out of `p1` and `p2`.",
+        description = "This function returns the greater value of `p1` and `p2`.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "Value one to be compared in finding largest value",
+                        description = "One of the input values to be compared in order to find the " +
+                                "larger value of the two",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "p2",
-                        description = "Value two to be compared in finding largest value",
+                        description = "The input value to be compared with 'p1' in order to find " +
+                                "the larger value of the two.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns the greater value from the two input parameters",
+                description = "This returns the greater value of the two input parameters.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "max(123.67d, 91) returns 123.67.",
+
                 syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
                         "from InValueStream \n" +
                         "select math:max(inValue1,inValue2) as maxValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If two input values 'inValue1, and 'inValue2' are given, " +
+                        "the function compares them and directs the larger value to the output stream, " +
+                        "OutMediationStream. For example, max(123.67d, 91) returns 123.67.")
 )
 public class MaxFunctionExtension extends FunctionExecutor {
     @Override

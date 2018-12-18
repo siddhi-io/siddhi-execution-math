@@ -42,21 +42,25 @@ import java.util.Map;
 @Extension(
         name = "ln",
         namespace = "math",
-        description = "Returns the natural logarithm (base e) of `p1`.",
+        description = "This function returns the natural logarithm (base e) of `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose natural logarithm (base e) should be found",
+                        description = "The value of the parameter whose natural logarithm (base e) should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The natural logarithm (base e) of the input parameter",
+                description = "The natural logarithm (base e) of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "ln(11.453) returns 2.438251704415579.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:ln(inValue) as lnValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, the function calculates " +
+                        "its natural logarithm (base e) and directs the results to the output stream, " +
+                        "'OutMeditionStream'. For example, " +
+                        "ln(11.453) returns 2.438251704415579.")
 )
 public class LnFunctionExtension extends FunctionExecutor {
 

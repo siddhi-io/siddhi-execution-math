@@ -42,22 +42,26 @@ import java.util.Map;
 @Extension(
         name = "sin",
         namespace = "math",
-        description = "Returns the sine of the value given in radians. This function wraps the " +
+        description = "This returns the sine of the value given in radians. This function wraps the " +
                 "`java.lang.Math.sin()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose sine value should be found. Input should be in radians",
+                        description = "The value of the parameter whose sine value should be found." +
+                                " Input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The sine value of the input parameter",
+                description = "The sine value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "sin(6d) returns -0.27941549819892586.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:sin(inValue) as sinValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The function calculates the sine value of the given" +
+                        " 'inValue' and directs the output to the output stream, 'OutMediationStream. " +
+                        "For example, sin(6d) returns -0.27941549819892586.")
 )
 public class SinFunctionExtension extends FunctionExecutor {
 

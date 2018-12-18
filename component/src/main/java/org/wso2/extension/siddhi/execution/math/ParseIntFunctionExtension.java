@@ -42,21 +42,24 @@ import java.util.Map;
 @Extension(
         name = "parseInt",
         namespace = "math",
-        description = "Returns the integer value of the received string.",
+        description = "This function returns the integer value of the received string.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be converted to a int",
+                        description = "The value that should be converted to an integer.",
                         type = {DataType.STRING})},
         returnAttributes = @ReturnAttribute(
-                description = "The int value of input parameter",
+                description = "The integer value of the input parameter.",
                 type = {DataType.INT}),
         examples = @Example(
-                description = "parseInt(\"123\") returns 123.",
+
                 syntax = "define stream InValueStream (inValue string); \n" +
                         "from InValueStream \n" +
                         "select math:parseInt(inValue) as output \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The  function converts the 'inValue' into its corresponding " +
+                        "integer value and directs the output to the output stream, OutMediationStream. " +
+                        "For example, parseInt(\"123\") returns 123.")
 )
 public class ParseIntFunctionExtension extends FunctionExecutor {
     @Override

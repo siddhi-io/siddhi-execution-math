@@ -42,21 +42,24 @@ import java.util.Map;
 @Extension(
         name = "parseLong",
         namespace = "math",
-        description = "Returns the long value of the received string.",
+        description = "This function returns the long value of the string received.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be converted to a long",
+                        description = "The value that should be converted to a long value.",
                         type = {DataType.STRING})},
         returnAttributes = @ReturnAttribute(
                 description = "The long value of input parameter",
                 type = {DataType.LONG}),
         examples = @Example(
-                description = "parseLong(\"123\") returns 123.",
+
                 syntax = "define stream InValueStream (inValue string); \n" +
                         "from InValueStream \n" +
                         "select math:parseLong(inValue) as output \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "The function converts the 'inValue' to its corresponding long value and directs the" +
+                        " result to the output stream, OutMediationStream. For example, parseLong(\"123\")" +
+                        " returns 123.")
 )
 public class ParseLongFunctionExtension extends FunctionExecutor {
     @Override

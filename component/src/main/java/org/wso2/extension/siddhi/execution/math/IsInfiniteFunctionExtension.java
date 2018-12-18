@@ -42,24 +42,30 @@ import java.util.Map;
 @Extension(
         name = "isInfinite",
         namespace = "math",
-        description = "Wraps the `java.lang.Float.isInfinite()` and `java.lang.Double.isInfinite()` " +
-                "functions and returns `true` if `p1` is infinitely large in magnitude and returns `false` if " +
+        description = "This function wraps the `java.lang.Float.isInfinite()` and `java.lang.Double.isInfinite()` " +
+                "and returns `true` if `p1` is infinitely large in magnitude and `false` if " +
                 "otherwise.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value that should be checked if infinite",
+                        description = "This is the value of the parameter that the function determines to " +
+                                "be either infinite or finite."   ,
                         type = {DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "Returns true of input parameter is infinitely large. Returns false otherwise",
+                description = "This returns 'true' if the input parameter is infinitely large. " +
+                        "Otherwise it returns 'false'.",
                 type = {DataType.BOOL}),
         examples = @Example(
-                description = "isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.",
+
                 syntax = "define stream InValueStream (inValue1 double,inValue2 int); \n" +
                         "from InValueStream \n" +
                         "select math:isInfinite(inValue1) as isInfinite \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the value given in the 'inValue' in the input stream is of " +
+                        "infinitely large magnitude, the function returns the value, 'true' and directs the " +
+                        "result to the output stream, OutMediationStream'. For example, " +
+                        "isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.")
 )
 public class IsInfiniteFunctionExtension extends FunctionExecutor {
     @Override

@@ -42,23 +42,26 @@ import java.util.Map;
 @Extension(
         name = "hex",
         namespace = "math",
-        description = "Wraps the `java.lang.Double.toHexString()` function that returns a hexadecimal " +
-                "string representation of `p1`.",
+        description = "This function wraps the `java.lang.Double.toHexString() function. It returns a hexadecimal " +
+                "string representation of the input, `p1`.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose hexadecimal representation should be found",
+                        description = "The value of the parameter whose hexadecimal value should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The hexadecimal representation of the input parameter",
+                description = "The hexadecimal conversion of the input parameter given.",
                 type = {DataType.STRING}),
         examples = @Example(
-                description = "hex(200) returns \"c8\".",
+
                 syntax = "define stream InValueStream (inValue int); \n" +
                         "from InValueStream \n" +
                         "select math:hex(inValue) as hexString \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is provided, the function converts this " +
+                        "into its corresponding hexadecimal format and directs the output to the output stream, " +
+                        "OutMediationStream. For example, hex(200) returns \"c8\".")
 )
 public class HexFunctionExtension extends FunctionExecutor {
 

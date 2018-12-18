@@ -44,25 +44,29 @@ import java.util.Random;
 @Extension(
         name = "rand",
         namespace = "math",
-        description = "Returns a stream of pseudo-random numbers when a sequence of calls are sent to the `rand()`. " +
+        description = "This returns a stream of pseudo-random numbers when a sequence of calls are sent to the" +
+                " `rand()`. " +
                 "Optionally, it is possible to define a seed, i.e., `rand(seed)` using which the pseudo-random " +
-                "numbers are generated. These functions use the `java.util.Random` class internally.",
+                "numbers are generated. These functions internally use the `java.util.Random` class.",
         parameters = {
                 @Parameter(
                         name = "seed",
                         optional = true,
                         defaultValue = "defaultSeed",
-                        description = "An optional seed value that will be used to generate the random number sequence",
+                        description = "An optional seed value that will be used to generate the random" +
+                                " number sequence.",
                         type = {DataType.INT, DataType.LONG})},
         returnAttributes = @ReturnAttribute(
                 description = "A stream of pseudo-random numbers",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "A random double value between 0 and 1 will be generated using math:rand()",
+
                 syntax = "define stream InValueStream (symbol string, price long, volume long); \n" +
                         "from InValueStream select symbol, math:rand() as randNumber \n" +
                         "select math:oct(inValue) as octValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "In the example given above, a random double value between 0 and 1 will be" +
+                        " generated using math:rand().")
 )
 public class RandomFunctionExtension extends FunctionExecutor {
 

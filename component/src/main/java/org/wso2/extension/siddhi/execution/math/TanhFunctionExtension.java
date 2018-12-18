@@ -42,23 +42,26 @@ import java.util.Map;
 @Extension(
         name = "tanh",
         namespace = "math",
-        description = "Returns the hyperbolic tangent of the value given in radians. This function wraps the `java" +
+        description = "This function returns the hyperbolic tangent of the value given in radians. It wraps the `java" +
                 ".lang.Math.tanh()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose hyperbolic tangent value should be found." +
-                                " Input should be in radians",
+                        description = "The value of the parameter whose hyperbolic tangent value should be found." +
+                                " Input is required to be in radians.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
         returnAttributes = @ReturnAttribute(
-                description = "The hyperbolic tangent value of the input parameter",
+                description = "The hyperbolic tangent value of the input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "tanh(6d) returns 0.9999877116507956.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:tanh(inValue) as tanhValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inVaue' in the input stream is given, this function calculates" +
+                        " the hyperbolic tangent value of the same and directs the output to 'OutMediationStream' " +
+                        "stream. For example, tanh(6d) returns 0.9999877116507956.")
 )
 public class TanhFunctionExtension extends FunctionExecutor {
 

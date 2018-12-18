@@ -42,23 +42,26 @@ import java.util.Map;
 @Extension(
         name = "getExponent",
         namespace = "math",
-        description = "Returns the unbiased exponent that is used in the representation of `p1`. This function wraps " +
-                "the `java.lang.Math.getExponent()` function.",
+        description = "This function returns the unbiased exponent that is used in the representation of `p1`. " +
+                "This function wraps the `java.lang.Math.getExponent()` function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of whose unbiased exponent representation should be found",
+                        description = "The value of whose unbiased exponent representation should be found.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The unbiased exponent used in the representation of the input parameter",
+                description = "The unbiased exponent used in the representation of the input parameter.",
                 type = {DataType.INT}),
         examples = @Example(
-                description = "getExponent(60984.1) returns 15.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:getExponent(inValue) as expValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function calculates the unbiased exponent of a given input, " +
+                        "'inValue' and directs the result to the 'OutMediationStream' output stream. " +
+                        "For example, getExponent(60984.1) returns 15.")
 )
 public class GetExponentFunctionExtension extends FunctionExecutor {
     @Override

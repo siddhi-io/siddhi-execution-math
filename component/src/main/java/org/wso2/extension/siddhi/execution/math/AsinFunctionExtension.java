@@ -42,23 +42,27 @@ import java.util.Map;
 @Extension(
         name = "asin",
         namespace = "math",
-        description = "If -1 <= p1 <= 1, returns the arc-sin (inverse sine) of p1. If not, it returns" +
-                " NULL. The returned value is in radian scale. This function wraps the java.lang.Math.asin() function.",
+        description = "If -1 <= p1 <= 1, this function returns the arc-sin (inverse sine) value of p1. " +
+                "If the domain is invalid, it returns NULL. The value returned is in radian scale. " +
+                "This function wraps the java.lang.Math.asin() function.",
         parameters = {
                 @Parameter(
                         name = "p1",
-                        description = "The value of which the arc-sin (inverse sine) should be found",
+                        description = "The value of the parameter whose arc-sin (inverse sine) value is found.",
                         type = {DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The arc-sin (inverse sine) value of the input parameter, output in radian scale",
+                description = "The arc-sin (inverse sine) value of the input parameter. Output is in radian scale.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "asin(0.5) returns 0.5235987755982989.",
+
                 syntax = "define stream InValueStream (inValue double); \n" +
                         "from InValueStream \n" +
                         "select math:asin(inValue) as asinValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, the function calculates the arc-sin " +
+                        "value of it and returns the arc-sin value to the output stream, OutMediationStream. For "  +
+                        "example, asin(0.5) returns 0.5235987755982989.")
 )
 public class AsinFunctionExtension extends FunctionExecutor {
     @Override

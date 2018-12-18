@@ -43,26 +43,30 @@ import java.util.Map;
 @Extension(
         name = "power",
         namespace = "math",
-        description = "Returns a value by raising to the given power.",
+        description = "This function raises the given value to a given power.",
         parameters = {
                 @Parameter(
                         name = "value",
-                        description = "The value that should be raised to the power of 'to.power' input parameter",
+                        description = "The value that should be raised to the power of 'to.power' input parameter.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
                 @Parameter(
                         name = "to.power",
-                        description = "The power that 'value' input parameter should be raised to",
+                        description = "The power to which the 'value' input parameter should be raised.",
                         type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The 'value' input parameter raised to the power of 'to.power' input parameter",
+                description = "This returns the  'value' input parameter raised to the power of 'to.power' " +
+                        "input parameter.",
                 type = {DataType.DOUBLE}),
         examples = @Example(
-                description = "power(5.6d, 3.0d) returns 175.61599999999996.",
+
                 syntax = "define stream InValueStream (inValue1 double, inValue2 double); \n" +
                         "from InValueStream \n" +
                         "select math:power(inValue1,inValue2) as powerValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "This function raises the 'inValue1' to the power of 'inValue2' and directs " +
+                        "the output to the output stream, 'OutMediationStream. For example, (5.6d, 3.0d)" +
+                        " returns 175.61599999999996.")
 )
 public class PowerFunctionExtension extends FunctionExecutor {
 

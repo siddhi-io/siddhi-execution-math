@@ -42,31 +42,36 @@ import java.util.Map;
 @Extension(
         name = "conv",
         namespace = "math",
-        description = "Converts `a` from the `fromBase` base to the `toBase` base.",
+        description = "This function converts `a` from the `fromBase` base to the `toBase` base.",
         parameters = {
                 @Parameter(
                         name = "a",
-                        description = "The value whose base should be changed. Input should be as a String",
+                        description = "The value whose base should be changed. Input should be given as a 'String'.",
                         type = {DataType.STRING}),
                 @Parameter(
                         name = "from.base",
-                        description = "The source base of the input parameter 'a'",
+                        description = "The source base of the input parameter 'a'.",
                         type = {DataType.INT}),
                 @Parameter(
                         name = "to.base",
-                        description = "The target base that input parameter 'a' should be converted to",
+                        description = "The target base that the input parameter 'a' should be converted into.",
                         type = {DataType.INT})
         },
         returnAttributes = @ReturnAttribute(
-                description = "The value of parameter 'a' converted from source base to target base. " +
-                        "Output as a String variable",
+                description = "The value of the parameter 'a' when converted from the source base to the target base." +
+                        " Output is obtained as a String variable.",
                 type = {DataType.STRING}),
         examples = @Example(
-                description = "conv(\"7f\", 16, 10) returns \"127\".",
+
                 syntax = "define stream InValueStream (inValue string,fromBase int,toBase int); \n" +
                         "from InValueStream \n" +
                         "select math:conv(inValue,fromBase,toBase) as convertedValue \n" +
-                        "insert into OutMediationStream;")
+                        "insert into OutMediationStream;",
+                description = "If the 'inValue' in the input stream is given, and the base in which it " +
+                              "currently resides in and the base to which it should be " +
+                              "converted to is specified, the function converts it into a string in the target base " +
+                              "and directs it to the output stream, OutMediationStream. " +
+                              "For example, conv(\"7f\", 16, 10) returns \"127\".")
 )
 public class ConvertFunctionExtension extends FunctionExecutor {
 
