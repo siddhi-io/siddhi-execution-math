@@ -99,7 +99,7 @@ public class IsInfiniteFunctionExtension extends FunctionExecutor {
                 return Double.isInfinite((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:is_infinite() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:isInfinite() function cannot be null");
         }
     }
 

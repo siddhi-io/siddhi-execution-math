@@ -104,7 +104,7 @@ public class ToRadiansFunctionExtension extends FunctionExecutor {
                 return Math.toRadians((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:to_radians() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:toRadians() function cannot be null");
         }
         return null;
     }

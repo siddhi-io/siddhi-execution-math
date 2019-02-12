@@ -104,7 +104,7 @@ public class GetExponentFunctionExtension extends FunctionExecutor {
                 return Math.getExponent((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:get_exponent() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:getExponent() function cannot be null");
         }
         return null;
     }

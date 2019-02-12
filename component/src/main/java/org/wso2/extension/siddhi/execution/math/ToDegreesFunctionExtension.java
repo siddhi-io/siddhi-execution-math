@@ -107,7 +107,7 @@ public class ToDegreesFunctionExtension extends FunctionExecutor {
                 return Math.toDegrees((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:to_degrees() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:toDegrees() function cannot be null");
         }
         return null;
     }
