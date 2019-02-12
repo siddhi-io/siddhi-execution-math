@@ -21,17 +21,18 @@ package org.wso2.extension.siddhi.execution.math;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
+import org.wso2.extension.siddhi.execution.math.util.UnitTestAppender;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
+import org.wso2.siddhi.core.stream.StreamJunction;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 public class AtanFunctionExtensionTestCase {
     private static Logger logger = Logger.getLogger(AtanFunctionExtensionTestCase.class);
-    private boolean eventArrived;
 
     @Test
     public void testProcess1() throws Exception {
@@ -128,7 +129,9 @@ public class AtanFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase3() throws Exception {
         logger.info("AtanFunctionExtension exceptionTestCase3");
-
+        UnitTestAppender appender = new UnitTestAppender();
+        logger = Logger.getLogger(StreamJunction.class);
+        logger.addAppender(appender);
         SiddhiManager siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue double);";
 
@@ -143,7 +146,6 @@ public class AtanFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                eventArrived = true;
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -151,14 +153,16 @@ public class AtanFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(eventArrived);
+        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:atan() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 
     @Test
     public void exceptionTestCase4() throws Exception {
         logger.info("AtanFunctionExtension exceptionTestCase4");
-
+        UnitTestAppender appender = new UnitTestAppender();
+        logger = Logger.getLogger(StreamJunction.class);
+        logger.addAppender(appender);
         SiddhiManager siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue1 double, inValue2 double);";
 
@@ -173,7 +177,6 @@ public class AtanFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                eventArrived = true;
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -181,7 +184,7 @@ public class AtanFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{12d, null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(eventArrived);
+        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:atan() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 

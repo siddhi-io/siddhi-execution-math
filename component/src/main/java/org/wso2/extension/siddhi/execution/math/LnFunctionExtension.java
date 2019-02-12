@@ -105,7 +105,7 @@ public class LnFunctionExtension extends FunctionExecutor {
                 return Math.log((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:log() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:ln() function cannot be null");
         }
         return null;
     }

@@ -96,7 +96,7 @@ public class IsNanFunctionExtension extends FunctionExecutor {
                 return Double.isNaN((Double) data);
             }
         } else {
-            throw new SiddhiAppRuntimeException("Input to the math:is_nan() function cannot be null");
+            throw new SiddhiAppRuntimeException("Input to the math:isNan() function cannot be null");
         }
     }
 

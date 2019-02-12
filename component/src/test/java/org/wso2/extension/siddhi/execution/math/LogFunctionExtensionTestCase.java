@@ -21,18 +21,19 @@ package org.wso2.extension.siddhi.execution.math;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
+import org.wso2.extension.siddhi.execution.math.util.UnitTestAppender;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
 import org.wso2.siddhi.core.event.Event;
 import org.wso2.siddhi.core.exception.SiddhiAppCreationException;
 import org.wso2.siddhi.core.query.output.callback.QueryCallback;
+import org.wso2.siddhi.core.stream.StreamJunction;
 import org.wso2.siddhi.core.stream.input.InputHandler;
 import org.wso2.siddhi.core.util.EventPrinter;
 
 public class LogFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(LogFunctionExtensionTestCase.class);
-    private boolean eventArrived;
 
     @Test
     public void testProcess() throws Exception {
@@ -109,7 +110,9 @@ public class LogFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase4() throws Exception {
         logger.info("LogFunctionExtension exceptionTestCase4");
-
+        UnitTestAppender appender = new UnitTestAppender();
+        logger = Logger.getLogger(StreamJunction.class);
+        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (number double, base double);";
 
@@ -124,7 +127,6 @@ public class LogFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                eventArrived = true;
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -132,14 +134,16 @@ public class LogFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{null, 2f});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(eventArrived);
+        AssertJUnit.assertTrue(appender.getMessages().contains(""));
         siddhiAppRuntime.shutdown();
     }
 
     @Test
     public void exceptionTestCase5() throws Exception {
         logger.info("LogFunctionExtension exceptionTestCase5");
-
+        UnitTestAppender appender = new UnitTestAppender();
+        logger = Logger.getLogger(StreamJunction.class);
+        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (number double, base double);";
 
@@ -154,7 +158,6 @@ public class LogFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                eventArrived = true;
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -162,14 +165,16 @@ public class LogFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{34, null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(eventArrived);
+        AssertJUnit.assertTrue(appender.getMessages().contains(""));
         siddhiAppRuntime.shutdown();
     }
 
     @Test
     public void exceptionTestCase6() throws Exception {
         logger.info("LogFunctionExtension exceptionTestCase6");
-
+        UnitTestAppender appender = new UnitTestAppender();
+        logger = Logger.getLogger(StreamJunction.class);
+        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (number double, base double);";
 
@@ -184,7 +189,6 @@ public class LogFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
-                eventArrived = true;
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -192,7 +196,8 @@ public class LogFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{34, 1});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(eventArrived);
+        AssertJUnit.assertTrue(appender.getMessages().contains("The base argument supplied to the math:log() "
+                                                                       + "function is equal to zero"));
         siddhiAppRuntime.shutdown();
     }
 
