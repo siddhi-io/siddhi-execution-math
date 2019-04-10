@@ -18,20 +18,20 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
-
-import java.util.Map;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.SiddhiAppRuntimeException;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import io.siddhi.query.api.exception.SiddhiAppValidationException;
 
 /**
  * atan(a); or atan(a,b);
@@ -80,8 +80,8 @@ import java.util.Map;
 public class AtanFunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
         if (attributeExpressionExecutors.length < 1 || attributeExpressionExecutors.length > 2) {
             throw new SiddhiAppValidationException("Invalid no of arguments passed to math:atan() function, " +
                     "required 1 or 2, but found " + attributeExpressionExecutors.length);
@@ -101,10 +101,11 @@ public class AtanFunctionExtension extends FunctionExecutor {
             }
             attributeIndex++;
         }
+        return null;
     }
 
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         double inputVal1 = 0d;
         double inputVal2 = 0d;
 
@@ -147,7 +148,7 @@ public class AtanFunctionExtension extends FunctionExecutor {
     }
 
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         if (data != null) {
             //type-conversion
             if (data instanceof Integer) {
@@ -173,13 +174,4 @@ public class AtanFunctionExtension extends FunctionExecutor {
         return Attribute.Type.DOUBLE;
     }
 
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    @Override
-    public void restoreState(Map<String, Object> map) {
-
-    }
 }

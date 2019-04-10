@@ -18,16 +18,17 @@
 
 package org.wso2.extension.siddhi.execution.math.util;
 
+import io.siddhi.core.util.snapshot.state.State;
 /**
- * This ValueParser interface to implement parse value functionality
+ * This PercentileAttributeState interface to implement parse value functionality
  */
-public interface ValueParser {
+public abstract class PercentileAttributeState extends State {
 
-    /**
-     * Method to return parsed value
-     *
-     * @param value value to be parsed
-     * @return parsed value
-     */
-    double parseValue(Object value);
+    public abstract Object processAdd(Object data);
+
+    public abstract Object processRemove(Object obj);
+
+    public abstract Object reset();
+
+    public abstract Object currentValue();
 }
