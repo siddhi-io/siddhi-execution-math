@@ -115,11 +115,11 @@ public class PercentileFunctionExtension extends AttributeAggregatorExecutor<Per
         return () -> {
             switch (attributeType) {
                 case FLOAT:
-                    return new FloatValueParser();
+                    return new FloatPercentileAttributeState();
                 case INT:
-                    return new IntValueParser();
+                    return new IntPercentileAttributeState();
                 case LONG:
-                    return new LongValueParser();
+                    return new LongPercentileAttributeState();
                 case DOUBLE:
                     return new DoublePercentileAttributeState();
                 default:
@@ -269,7 +269,7 @@ public class PercentileFunctionExtension extends AttributeAggregatorExecutor<Per
         }
     }
 
-    private class FloatValueParser extends PercentileAttributeState {
+    private class FloatPercentileAttributeState extends PercentileAttributeState {
 
         @Override public Object processAdd(Object data) {
             float value = (Float) data;
@@ -305,7 +305,7 @@ public class PercentileFunctionExtension extends AttributeAggregatorExecutor<Per
         }
     }
 
-    private class IntValueParser extends PercentileAttributeState {
+    private class IntPercentileAttributeState extends PercentileAttributeState {
 
         @Override public Object processAdd(Object data) {
             float value = (Integer) data;
@@ -341,7 +341,7 @@ public class PercentileFunctionExtension extends AttributeAggregatorExecutor<Per
         }
     }
 
-    private class LongValueParser extends PercentileAttributeState {
+    private class LongPercentileAttributeState extends PercentileAttributeState {
 
         @Override public Object processAdd(Object data) {
             float value = (Long) data;
