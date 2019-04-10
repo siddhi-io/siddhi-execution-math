@@ -18,19 +18,21 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.extension.siddhi.execution.math.util.ValueParser;
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.OperationNotSupportedException;
-import org.wso2.siddhi.core.executor.ConstantExpressionExecutor;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.query.selector.attribute.aggregator.AttributeAggregator;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.OperationNotSupportedException;
+import io.siddhi.core.executor.ConstantExpressionExecutor;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.query.processor.ProcessingMode;
+import io.siddhi.core.query.selector.attribute.aggregator.AttributeAggregatorExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import org.wso2.extension.siddhi.execution.math.util.PercentileAttributeState;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -73,20 +75,21 @@ import java.util.Map;
                         "value of all the temperature events."
         )
 )
-public class PercentileFunctionExtension extends AttributeAggregator {
+public class PercentileFunctionExtension extends AttributeAggregatorExecutor<PercentileAttributeState> {
 
     private static final String VALUES_LIST = "VALUES_LIST";
-    private ValueParser valueParser;
+    private PercentileAttributeState percentileAttributeState;
     private double percentileValue;
     private List<Double> valuesList;
 
     @Override
-    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
-
+    protected StateFactory<PercentileAttributeState> init(ExpressionExecutor[] expressionExecutors,
+                                                          ProcessingMode processingMode, boolean b,
+                                ConfigReader configReader, SiddhiQueryContext siddhiQueryContext) {
         if (attributeExpressionExecutors.length != 2) {
             throw new OperationNotSupportedException("Percentile function has to have exactly 2 parameter, currently "
-                    + attributeExpressionExecutors.length + " parameters provided.");
+                                                             + attributeExpressionExecutors.length +
+                                                             " parameters provided.");
         }
 
         if (!(attributeExpressionExecutors[1] instanceof ConstantExpressionExecutor)) {
@@ -98,88 +101,61 @@ public class PercentileFunctionExtension extends AttributeAggregator {
             percentileValue = ((Double) percentileValueObject);
         } else {
             throw new OperationNotSupportedException("Percentile value should be of type double. But found "
-                    + attributeExpressionExecutors[1].getReturnType());
+                                                             + attributeExpressionExecutors[1].getReturnType());
         }
 
         if (percentileValue <= 0 || percentileValue > 100) {
             throw new OperationNotSupportedException(
                     "Percentile value should be in 0 < p <= 100 range. But found " + percentileValue);
         }
-
+        valuesList = new ArrayList<>();
         Attribute.Type attributeType = attributeExpressionExecutors[0].getReturnType();
 
         // This approach is used to avoid per event type check as it has a negative performance impact.
-        switch (attributeType) {
-            case FLOAT:
-                valueParser = new FloatValueParser();
-                break;
-            case INT:
-                valueParser = new IntValueParser();
-                break;
-            case LONG:
-                valueParser = new LongValueParser();
-                break;
-            case DOUBLE:
-                valueParser = new DoubleValueParser();
-                break;
-            default:
-                throw new OperationNotSupportedException("Percentile not supported for " + attributeType);
+        return () -> {
+            switch (attributeType) {
+                case FLOAT:
+                    return new FloatValueParser();
+                case INT:
+                    return new IntValueParser();
+                case LONG:
+                    return new LongValueParser();
+                case DOUBLE:
+                    return new DoublePercentileAttributeState();
+                default:
+                    throw new OperationNotSupportedException("Percentile not supported for " + attributeType);
+            }
+        };
+    }
+
+    @Override
+    public Object processAdd(Object data, PercentileAttributeState state) {
+        // will not occur
+        return new IllegalStateException("Percentile need multiple input, but found " + data);
+    }
+
+    @Override public Object processAdd(Object[] data, PercentileAttributeState state) {
+        if (data == null) {
+            return state.currentValue();
         }
+        return state.processAdd(data[0]);
 
-        valuesList = new ArrayList<Double>();
     }
 
-    @Override
-    public Attribute.Type getReturnType() {
-        return Attribute.Type.DOUBLE;
-    }
-
-    @Override
-    public Object processAdd(Object data) {
+    @Override public Object processRemove(Object data, PercentileAttributeState state) {
         // will not occur
-        return new IllegalStateException("Percentile cannot process a single argument, but found " + data.toString());
+        return new IllegalStateException("Percentile need multiple input, but found " + data);
     }
 
-    @Override
-    public Object processAdd(Object[] data) {
-        double value = valueParser.parseValue(data[0]);
-        sortedArrayListAdd(valuesList, value);
-        return getPercentileValue(valuesList, percentileValue);
+    @Override public Object processRemove(Object[] data, PercentileAttributeState state) {
+        if (data == null) {
+            return state.currentValue();
+        }
+        return state.processRemove(data[0]);
     }
 
-    @Override
-    public Object processRemove(Object data) {
-        // will not occur
-        return new IllegalStateException("Percentile cannot process a single argument, but found " + data.toString());
-
-    }
-
-    @Override
-    public Object processRemove(Object[] data) {
-        double value = valueParser.parseValue(data[0]);
-        sortedArrayListRemove(valuesList, value);
-        return getPercentileValue(valuesList, percentileValue);
-    }
-
-    @Override
-    public boolean canDestroy() {
-        return valuesList.size() == 0;
-    }
-
-    @Override
-    public Object reset() {
-        valuesList.clear();
-        return 0.0;
-    }
-
-    @Override
-    public Map<String, Object> currentState() {
-        return Collections.singletonMap(VALUES_LIST, valuesList);
-    }
-
-    @Override
-    public void restoreState(Map<String, Object> map) {
-        valuesList = (List<Double>) map.get(VALUES_LIST);
+    @Override public Object reset(PercentileAttributeState state) {
+        return state.reset();
     }
 
     /**
@@ -249,40 +225,155 @@ public class PercentileFunctionExtension extends AttributeAggregator {
      * @param value     expired value
      */
     private void sortedArrayListRemove(List<Double> arrayList, double value) {
-
         int removeIndex = Collections.binarySearch(arrayList, value);
         arrayList.remove(removeIndex);
     }
 
-    private class DoubleValueParser implements ValueParser {
+    @Override public Attribute.Type getReturnType() {
+        return Attribute.Type.DOUBLE;
+    }
 
-        @Override
-        public double parseValue(Object valueObject) {
-            return (Double) valueObject;
+    private class DoublePercentileAttributeState extends PercentileAttributeState {
+
+        @Override public Object processAdd(Object data) {
+            double value = (Double) data;
+            sortedArrayListAdd(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object processRemove(Object obj) {
+            double value = (Double) obj;
+            sortedArrayListRemove(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object reset() {
+            valuesList.clear();
+            return 0.0;
+        }
+
+        @Override public Object currentValue() {
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public boolean canDestroy() {
+            return valuesList.isEmpty();
+        }
+
+        @Override public Map<String, Object> snapshot() {
+            return Collections.singletonMap(VALUES_LIST, valuesList);
+        }
+
+        @Override public void restore(Map<String, Object> map) {
+            valuesList = (List<Double>) map.get(VALUES_LIST);
         }
     }
 
-    private class FloatValueParser implements ValueParser {
+    private class FloatValueParser extends PercentileAttributeState {
 
-        @Override
-        public double parseValue(Object valueObject) {
-            return (Float) valueObject;
+        @Override public Object processAdd(Object data) {
+            float value = (Float) data;
+            sortedArrayListAdd(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object processRemove(Object obj) {
+            double value = (Float) obj;
+            sortedArrayListRemove(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object reset() {
+            valuesList.clear();
+            return 0.0;
+        }
+
+        @Override public Object currentValue() {
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public boolean canDestroy() {
+            return valuesList.isEmpty();
+        }
+
+        @Override public Map<String, Object> snapshot() {
+            return Collections.singletonMap(VALUES_LIST, valuesList);
+        }
+
+        @Override public void restore(Map<String, Object> map) {
+            valuesList = (List<Double>) map.get(VALUES_LIST);
         }
     }
 
-    private class IntValueParser implements ValueParser {
+    private class IntValueParser extends PercentileAttributeState {
 
-        @Override
-        public double parseValue(Object valueObject) {
-            return (Integer) valueObject;
+        @Override public Object processAdd(Object data) {
+            float value = (Integer) data;
+            sortedArrayListAdd(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object processRemove(Object obj) {
+            double value = (Integer) obj;
+            sortedArrayListRemove(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object reset() {
+            valuesList.clear();
+            return 0.0;
+        }
+
+        @Override public Object currentValue() {
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public boolean canDestroy() {
+            return valuesList.isEmpty();
+        }
+
+        @Override public Map<String, Object> snapshot() {
+            return Collections.singletonMap(VALUES_LIST, valuesList);
+        }
+
+        @Override public void restore(Map<String, Object> map) {
+            valuesList = (List<Double>) map.get(VALUES_LIST);
         }
     }
 
-    private class LongValueParser implements ValueParser {
+    private class LongValueParser extends PercentileAttributeState {
 
-        @Override
-        public double parseValue(Object valueObject) {
-            return (Long) valueObject;
+        @Override public Object processAdd(Object data) {
+            float value = (Long) data;
+            sortedArrayListAdd(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object processRemove(Object obj) {
+            double value = (Long) obj;
+            sortedArrayListRemove(valuesList, value);
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public Object reset() {
+            valuesList.clear();
+            return 0.0;
+        }
+
+        @Override public Object currentValue() {
+            return getPercentileValue(valuesList, percentileValue);
+        }
+
+        @Override public boolean canDestroy() {
+            return valuesList.isEmpty();
+        }
+
+        @Override public Map<String, Object> snapshot() {
+            return Collections.singletonMap(VALUES_LIST, valuesList);
+        }
+
+        @Override public void restore(Map<String, Object> map) {
+            valuesList = (List<Double>) map.get(VALUES_LIST);
         }
     }
 

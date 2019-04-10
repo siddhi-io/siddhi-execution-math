@@ -18,20 +18,20 @@
 
 package org.wso2.extension.siddhi.execution.math;
 
-import org.wso2.siddhi.annotation.Example;
-import org.wso2.siddhi.annotation.Extension;
-import org.wso2.siddhi.annotation.Parameter;
-import org.wso2.siddhi.annotation.ReturnAttribute;
-import org.wso2.siddhi.annotation.util.DataType;
-import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
-import org.wso2.siddhi.core.executor.ExpressionExecutor;
-import org.wso2.siddhi.core.executor.function.FunctionExecutor;
-import org.wso2.siddhi.core.util.config.ConfigReader;
-import org.wso2.siddhi.query.api.definition.Attribute;
-import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
-
-import java.util.Map;
+import io.siddhi.annotation.Example;
+import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ReturnAttribute;
+import io.siddhi.annotation.util.DataType;
+import io.siddhi.core.config.SiddhiQueryContext;
+import io.siddhi.core.exception.SiddhiAppRuntimeException;
+import io.siddhi.core.executor.ExpressionExecutor;
+import io.siddhi.core.executor.function.FunctionExecutor;
+import io.siddhi.core.util.config.ConfigReader;
+import io.siddhi.core.util.snapshot.state.State;
+import io.siddhi.core.util.snapshot.state.StateFactory;
+import io.siddhi.query.api.definition.Attribute;
+import io.siddhi.query.api.exception.SiddhiAppValidationException;
 
 /**
  * log2(a);
@@ -64,8 +64,8 @@ import java.util.Map;
 public class Log2FunctionExtension extends FunctionExecutor {
 
     @Override
-    protected void init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
-                        SiddhiAppContext siddhiAppContext) {
+    protected StateFactory init(ExpressionExecutor[] expressionExecutors, ConfigReader configReader,
+                                SiddhiQueryContext siddhiQueryContext) {
         if (attributeExpressionExecutors.length != 1) {
             throw new SiddhiAppValidationException("Invalid no of arguments passed to math:log2() function, " +
                     "required 1, but found " + attributeExpressionExecutors.length);
@@ -80,15 +80,16 @@ public class Log2FunctionExtension extends FunctionExecutor {
                     " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
                     ", but found " + attributeType.toString());
         }
+        return null;
     }
 
     @Override
-    protected Object execute(Object[] data) {
+    protected Object execute(Object[] data, State state) {
         return null;    // This method won't get called. Hence, unimplemented.
     }
 
     @Override
-    protected Object execute(Object data) {
+    protected Object execute(Object data, State state) {
         if (data != null) {
             //type-conversion
             if (data instanceof Integer) {
@@ -114,13 +115,4 @@ public class Log2FunctionExtension extends FunctionExecutor {
         return Attribute.Type.DOUBLE;
     }
 
-    @Override
-    public Map<String, Object> currentState() {
-        return null;
-    }
-
-    @Override
-    public void restoreState(Map<String, Object> map) {
-
-    }
 }

@@ -27,7 +27,7 @@
 
     <groupId>org.wso2.extension.siddhi.execution.math</groupId>
     <artifactId>siddhi-execution-math-parent</artifactId>
-    <version>4.1.2-SNAPSHOT</version>
+    <version>5.0.0-SNAPSHOT</version>
     <name>Siddhi Execution Math Extension Parent</name>
     <url>http://wso2.org</url>
     <packaging>pom</packaging>
@@ -45,8 +45,9 @@
     </profiles>
 
     <properties>
-        <siddhi.version>4.5.0</siddhi.version>
-        <siddhi.version.range>[4.0.0,5.0.0)</siddhi.version.range>
+        <siddhi.version>5.0.0-m10</siddhi.version>
+        <siddhi.version.range>[5.0.0,6.0.0)</siddhi.version.range>
+        <siddhi.doc.gen.plugin.version>4.5.0</siddhi.doc.gen.plugin.version>
         <log4j.version>1.2.17.wso2v1</log4j.version>
         <testng.version>6.11</testng.version>
         <jacoco.maven.version>0.7.9</jacoco.maven.version>
@@ -70,17 +71,17 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.wso2.siddhi</groupId>
+                <groupId>io.siddhi</groupId>
                 <artifactId>siddhi-core</artifactId>
                 <version>${siddhi.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.wso2.siddhi</groupId>
+                <groupId>io.siddhi</groupId>
                 <artifactId>siddhi-query-api</artifactId>
                 <version>${siddhi.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.wso2.siddhi</groupId>
+                <groupId>io.siddhi</groupId>
                 <artifactId>siddhi-annotations</artifactId>
                 <version>${siddhi.version}</version>
             </dependency>
@@ -180,7 +181,7 @@
             <plugin>
                 <groupId>org.wso2.siddhi</groupId>
                 <artifactId>siddhi-doc-gen</artifactId>
-                <version>${siddhi.version}</version>
+                <version>${siddhi.doc.gen.plugin.version}</version>
                 <executions>
                     <execution>
                         <goals>
