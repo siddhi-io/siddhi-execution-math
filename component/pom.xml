@@ -19,7 +19,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.wso2.extension.siddhi.execution.math</groupId>
+        <groupId>io.siddhi.extension.execution.math</groupId>
         <artifactId>siddhi-execution-math-parent</artifactId>
         <version>5.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
@@ -59,9 +59,9 @@
             <build>
                 <plugins>
                     <plugin>
-                        <groupId>org.wso2.siddhi</groupId>
+                        <groupId>io.siddhi</groupId>
                         <artifactId>siddhi-doc-gen</artifactId>
-                        <version>${siddhi.doc.gen.plugin.version}</version>
+                        <version>${siddhi.version}</version>
                         <executions>
                             <execution>
                                 <phase>compile</phase>
@@ -134,7 +134,7 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Name>${project.artifactId}</Bundle-Name>
                         <Export-Package>
-                            org.wso2.extension.siddhi.execution.math.*
+                            io.siddhi.extension.execution.math.*
                         </Export-Package>
                         <Import-Package>
                             io.siddhi.core.*;version="${siddhi.version.range}",

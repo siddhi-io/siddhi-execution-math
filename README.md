@@ -33,7 +33,7 @@ editor, debugger, and simulator.
 
 ```
      <dependency>
-        <groupId>org.wso2.extension.siddhi.execution.math</groupId>
+        <groupId>io.siddhi.extension.execution.math</groupId>
         <artifactId>siddhi-execution-math</artifactId>
         <version>x.x.x</version>
      </dependency>
