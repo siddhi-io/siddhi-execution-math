@@ -23,10 +23,9 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
+import io.siddhi.core.stream.output.StreamCallback;
 import io.siddhi.core.util.EventPrinter;
-import io.siddhi.extension.execution.math.util.UnitTestAppender;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -97,9 +96,6 @@ public class FloorFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase3() throws Exception {
         logger.info("FloorFunctionExtension exceptionTestCase3");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue double);";
 
@@ -114,6 +110,9 @@ public class FloorFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -121,7 +120,6 @@ public class FloorFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:floor() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 
@@ -220,6 +218,42 @@ public class FloorFunctionExtensionTestCase {
                 .getInputHandler("InValueStream");
         siddhiAppRuntime.start();
         inputHandler.send(new Long[]{102342L});
+        Thread.sleep(100);
+        siddhiAppRuntime.shutdown();
+    }
+
+    @Test
+    public void testFloorFunctionWithOuterJoin() throws Exception {
+        logger.info("FloorFunction with an outer join");
+        siddhiManager = new SiddhiManager();
+        String eventStream = "define stream InputStream (symbol string, volume int);";
+        String windowStream = "define stream WindowStream (symbol string, price float, volume int);";
+        String outputStream = "define stream OutputStream (symbol string, calc double);";
+
+        String eventFuseExecutionPlan = ("@info(name = 'query1') from InputStream\n" +
+                "  left outer join WindowStream#window.length(10) as L\n" +
+                "select InputStream.symbol, math:floor(L.price) as calc\n" +
+                "insert into OutputStream ;");
+        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(eventStream + windowStream
+                + outputStream + eventFuseExecutionPlan);
+        siddhiAppRuntime.addCallback("OutputStream", new StreamCallback() {
+            @Override
+            public void receive(Event[] events) {
+                EventPrinter.print(events);
+                Double result;
+                for (Event event : events) {
+                    result = (Double) event.getData(1);
+                    AssertJUnit.assertEquals((Double) 25.0, result);
+                }
+            }
+        });
+        InputHandler eventStreamHandler = siddhiAppRuntime
+                .getInputHandler("InputStream");
+        InputHandler windowStreamHandler = siddhiAppRuntime
+                .getInputHandler("WindowStream");
+        siddhiAppRuntime.start();
+        windowStreamHandler.send(new Object[]{"Cake", 25.50, 10});
+        eventStreamHandler.send(new Object[]{"Cake", 50});
         Thread.sleep(100);
         siddhiAppRuntime.shutdown();
     }

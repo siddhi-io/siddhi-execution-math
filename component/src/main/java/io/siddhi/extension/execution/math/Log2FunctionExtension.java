@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * log2(a);
@@ -91,21 +92,7 @@ public class Log2FunctionExtension extends FunctionExecutor {
     @Override
     protected Object execute(Object data, State state) {
         if (data != null) {
-            //type-conversion
-            if (data instanceof Integer) {
-                int inputInt = (Integer) data;
-                return Math.log((double) inputInt) / Math.log(2d);
-            } else if (data instanceof Long) {
-                long inputLong = (Long) data;
-                return Math.log((double) inputLong) / Math.log(2d);
-            } else if (data instanceof Float) {
-                float inputFloat = (Float) data;
-                return Math.log((double) inputFloat) / Math.log(2d);
-            } else if (data instanceof Double) {
-                return Math.log((Double) data) / Math.log(2d);
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:log2() function cannot be null");
+            return Math.log(convertToDouble(data)) / Math.log(2d);
         }
         return null;
     }

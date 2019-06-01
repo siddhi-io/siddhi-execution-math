@@ -23,10 +23,8 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
-import io.siddhi.extension.execution.math.util.UnitTestAppender;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -110,9 +108,6 @@ public class CopySignFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase4() throws Exception {
         logger.info("CopySignFunctionExtension exceptionTestCase4");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue1 double, inValue2 double);";
 
@@ -127,6 +122,9 @@ public class CopySignFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -134,16 +132,12 @@ public class CopySignFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{null, -3.0d});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:copysign() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 
     @Test
     public void exceptionTestCase5() throws Exception {
         logger.info("CopySignFunctionExtension exceptionTestCase5");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue1 double, inValue2 double);";
 
@@ -158,6 +152,9 @@ public class CopySignFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -165,7 +162,6 @@ public class CopySignFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{5.6d, null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:copysign() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 

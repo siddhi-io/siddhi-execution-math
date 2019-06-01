@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -96,9 +95,8 @@ public class IsNanFunctionExtension extends FunctionExecutor {
             } else {
                 return Double.isNaN((Double) data);
             }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:isNan() function cannot be null");
         }
+        return null;
     }
 
     @Override

@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * max(a,b);
@@ -101,43 +102,10 @@ public class MaxFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data, State state) {
-        double inputVal1 = 0d;
-        double inputVal2 = 0d;
-        if (data[0] != null) {
-            //type-conversion
-            if (data[0] instanceof Integer) {
-                int inputInt = (Integer) data[0];
-                inputVal1 = (double) inputInt;
-            } else if (data[0] instanceof Long) {
-                long inputLong = (Long) data[0];
-                inputVal1 = (double) inputLong;
-            } else if (data[0] instanceof Float) {
-                float inputLong = (Float) data[0];
-                inputVal1 = (double) inputLong;
-            } else if (data[0] instanceof Double) {
-                inputVal1 = (Double) data[0];
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:max() function cannot be null");
+        if (data[0] != null && data[1] != null) {
+            return Math.max(convertToDouble(data[0]), convertToDouble(data[1]));
         }
-        if (data[1] != null) {
-            //type-conversion
-            if (data[1] instanceof Integer) {
-                int inputInt = (Integer) data[1];
-                inputVal2 = (double) inputInt;
-            } else if (data[1] instanceof Long) {
-                long inputLong = (Long) data[1];
-                inputVal2 = (double) inputLong;
-            } else if (data[1] instanceof Float) {
-                float inputLong = (Float) data[1];
-                inputVal2 = (double) inputLong;
-            } else if (data[1] instanceof Double) {
-                inputVal2 = (Double) data[1];
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:max() function cannot be null");
-        }
-        return Math.max(inputVal1, inputVal2);
+        return null;
     }
 
     @Override

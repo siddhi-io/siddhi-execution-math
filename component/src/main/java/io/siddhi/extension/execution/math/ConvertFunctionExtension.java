@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -102,23 +101,14 @@ public class ConvertFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data, State state) {
-        if (data[0] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "First argument cannot be null");
+        if (data[0] != null && data[1] != null && data[2] != null) {
+            String nValue = (String) data[0];
+            int fromBase = (Integer) data[1];
+            int toBase = (Integer) data[2];
+            return Integer.toString(
+                    Integer.parseInt(nValue, fromBase), toBase);
         }
-        if (data[1] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "Second argument cannot be null");
-        }
-        if (data[2] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "Third argument cannot be null");
-        }
-        String nValue = (String) data[0];
-        int fromBase = (Integer) data[1];
-        int toBase = (Integer) data[2];
-        return Integer.toString(
-                Integer.parseInt(nValue, fromBase), toBase);
+        return null;
     }
 
     @Override

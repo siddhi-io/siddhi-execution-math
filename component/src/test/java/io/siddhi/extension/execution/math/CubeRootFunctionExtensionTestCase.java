@@ -23,10 +23,8 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
-import io.siddhi.extension.execution.math.util.UnitTestAppender;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
@@ -97,9 +95,6 @@ public class CubeRootFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase3() throws Exception {
         logger.info("CubeRootFunctionExtension exceptionTestCase3");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue double);";
 
@@ -114,6 +109,9 @@ public class CubeRootFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -121,7 +119,6 @@ public class CubeRootFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{null});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Input to the math:cbrt() function cannot be null"));
         siddhiAppRuntime.shutdown();
     }
 
