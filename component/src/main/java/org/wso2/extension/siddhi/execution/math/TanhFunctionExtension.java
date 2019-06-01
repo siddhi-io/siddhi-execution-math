@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
 import java.util.Map;
+
+import static org.wso2.extension.siddhi.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * tanh(a);
@@ -92,22 +93,7 @@ public class TanhFunctionExtension extends FunctionExecutor {
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            //type-conversion
-            if (data instanceof Integer) {
-                int inputInt = (Integer) data;
-                return Math.tanh((double) inputInt);
-            } else if (data instanceof Long) {
-                long inputLong = (Long) data;
-                return Math.tanh((double) inputLong);
-            } else if (data instanceof Float) {
-                float inputFloat = (Float) data;
-                return Math.tanh((double) inputFloat);
-            } else if (data instanceof Double) {
-                double inputValue = (Double) data;
-                return Math.tanh(inputValue);
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:tanh() function cannot be null");
+            return Math.tanh(convertToDouble(data));
         }
         return null;
     }

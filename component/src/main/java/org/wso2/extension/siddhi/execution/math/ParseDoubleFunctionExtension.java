@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -87,9 +86,8 @@ public class ParseDoubleFunctionExtension extends FunctionExecutor {
     protected Object execute(Object data) {
         if (data != null) {
             return Double.parseDouble((String) data);
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:parseDouble() function cannot be null");
         }
+        return null;
     }
 
     @Override

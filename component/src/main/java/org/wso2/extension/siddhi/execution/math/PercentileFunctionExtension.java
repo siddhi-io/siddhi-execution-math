@@ -156,8 +156,10 @@ public class PercentileFunctionExtension extends AttributeAggregator {
 
     @Override
     public Object processRemove(Object[] data) {
-        double value = valueParser.parseValue(data[0]);
-        sortedArrayListRemove(valuesList, value);
+        if (data[0] != null) {
+            double value = valueParser.parseValue(data[0]);
+            sortedArrayListRemove(valuesList, value);
+        }
         return getPercentileValue(valuesList, percentileValue);
     }
 

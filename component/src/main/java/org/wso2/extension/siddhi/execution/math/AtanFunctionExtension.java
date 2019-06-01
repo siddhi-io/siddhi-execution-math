@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
 import java.util.Map;
+
+import static org.wso2.extension.siddhi.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * atan(a); or atan(a,b);
@@ -105,65 +106,16 @@ public class AtanFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        double inputVal1 = 0d;
-        double inputVal2 = 0d;
-
-        if (data[0] != null) {
-            //type-conversion
-            if (data[0] instanceof Integer) {
-                int inputInt = (Integer) data[0];
-                inputVal1 = (double) inputInt;
-            } else if (data[0] instanceof Long) {
-                long inputLong = (Long) data[0];
-                inputVal1 = (double) inputLong;
-            } else if (data[0] instanceof Float) {
-                float inputLong = (Float) data[0];
-                inputVal1 = (double) inputLong;
-            } else if (data[0] instanceof Double) {
-                inputVal1 = (Double) data[0];
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
+        if (data[0] != null && data[1] != null) {
+            return Math.atan2(convertToDouble(data[0]), convertToDouble(data[1]));
         }
-
-        if (data[1] != null) {
-            //type-conversion
-            if (data[1] instanceof Integer) {
-                int inputInt = (Integer) data[1];
-                inputVal2 = (double) inputInt;
-            } else if (data[1] instanceof Long) {
-                long inputLong = (Long) data[1];
-                inputVal2 = (double) inputLong;
-            } else if (data[1] instanceof Float) {
-                float inputLong = (Float) data[1];
-                inputVal2 = (double) inputLong;
-            } else if (data[1] instanceof Double) {
-                inputVal2 = (Double) data[1];
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
-        }
-        return Math.atan2(inputVal1, inputVal2);
+        return null;
     }
 
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            //type-conversion
-            if (data instanceof Integer) {
-                int inputInt = (Integer) data;
-                return Math.atan((double) inputInt);
-            } else if (data instanceof Long) {
-                long inputLong = (Long) data;
-                return Math.atan((double) inputLong);
-            } else if (data instanceof Float) {
-                float inputFloat = (Float) data;
-                return Math.atan((double) inputFloat);
-            } else if (data instanceof Double) {
-                return Math.atan((Double) data);
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:atan() function cannot be null");
+            return Math.atan(convertToDouble(data));
         }
         return null;
     }

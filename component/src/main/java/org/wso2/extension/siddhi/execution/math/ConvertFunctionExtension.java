@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -101,23 +100,14 @@ public class ConvertFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        if (data[0] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "First argument cannot be null");
+        if (data[0] != null && data[1] != null && data[2] != null) {
+            String nValue = (String) data[0];
+            int fromBase = (Integer) data[1];
+            int toBase = (Integer) data[2];
+            return Integer.toString(
+                    Integer.parseInt(nValue, fromBase), toBase);
         }
-        if (data[1] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "Second argument cannot be null");
-        }
-        if (data[2] == null) {
-            throw new SiddhiAppRuntimeException("Invalid input given to math:conv() function. " +
-                    "Third argument cannot be null");
-        }
-        String nValue = (String) data[0];
-        int fromBase = (Integer) data[1];
-        int toBase = (Integer) data[2];
-        return Integer.toString(
-                Integer.parseInt(nValue, fromBase), toBase);
+        return null;
     }
 
     @Override

@@ -33,6 +33,8 @@ import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
 import java.util.Map;
 
+import static org.wso2.extension.siddhi.execution.math.util.MathUtil.convertToDouble;
+
 /**
  * log(number,base);
  * Returns the logarithm (base='base') of the given 'number'.
@@ -101,50 +103,17 @@ public class LogFunctionExtension extends FunctionExecutor {
 
     @Override
     protected Object execute(Object[] data) {
-        double number = 0d;
-        double base = 0d;
-        double outputValue;
-
-        if (data[0] != null) {
-            //type-conversion
-            if (data[0] instanceof Integer) {
-                int inputInt = (Integer) data[0];
-                number = (double) inputInt;
-            } else if (data[0] instanceof Long) {
-                long inputLong = (Long) data[0];
-                number = (double) inputLong;
-            } else if (data[0] instanceof Float) {
-                float inputLong = (Float) data[0];
-                number = (double) inputLong;
-            } else if (data[0] instanceof Double) {
-                number = (Double) data[0];
+        if (data[0] != null && data[1] != null) {
+            double number = convertToDouble(data[0]);
+            double base = convertToDouble(data[1]);
+            if (base == 1) {
+                throw new SiddhiAppRuntimeException("The base argument supplied to the math:log() function "
+                        + "is equal to zero. Since the logarithms to the base 1 is undefined, "
+                        + "the result of math:log(" + number + "," + base + ") is undefined");
             }
-        } else {
-            throw new SiddhiAppRuntimeException("The first argument to the math:log() function cannot be null");
+            return Math.log(number) / Math.log(base);
         }
-        if (data[1] != null) {
-            //type-conversion
-            if (data[1] instanceof Integer) {
-                int inputInt = (Integer) data[1];
-                base = (double) inputInt;
-            } else if (data[1] instanceof Long) {
-                long inputLong = (Long) data[1];
-                base = (double) inputLong;
-            } else if (data[1] instanceof Float) {
-                float inputLong = (Float) data[1];
-                base = (double) inputLong;
-            } else if (data[1] instanceof Double) {
-                base = (Double) data[1];
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("The second argument to the math:log() function cannot be null");
-        }
-        if (base == 1) {
-            throw new SiddhiAppRuntimeException("The base argument supplied to the math:log() function is equal to " +
-                    "zero. Since the logarithms to the base 1 is undefined, the result of math:log(" + number + "," +
-                    base + ") is undefined");
-        }
-        return Math.log(number) / Math.log(base);
+        return null;
     }
 
     @Override

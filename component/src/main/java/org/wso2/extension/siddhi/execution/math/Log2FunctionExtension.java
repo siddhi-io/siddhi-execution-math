@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import org.wso2.siddhi.query.api.definition.Attribute;
 import org.wso2.siddhi.query.api.exception.SiddhiAppValidationException;
 
 import java.util.Map;
+
+import static org.wso2.extension.siddhi.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * log2(a);
@@ -90,21 +91,7 @@ public class Log2FunctionExtension extends FunctionExecutor {
     @Override
     protected Object execute(Object data) {
         if (data != null) {
-            //type-conversion
-            if (data instanceof Integer) {
-                int inputInt = (Integer) data;
-                return Math.log((double) inputInt) / Math.log(2d);
-            } else if (data instanceof Long) {
-                long inputLong = (Long) data;
-                return Math.log((double) inputLong) / Math.log(2d);
-            } else if (data instanceof Float) {
-                float inputFloat = (Float) data;
-                return Math.log((double) inputFloat) / Math.log(2d);
-            } else if (data instanceof Double) {
-                return Math.log((Double) data) / Math.log(2d);
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:log2() function cannot be null");
+            return Math.log(convertToDouble(data)) / Math.log(2d);
         }
         return null;
     }

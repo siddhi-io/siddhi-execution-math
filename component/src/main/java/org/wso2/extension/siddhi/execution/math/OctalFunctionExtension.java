@@ -24,7 +24,6 @@ import org.wso2.siddhi.annotation.Parameter;
 import org.wso2.siddhi.annotation.ReturnAttribute;
 import org.wso2.siddhi.annotation.util.DataType;
 import org.wso2.siddhi.core.config.SiddhiAppContext;
-import org.wso2.siddhi.core.exception.SiddhiAppRuntimeException;
 import org.wso2.siddhi.core.executor.ExpressionExecutor;
 import org.wso2.siddhi.core.executor.function.FunctionExecutor;
 import org.wso2.siddhi.core.util.config.ConfigReader;
@@ -92,9 +91,8 @@ public class OctalFunctionExtension extends FunctionExecutor {
             } else {
                 return Long.toOctalString((Long) data);
             }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:oct() function cannot be null");
         }
+        return null;
     }
 
     @Override
