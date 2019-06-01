@@ -27,8 +27,12 @@ public class MathUtil {
 
     /**
      * Converts the input to double
+     *
+     * @param data Input for the conversion
+     * @return Double value
      */
     public static double convertToDouble(Object data) {
+
         if (data instanceof Integer) {
             int inputInt = (Integer) data;
             return (double) inputInt;
@@ -41,9 +45,9 @@ public class MathUtil {
         } else if (data instanceof Double) {
             return (Double) data;
         }
-        throw new SiddhiAppRuntimeException("Invalid parameter type found as the input of math:atan() function," +
-                "required " + Attribute.Type.INT + " or " + Attribute.Type.LONG +
-                " or " + Attribute.Type.FLOAT + " or " + Attribute.Type.DOUBLE +
-                ", but found " + data.getClass());
+        throw new SiddhiAppRuntimeException("Failed to convert to double, "
+                + "invalid parameter type:" + data.getClass() + " . Only supports converting " + Attribute.Type.INT
+                + ", " + Attribute.Type.LONG + ", " + Attribute.Type.FLOAT + "and " + Attribute.Type.DOUBLE
+                + "types to double.");
     }
 }
