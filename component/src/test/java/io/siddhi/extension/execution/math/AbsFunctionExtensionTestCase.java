@@ -23,18 +23,22 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
-import io.siddhi.extension.execution.math.util.UnitTestAppender;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AbsFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(AbsFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
+
+    @BeforeMethod
+    public void init() {
+        eventArrived = false;
+    }
 
     @Test
     public void testProcess() throws Exception {
@@ -98,9 +102,6 @@ public class AbsFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase3() throws Exception {
         logger.info("AbsFunctionExtension exceptionTestCase3");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue double);";
 
@@ -115,6 +116,10 @@ public class AbsFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -122,7 +127,7 @@ public class AbsFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{null});
         Thread.sleep(100);
-        Assert.assertTrue(appender.getMessages().contains("Input to the math:abs() function cannot be null"));
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 

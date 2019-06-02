@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -86,9 +85,8 @@ public class ParseIntFunctionExtension extends FunctionExecutor {
     protected Object execute(Object data, State state) {
         if (data != null) {
             return Integer.parseInt((String) data);
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:parseInt() function cannot be null");
         }
+        return null;
     }
 
     @Override

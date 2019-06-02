@@ -24,7 +24,6 @@ import io.siddhi.annotation.Parameter;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
-import io.siddhi.core.exception.SiddhiAppRuntimeException;
 import io.siddhi.core.executor.ExpressionExecutor;
 import io.siddhi.core.executor.function.FunctionExecutor;
 import io.siddhi.core.util.config.ConfigReader;
@@ -32,6 +31,8 @@ import io.siddhi.core.util.snapshot.state.State;
 import io.siddhi.core.util.snapshot.state.StateFactory;
 import io.siddhi.query.api.definition.Attribute;
 import io.siddhi.query.api.exception.SiddhiAppValidationException;
+
+import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
 
 /**
  * asin(a);
@@ -91,16 +92,7 @@ public class AsinFunctionExtension extends FunctionExecutor {
     @Override
     protected Object execute(Object data, State state) {
         if (data != null) {
-            //type-conversion
-            if (data instanceof Float) {
-                float inputFloat = (Float) data;
-                return Math.asin((double) inputFloat);
-            } else if (data instanceof Double) {
-                double inputValue = (Double) data;
-                return Math.asin(inputValue);
-            }
-        } else {
-            throw new SiddhiAppRuntimeException("Input to the math:asin() function cannot be null");
+            return Math.asin(convertToDouble(data));
         }
         return null;
     }

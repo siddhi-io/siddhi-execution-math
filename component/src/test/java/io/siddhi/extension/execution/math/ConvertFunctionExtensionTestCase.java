@@ -23,17 +23,22 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
-import io.siddhi.extension.execution.math.util.UnitTestAppender;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ConvertFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(ConvertFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
+
+    @BeforeMethod
+    public void init() {
+        eventArrived = false;
+    }
 
     @Test
     public void testProcess() throws Exception {
@@ -126,9 +131,6 @@ public class ConvertFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase5() throws Exception {
         logger.info("ConvertFunctionExtension exceptionTestCase5");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (inValue string,fromBase int,toBase int);";
 
@@ -143,6 +145,10 @@ public class ConvertFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
+                for (Event event : inEvents) {
+                    AssertJUnit.assertEquals(null, event.getData(0));
+                }
             }
         });
         InputHandler inputHandler = siddhiAppRuntime
@@ -150,72 +156,7 @@ public class ConvertFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{null, 16, 10});
         Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Invalid input given to math:conv() function. "
-                                                                       + "First argument cannot be null."));
-        siddhiAppRuntime.shutdown();
-    }
-
-    @Test
-    public void exceptionTestCase6() throws Exception {
-        logger.info("ConvertFunctionExtension exceptionTestCase6");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
-        siddhiManager = new SiddhiManager();
-        String inValueStream = "define stream InValueStream (inValue string,fromBase int,toBase int);";
-
-        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
-                                         + "select math:conv(inValue,fromBase,toBase) as convertedValue "
-                                         + "insert into OutMediationStream;");
-        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
-                                                                                             eventFuseExecutionPlan);
-
-        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
-            @Override
-            public void receive(long timeStamp, Event[] inEvents,
-                                Event[] removeEvents) {
-                EventPrinter.print(timeStamp, inEvents, removeEvents);
-            }
-        });
-        InputHandler inputHandler = siddhiAppRuntime
-                .getInputHandler("InValueStream");
-        siddhiAppRuntime.start();
-        inputHandler.send(new Object[]{"7f", null, 10});
-        Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Invalid input given to math:conv() function. "
-                                                                       + "Second argument cannot be null."));
-        siddhiAppRuntime.shutdown();
-    }
-
-    @Test
-    public void exceptionTestCase7() throws Exception {
-        logger.info("ConvertFunctionExtension exceptionTestCase7");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
-        logger.addAppender(appender);
-        siddhiManager = new SiddhiManager();
-        String inValueStream = "define stream InValueStream (inValue string,fromBase int,toBase int);";
-
-        String eventFuseExecutionPlan = ("@info(name = 'query1') from InValueStream "
-                                         + "select math:conv(inValue,fromBase,toBase) as convertedValue "
-                                         + "insert into OutMediationStream;");
-        SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
-                                                                                             eventFuseExecutionPlan);
-
-        siddhiAppRuntime.addCallback("query1", new QueryCallback() {
-            @Override
-            public void receive(long timeStamp, Event[] inEvents,
-                                Event[] removeEvents) {
-                EventPrinter.print(timeStamp, inEvents, removeEvents);
-            }
-        });
-        InputHandler inputHandler = siddhiAppRuntime
-                .getInputHandler("InValueStream");
-        siddhiAppRuntime.start();
-        inputHandler.send(new Object[]{"7f", 16, null});
-        Thread.sleep(100);
-        AssertJUnit.assertTrue(appender.getMessages().contains("Invalid input given to math:conv() function. "
-                                                                       + "Third argument cannot be null."));
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 }
