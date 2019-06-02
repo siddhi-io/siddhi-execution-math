@@ -20,6 +20,7 @@ package org.wso2.extension.siddhi.execution.math;
 
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.wso2.siddhi.core.SiddhiAppRuntime;
 import org.wso2.siddhi.core.SiddhiManager;
@@ -31,6 +32,12 @@ import org.wso2.siddhi.core.util.EventPrinter;
 
 public class AtanFunctionExtensionTestCase {
     private static Logger logger = Logger.getLogger(AtanFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
+
+    @BeforeMethod
+    public void init() {
+        eventArrived = false;
+    }
 
     @Test
     public void testProcess1() throws Exception {
@@ -141,6 +148,7 @@ public class AtanFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
                 for (Event event : inEvents) {
                     AssertJUnit.assertEquals(null, event.getData(0));
                 }
@@ -151,6 +159,7 @@ public class AtanFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{null});
         Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 
@@ -171,6 +180,7 @@ public class AtanFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
                 for (Event event : inEvents) {
                     AssertJUnit.assertEquals(null, event.getData(0));
                 }
@@ -181,6 +191,7 @@ public class AtanFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{12d, null});
         Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 
