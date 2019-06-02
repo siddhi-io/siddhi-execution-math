@@ -32,14 +32,11 @@ public class MathUtil {
      */
     public static double convertToDouble(Object data) {
         if (data instanceof Integer) {
-            int inputInt = (Integer) data;
-            return (double) inputInt;
+            return ((Integer) data).doubleValue();
         } else if (data instanceof Long) {
-            long inputLong = (Long) data;
-            return (double) inputLong;
+            return ((Long) data).doubleValue();
         } else if (data instanceof Float) {
-            float inputLong = (Float) data;
-            return (double) inputLong;
+            return ((Float) data).doubleValue();
         } else if (data instanceof Double) {
             return (Double) data;
         }
