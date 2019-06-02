@@ -27,11 +27,18 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class AsinFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(AsinFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
+
+    @BeforeMethod
+    public void init() {
+        eventArrived = false;
+    }
 
     @Test
     public void testProcess() throws Exception {
@@ -110,6 +117,7 @@ public class AsinFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
                 for (Event event : inEvents) {
                     AssertJUnit.assertEquals(null, event.getData(0));
                 }
@@ -120,6 +128,7 @@ public class AsinFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Object[]{null});
         Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 

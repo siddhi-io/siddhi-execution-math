@@ -27,11 +27,18 @@ import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import org.apache.log4j.Logger;
 import org.testng.AssertJUnit;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class PowerFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
     private static Logger logger = Logger.getLogger(PowerFunctionExtensionTestCase.class);
+    private volatile boolean eventArrived;
+
+    @BeforeMethod
+    public void init() {
+        eventArrived = false;
+    }
 
     @Test
     public void testProcess() throws Exception {
@@ -122,6 +129,7 @@ public class PowerFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
                 for (Event event : inEvents) {
                     AssertJUnit.assertEquals(null, event.getData(0));
                 }
@@ -132,6 +140,7 @@ public class PowerFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{null, 3.0d});
         Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 
@@ -152,6 +161,7 @@ public class PowerFunctionExtensionTestCase {
             public void receive(long timeStamp, Event[] inEvents,
                                 Event[] removeEvents) {
                 EventPrinter.print(timeStamp, inEvents, removeEvents);
+                eventArrived = true;
                 for (Event event : inEvents) {
                     AssertJUnit.assertEquals(null, event.getData(0));
                 }
@@ -162,6 +172,7 @@ public class PowerFunctionExtensionTestCase {
         siddhiAppRuntime.start();
         inputHandler.send(new Double[]{5.6d, null});
         Thread.sleep(100);
+        AssertJUnit.assertTrue(eventArrived);
         siddhiAppRuntime.shutdown();
     }
 
