@@ -2,7 +2,7 @@
 
 ## Math
 
-### percentile *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#aggregate-function">(Aggregate Function)</a>*
+### percentile *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#aggregate-function">(Aggregate Function)</a>*
 
 <p style="word-wrap: break-word">This functions returns the pth percentile value of a given argument.</p>
 
@@ -49,7 +49,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function returns the percentile value based on the argument given. For example, math:percentile(temperature, 97.0) returns the 97th percentile value of all the temperature events.</p>
 
-### abs *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### abs *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the absolute value of the given parameter. It wraps the <code>java.lang.Math.abs()</code> function.</p>
 
@@ -88,7 +88,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">Irrespective of whether the 'invalue' in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.</p>
 
-### acos *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### acos *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">If -1 &lt;= p1 &lt;= 1, this function returns the arc-cosine (inverse cosine) value of p1.If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.acos() function.</p>
 
@@ -127,7 +127,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the arc-cosine value of it and returns the arc-cosine value to the output stream, OutMediationStream. For example, acos(0.5) returns 1.0471975511965979.</p>
 
-### asin *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### asin *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">If -1 &lt;= p1 &lt;= 1, this function returns the arc-sin (inverse sine) value of p1. If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.asin() function.</p>
 
@@ -166,7 +166,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, asin(0.5) returns 0.5235987755982989.</p>
 
-### atan *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### atan *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">1. If a single <code>p1</code> is received, this function returns the arc-tangent (inverse tangent) value of <code>p1</code>. <br>2. If <code>p1</code> is received along with an optional <code>p1</code>, it considers them as x and y coordinates and returns the arc-tangent (inverse tangent) value. <br>The returned value is in radian scale. This function wraps the <code>java.lang.Math.atan()</code> function.</p>
 
@@ -213,7 +213,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue1' in the input stream is given, the function calculates the arc-tangent value of it and returns the arc-tangent value to the output stream, OutMediationStream. If both the 'inValue1' and 'inValue2' are given, then the function considers them to be x and y coordinates respectively and returns the calculated arc-tangent value to the output stream, OutMediationStream. For example, atan(12d, 5d) returns 1.1760052070951352.</p>
 
-### bin *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### bin *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns a string representation of the p1 argument, that is of either 'integer' or 'long' data type, as an unsigned integer in base 2. It wraps the <code>java.lang.Integer.toBinaryString</code> and java.lang.Long.toBinaryString` methods.</p>
 
@@ -252,7 +252,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function converts it into an unsigned integer in base 2 and directs the output to the output stream, OutMediationStream. For example, bin(9) returns '1001'.</p>
 
-### cbrt *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### cbrt *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the cube-root of 'p1' which is in radians. It wraps the <code>java.lang.Math.cbrt()</code> function.</p>
 
@@ -291,7 +291,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the cube-root value for the same and directs the output to the output stream, OutMediationStream. For example, cbrt(17d) returns 2.5712815906582356.</p>
 
-### ceil *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### ceil *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the smallest double value, i.e., the closest to the negative infinity, that is greater than or equal to the <code>p1</code> argument, and is equal to a mathematical integer. It wraps the <code>java.lang.Math.ceil()</code> method.</p>
 
@@ -330,7 +330,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function calculates the ceiling value of the given 'inValue' and directs the result to 'OutMediationStream' output stream. For example, ceil(423.187d) returns 424.0.</p>
 
-### conv *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### conv *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function converts <code>a</code> from the <code>fromBase</code> base to the <code>toBase</code> base.</p>
 
@@ -385,7 +385,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, and the base in which it currently resides in and the base to which it should be converted to is specified, the function converts it into a string in the target base and directs it to the output stream, OutMediationStream. For example, conv("7f", 16, 10) returns "127".</p>
 
-### copySign *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### copySign *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns a value of an input with the received <code>magnitude</code> and <code>sign</code> of another input. It wraps the <code>java.lang.Math.copySign()</code> function.</p>
 
@@ -432,7 +432,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If two values are provided as 'inValue1' and 'inValue2', the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, copySign(5.6d, -3.0d) returns -5.6.</p>
 
-### cos *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### cos *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cos()</code> function.</p>
 
@@ -471,7 +471,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cos(6d) returns 0.9601702866503661.</p>
 
-### cosh *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### cosh *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the hyperbolic cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cosh()</code> function.</p>
 
@@ -510,7 +510,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the hyperbolic cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cosh (6d) returns 201.7156361224559.</p>
 
-### e *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### e *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the <code>java.lang.Math.E</code> constant, which is the closest double value to e, where e is the base of the natural logarithms. </p>
 
@@ -529,7 +529,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function returns the constant, 2.7182818284590452354 which is the closest double value to e and directs the output to 'OutMediationStream' output stream.</p>
 
-### exp *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### exp *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the Euler's number <code>e</code> raised to the power of <code>p1</code>. It wraps the <code>java.lang.Math.exp()</code> function.</p>
 
@@ -568,7 +568,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the inputstream holds a value, this function calculates the corresponding Euler's number 'e' and directs it to the output stream, OutMediationStream. For example, exp(10.23) returns 27722.51006805505.</p>
 
-### floor *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### floor *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function wraps the <code>java.lang.Math.floor()</code> function and returns the largest value, i.e., closest to the positive infinity, that is less than or equal to <code>p1</code>, and is equal to a mathematical integer.</p>
 
@@ -607,7 +607,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function calculates the floor value of the given 'inValue' input and directs the output to the 'OutMediationStream' output stream. For example, (10.23) returns 10.0.</p>
 
-### getExponent *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### getExponent *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the unbiased exponent that is used in the representation of <code>p1</code>. This function wraps the <code>java.lang.Math.getExponent()</code> function.</p>
 
@@ -646,7 +646,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function calculates the unbiased exponent of a given input, 'inValue' and directs the result to the 'OutMediationStream' output stream. For example, getExponent(60984.1) returns 15.</p>
 
-### hex *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### hex *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function wraps the <code>java.lang.Double.toHexString() function. It returns a hexadecimal string representation of the input, </code>p1`.</p>
 
@@ -685,7 +685,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is provided, the function converts this into its corresponding hexadecimal format and directs the output to the output stream, OutMediationStream. For example, hex(200) returns "c8".</p>
 
-### isInfinite *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### isInfinite *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function wraps the <code>java.lang.Float.isInfinite()</code> and <code>java.lang.Double.isInfinite()</code> and returns <code>true</code> if <code>p1</code> is infinitely large in magnitude and <code>false</code> if otherwise.</p>
 
@@ -724,7 +724,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the value given in the 'inValue' in the input stream is of infinitely large magnitude, the function returns the value, 'true' and directs the result to the output stream, OutMediationStream'. For example, isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.</p>
 
-### isNan *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### isNan *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function wraps the <code>java.lang.Float.isNaN()</code> and <code>java.lang.Double.isNaN()</code> functions and returns <code>true</code> if <code>p1</code> is NaN (Not-a-Number), and returns <code>false</code> if otherwise.</p>
 
@@ -763,7 +763,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue1' in the input stream has a value that is undefined, then the function considers it as an 'NaN' value and directs 'True' to the output stream, OutMediationStream. For example, isNan(java.lang.Math.log(-12d)) returns true.</p>
 
-### ln *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### ln *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the natural logarithm (base e) of <code>p1</code>.</p>
 
@@ -802,7 +802,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates its natural logarithm (base e) and directs the results to the output stream, 'OutMeditionStream'. For example, ln(11.453) returns 2.438251704415579.</p>
 
-### log *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### log *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the logarithm of the received <code>number</code> as per the given <code>base</code>.</p>
 
@@ -849,7 +849,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the number and the base to which it has to be converted into is given in the input stream, the function calculates the number to the base specified and directs the result to the output stream, OutMediationStream. For example, log(34, 2f) returns 5.08746284125034.</p>
 
-### log10 *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### log10 *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the base 10 logarithm of <code>p1</code>.</p>
 
@@ -888,7 +888,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the base 10 logarithm of the same and directs the result to the output stream, OutMediatioStream. For example, log10(19.234) returns 1.2840696117100832.</p>
 
-### log2 *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### log2 *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the base 2 logarithm of <code>p1</code>.</p>
 
@@ -927,7 +927,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the base 2 logarithm of the same and returns the value to the output stream, OutMediationStream. For example log2(91d) returns 6.507794640198696.</p>
 
-### max *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### max *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the greater value of <code>p1</code> and <code>p2</code>.</p>
 
@@ -974,7 +974,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If two input values 'inValue1, and 'inValue2' are given, the function compares them and directs the larger value to the output stream, OutMediationStream. For example, max(123.67d, 91) returns 123.67.</p>
 
-### min *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### min *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the smaller value of <code>p1</code> and <code>p2</code>.</p>
 
@@ -1021,7 +1021,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If two input values, 'inValue1' and 'inValue2' are given, the function compares them and directs the smaller value of the two to the output stream, OutMediationStream. For example, min(123.67d, 91) returns 91.</p>
 
-### oct *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### oct *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function converts the input parameter <code>p1</code> to octal.</p>
 
@@ -1060,7 +1060,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream is given, this function calculates the octal value corresponding to the same and directs it to the output stream, OutMediationStream. For example, oct(99l) returns "143".</p>
 
-### parseDouble *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### parseDouble *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the double value of the string received.</p>
 
@@ -1099,7 +1099,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inValue' in the input stream holds a value, this function converts it into the corresponding double value and directs it to the output stream, OutMediationStream. For example, parseDouble("123") returns 123.0.</p>
 
-### parseFloat *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### parseFloat *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the float value of the received string.</p>
 
@@ -1138,7 +1138,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function converts the input value given in 'inValue',into its corresponding float value and directs the result into the output stream, OutMediationStream. For example, parseFloat("123") returns 123.0.</p>
 
-### parseInt *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### parseInt *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the integer value of the received string.</p>
 
@@ -1177,7 +1177,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The  function converts the 'inValue' into its corresponding integer value and directs the output to the output stream, OutMediationStream. For example, parseInt("123") returns 123.</p>
 
-### parseLong *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### parseLong *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the long value of the string received.</p>
 
@@ -1216,7 +1216,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function converts the 'inValue' to its corresponding long value and directs the result to the output stream, OutMediationStream. For example, parseLong("123") returns 123.</p>
 
-### pi *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### pi *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the <code>java.lang.Math.PI</code> constant, which is the closest value to pi, i.e., the ratio of the circumference of a circle to its diameter. </p>
 
@@ -1235,7 +1235,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">pi() always returns 3.141592653589793.</p>
 
-### power *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### power *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function raises the given value to a given power.</p>
 
@@ -1282,7 +1282,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function raises the 'inValue1' to the power of 'inValue2' and directs the output to the output stream, 'OutMediationStream. For example, (5.6d, 3.0d) returns 175.61599999999996.</p>
 
-### rand *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### rand *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns a stream of pseudo-random numbers when a sequence of calls are sent to the <code>rand()</code>. Optionally, it is possible to define a seed, i.e., <code>rand(seed)</code> using which the pseudo-random numbers are generated. These functions internally use the <code>java.util.Random</code> class.</p>
 
@@ -1321,7 +1321,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">In the example given above, a random double value between 0 and 1 will be generated using math:rand().</p>
 
-### round *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### round *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the value of the input argument rounded off to the closest integer/long value.</p>
 
@@ -1360,7 +1360,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function rounds off 'inValue1' to the closest int/long value and directs the output to the output stream, 'OutMediationStream'. For example, round(3252.353) returns 3252.</p>
 
-### signum *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### signum *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns +1, 0, or -1 for the given positive, zero and negative values respectively. This function wraps the <code>java.lang.Math.signum()</code> function.</p>
 
@@ -1399,7 +1399,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function evaluates the 'inValue' given to be positive, negative or zero and directs the result to the output stream, 'OutMediationStream'. For example, signum(-6.32d) returns -1.</p>
 
-### sin *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### sin *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns the sine of the value given in radians. This function wraps the <code>java.lang.Math.sin()</code> function.</p>
 
@@ -1438,7 +1438,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function calculates the sine value of the given 'inValue' and directs the output to the output stream, 'OutMediationStream. For example, sin(6d) returns -0.27941549819892586.</p>
 
-### sinh *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### sinh *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This returns the hyperbolic sine of the value given in radians. This function wraps the <code>java.lang.Math.sinh()</code> function. </p>
 
@@ -1477,7 +1477,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function calculates the hyperbolic sine value of 'inValue' and directs the output to the output stream, 'OutMediationStream'. For example, sinh(6d) returns 201.71315737027922.</p>
 
-### sqrt *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### sqrt *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the square-root of the given value. It wraps the <code>java.lang.Math.sqrt()</code>s function.</p>
 
@@ -1516,7 +1516,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function calculates the square-root value of the 'inValue' and directs the output to the output stream, 'OutMediationStream'. For example, sqrt(4d) returns 2.</p>
 
-### tan *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### tan *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the tan of the given value in radians. It wraps the <code>java.lang.Math.tan()</code> function.</p>
 
@@ -1555,7 +1555,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">This function calculates the tan value of the 'inValue' given and directs the output to the output stream, 'OutMediationStream'. For example, tan(6d) returns -0.29100619138474915.</p>
 
-### tanh *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### tanh *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function returns the hyperbolic tangent of the value given in radians. It wraps the <code>java.lang.Math.tanh()</code> function.</p>
 
@@ -1594,7 +1594,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">If the 'inVaue' in the input stream is given, this function calculates the hyperbolic tangent value of the same and directs the output to 'OutMediationStream' stream. For example, tanh(6d) returns 0.9999877116507956.</p>
 
-### toDegrees *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### toDegrees *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function converts the value given in radians to degrees. It wraps the <code>java.lang.Math.toDegrees()</code> function.</p>
 
@@ -1633,7 +1633,7 @@ insert into OutMediationStream;
 ```
 <p style="word-wrap: break-word">The function converts the 'inValue' in the input stream from radians to degrees and directs the output to 'OutMediationStream' output stream. For example, toDegrees(6d) returns 343.77467707849394.</p>
 
-### toRadians *<a target="_blank" href="http://siddhi.io/documentation/siddhi-5.x/query-guide-5.x/#function">(Function)</a>*
+### toRadians *<a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a>*
 
 <p style="word-wrap: break-word">This function converts the value given in degrees to radians. It wraps the <code>java.lang.Math.toRadians()</code> function.</p>
 
