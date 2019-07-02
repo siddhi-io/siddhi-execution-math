@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -49,11 +50,16 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                 @Parameter(
                         name = "value",
                         description = "The value that should be raised to the power of 'to.power' input parameter.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
                 @Parameter(
                         name = "to.power",
                         description = "The power to which the 'value' input parameter should be raised.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"value", "to.power"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "This returns the  'value' input parameter raised to the power of 'to.power' " +

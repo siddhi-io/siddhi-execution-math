@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -50,11 +51,16 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                 @Parameter(
                         name = "number",
                         description = "The value of the parameter whose base should be changed.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
                 @Parameter(
                         name = "base",
                         description = "The base value of the ouput.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"number", "base"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "The logarithm value of the 'number' parameter to the base, 'base' parameter.",

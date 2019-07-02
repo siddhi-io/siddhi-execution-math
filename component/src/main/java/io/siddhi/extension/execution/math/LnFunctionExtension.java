@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -48,7 +49,12 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                 @Parameter(
                         name = "p1",
                         description = "The value of the parameter whose natural logarithm (base e) should be found.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"p1"})
+        },
         returnAttributes = @ReturnAttribute(
                 description = "The natural logarithm (base e) of the input parameter.",
                 type = {DataType.DOUBLE}),

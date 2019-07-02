@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -50,11 +51,16 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                 @Parameter(
                         name = "magnitude",
                         description = "The magnitude of this parameter is used in the output attribute.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
                 @Parameter(
                         name = "sign",
                         description = "The sign of this parameter is used in the output attribute.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"magnitude", "sign"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "This returns the first argument with the sign of the second argument.",

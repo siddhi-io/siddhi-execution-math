@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -50,7 +51,11 @@ import io.siddhi.query.api.exception.SiddhiAppValidationException;
                         name = "p1",
                         description = "The value in either 'integer' or 'long', that should be converted into " +
                                 "an unsigned integer of base 2.",
-                        type = {DataType.INT, DataType.LONG})
+                        type = {DataType.INT, DataType.LONG},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"p1"}),
         },
         returnAttributes = @ReturnAttribute(
                 description = "A string representation of the p1 parameter as an unsigned integer in " +
