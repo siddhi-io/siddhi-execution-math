@@ -1,0 +1,2839 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Siddhi Execution Math Extension">
+      
+      
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.0">
+    
+    
+      
+        <title>5.0.1 - Siddhi Execution Math</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/application.0284f74d.css">
+      
+        <link rel="stylesheet" href="../../assets/stylesheets/application-palette.01803549.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#009688">
+      
+    
+    
+      <script src="../../assets/javascripts/modernizr.74668098.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700|Roboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../../assets/fonts/material-icons.css">
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/extra.css">
+    
+    
+      
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-103065-28", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#api-docs-v501" tabindex="1" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href="../.." title="Siddhi Execution Math" class="md-header-nav__button md-logo">
+          
+            <img src="../../images/siddhi-logo.svg" width="24" height="24">
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              Siddhi Execution Math
+            </span>
+            <span class="md-header-nav__topic">
+              
+                5.0.1
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi-execution-math/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi Execution Math
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href="../.." title="Siddhi Execution Math" class="md-nav__button md-logo">
+      
+        <img src="../../images/siddhi-logo.svg" width="48" height="48">
+      
+    </a>
+    Siddhi Execution Math
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/siddhi-io/siddhi-execution-math/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    Siddhi Execution Math
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Information" class="md-nav__link">
+      Information
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+    
+    <label class="md-nav__link" for="nav-2">
+      API Docs
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        API Docs
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../latest/" title="latest" class="md-nav__link">
+      latest
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../5.0.2/" title="5.0.2" class="md-nav__link">
+      5.0.2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        5.0.1
+      </label>
+    
+    <a href="./" title="5.0.1" class="md-nav__link md-nav__link--active">
+      5.0.1
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#math" title="Math" class="md-nav__link">
+    Math
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">
+    percentile (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abs-function" title="abs (Function)" class="md-nav__link">
+    abs (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acos-function" title="acos (Function)" class="md-nav__link">
+    acos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asin-function" title="asin (Function)" class="md-nav__link">
+    asin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atan-function" title="atan (Function)" class="md-nav__link">
+    atan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin-function" title="bin (Function)" class="md-nav__link">
+    bin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">
+    cbrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceil-function" title="ceil (Function)" class="md-nav__link">
+    ceil (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conv-function" title="conv (Function)" class="md-nav__link">
+    conv (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copysign-function" title="copySign (Function)" class="md-nav__link">
+    copySign (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cos-function" title="cos (Function)" class="md-nav__link">
+    cos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosh-function" title="cosh (Function)" class="md-nav__link">
+    cosh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-function" title="e (Function)" class="md-nav__link">
+    e (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exp-function" title="exp (Function)" class="md-nav__link">
+    exp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-function" title="floor (Function)" class="md-nav__link">
+    floor (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">
+    getExponent (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">
+    isInfinite (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isnan-function" title="isNan (Function)" class="md-nav__link">
+    isNan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ln-function" title="ln (Function)" class="md-nav__link">
+    ln (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-function" title="log (Function)" class="md-nav__link">
+    log (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log10-function" title="log10 (Function)" class="md-nav__link">
+    log10 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log2-function" title="log2 (Function)" class="md-nav__link">
+    log2 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-function" title="max (Function)" class="md-nav__link">
+    max (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-function" title="min (Function)" class="md-nav__link">
+    min (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oct-function" title="oct (Function)" class="md-nav__link">
+    oct (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">
+    parseDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">
+    parseFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">
+    parseInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">
+    parseLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pi-function" title="pi (Function)" class="md-nav__link">
+    pi (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-function" title="power (Function)" class="md-nav__link">
+    power (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rand-function" title="rand (Function)" class="md-nav__link">
+    rand (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#round-function" title="round (Function)" class="md-nav__link">
+    round (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signum-function" title="signum (Function)" class="md-nav__link">
+    signum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sin-function" title="sin (Function)" class="md-nav__link">
+    sin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sinh-function" title="sinh (Function)" class="md-nav__link">
+    sinh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">
+    sqrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tan-function" title="tan (Function)" class="md-nav__link">
+    tan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh-function" title="tanh (Function)" class="md-nav__link">
+    tanh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">
+    toDegrees (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">
+    toRadians (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.1.1/" title="4.1.1" class="md-nav__link">
+      4.1.1
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.1.0/" title="4.1.0" class="md-nav__link">
+      4.1.0
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.21/" title="4.0.21" class="md-nav__link">
+      4.0.21
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.20/" title="4.0.20" class="md-nav__link">
+      4.0.20
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.19/" title="4.0.19" class="md-nav__link">
+      4.0.19
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.18/" title="4.0.18" class="md-nav__link">
+      4.0.18
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.17/" title="4.0.17" class="md-nav__link">
+      4.0.17
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.16/" title="4.0.16" class="md-nav__link">
+      4.0.16
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.15/" title="4.0.15" class="md-nav__link">
+      4.0.15
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.14/" title="4.0.14" class="md-nav__link">
+      4.0.14
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.13/" title="4.0.13" class="md-nav__link">
+      4.0.13
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.12/" title="4.0.12" class="md-nav__link">
+      4.0.12
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.11/" title="4.0.11" class="md-nav__link">
+      4.0.11
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.10/" title="4.0.10" class="md-nav__link">
+      4.0.10
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../4.0.9/" title="4.0.9" class="md-nav__link">
+      4.0.9
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../license/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#math" title="Math" class="md-nav__link">
+    Math
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#percentile-aggregate-function" title="percentile (Aggregate Function)" class="md-nav__link">
+    percentile (Aggregate Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#abs-function" title="abs (Function)" class="md-nav__link">
+    abs (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acos-function" title="acos (Function)" class="md-nav__link">
+    acos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#asin-function" title="asin (Function)" class="md-nav__link">
+    asin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#atan-function" title="atan (Function)" class="md-nav__link">
+    atan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bin-function" title="bin (Function)" class="md-nav__link">
+    bin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cbrt-function" title="cbrt (Function)" class="md-nav__link">
+    cbrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ceil-function" title="ceil (Function)" class="md-nav__link">
+    ceil (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conv-function" title="conv (Function)" class="md-nav__link">
+    conv (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#copysign-function" title="copySign (Function)" class="md-nav__link">
+    copySign (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cos-function" title="cos (Function)" class="md-nav__link">
+    cos (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cosh-function" title="cosh (Function)" class="md-nav__link">
+    cosh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#e-function" title="e (Function)" class="md-nav__link">
+    e (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exp-function" title="exp (Function)" class="md-nav__link">
+    exp (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#floor-function" title="floor (Function)" class="md-nav__link">
+    floor (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getexponent-function" title="getExponent (Function)" class="md-nav__link">
+    getExponent (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hex-function" title="hex (Function)" class="md-nav__link">
+    hex (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isinfinite-function" title="isInfinite (Function)" class="md-nav__link">
+    isInfinite (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#isnan-function" title="isNan (Function)" class="md-nav__link">
+    isNan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ln-function" title="ln (Function)" class="md-nav__link">
+    ln (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log-function" title="log (Function)" class="md-nav__link">
+    log (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log10-function" title="log10 (Function)" class="md-nav__link">
+    log10 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#log2-function" title="log2 (Function)" class="md-nav__link">
+    log2 (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#max-function" title="max (Function)" class="md-nav__link">
+    max (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#min-function" title="min (Function)" class="md-nav__link">
+    min (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#oct-function" title="oct (Function)" class="md-nav__link">
+    oct (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsedouble-function" title="parseDouble (Function)" class="md-nav__link">
+    parseDouble (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parsefloat-function" title="parseFloat (Function)" class="md-nav__link">
+    parseFloat (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parseint-function" title="parseInt (Function)" class="md-nav__link">
+    parseInt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parselong-function" title="parseLong (Function)" class="md-nav__link">
+    parseLong (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pi-function" title="pi (Function)" class="md-nav__link">
+    pi (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#power-function" title="power (Function)" class="md-nav__link">
+    power (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rand-function" title="rand (Function)" class="md-nav__link">
+    rand (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#round-function" title="round (Function)" class="md-nav__link">
+    round (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#signum-function" title="signum (Function)" class="md-nav__link">
+    signum (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sin-function" title="sin (Function)" class="md-nav__link">
+    sin (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sinh-function" title="sinh (Function)" class="md-nav__link">
+    sinh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sqrt-function" title="sqrt (Function)" class="md-nav__link">
+    sqrt (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tan-function" title="tan (Function)" class="md-nav__link">
+    tan (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tanh-function" title="tanh (Function)" class="md-nav__link">
+    tanh (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#todegrees-function" title="toDegrees (Function)" class="md-nav__link">
+    toDegrees (Function)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#toradians-function" title="toRadians (Function)" class="md-nav__link">
+    toRadians (Function)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/siddhi-io/siddhi-execution-math/blob/master/api/5.0.1.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                <h1 id="api-docs-v501">API Docs - v5.0.1</h1>
+<h2 id="math">Math</h2>
+<h3 id="percentile-aggregate-function">percentile <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#aggregate-function">(Aggregate Function)</a></em></h3>
+<p style="word-wrap: break-word">This functions returns the pth percentile value of a given argument.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:percentile(&lt;INT|LONG|FLOAT|DOUBLE&gt; arg, &lt;DOUBLE&gt; p)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">arg</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose percentile should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p</td>
+        <td style="vertical-align: top; word-wrap: break-word">Estimate of the percentile to be found (pth percentile) where p is any number greater than 0 or lesser than or equal to 100.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (sensorId int, temperature double); 
+from InValueStream 
+select math:percentile(temperature, 97.0) as percentile 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function returns the percentile value based on the argument given. For example, math:percentile(temperature, 97.0) returns the 97th percentile value of all the temperature events.</p>
+
+<h3 id="abs-function">abs <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the absolute value of the given parameter. It wraps the <code>java.lang.Math.abs()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:abs(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The parameter whose absolute value is found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:abs(inValue) as absValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">Irrespective of whether the 'invalue' in the input stream holds a value of abs(3) or abs(-3),the function returns 3 since the absolute value of both 3 and -3 is 3. The result directed to OutMediationStream stream.</p>
+
+<h3 id="acos-function">acos <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">If -1 &lt;= p1 &lt;= 1, this function returns the arc-cosine (inverse cosine) value of p1.If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.acos() function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:acos(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose arc-cosine (inverse cosine) value is found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:acos(inValue) as acosValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the arc-cosine value of it and returns the arc-cosine value to the output stream, OutMediationStream. For example, acos(0.5) returns 1.0471975511965979.</p>
+
+<h3 id="asin-function">asin <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">If -1 &lt;= p1 &lt;= 1, this function returns the arc-sin (inverse sine) value of p1. If the domain is invalid, it returns NULL. The value returned is in radian scale. This function wraps the java.lang.Math.asin() function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:asin(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose arc-sin (inverse sine) value is found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:asin(inValue) as asinValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the arc-sin value of it and returns the arc-sin value to the output stream, OutMediationStream. For example, asin(0.5) returns 0.5235987755982989.</p>
+
+<h3 id="atan-function">atan <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">1. If a single <code>p1</code> is received, this function returns the arc-tangent (inverse tangent) value of <code>p1</code>. <br>2. If <code>p1</code> is received along with an optional <code>p1</code>, it considers them as x and y coordinates and returns the arc-tangent (inverse tangent) value. <br>The returned value is in radian scale. This function wraps the <code>java.lang.Math.atan()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:atan(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1, &lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose arc-tangent (inverse tangent) is found. If the optional second parameter is given this represents the x coordinate of the (x,y) coordinate pair.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">This optional parameter represents the y coordinate of the (x,y) coordinate pair.</td>
+        <td style="vertical-align: top">0D</td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double, inValue2 double); 
+from InValueStream 
+select math:atan(inValue1, inValue2) as convertedValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue1' in the input stream is given, the function calculates the arc-tangent value of it and returns the arc-tangent value to the output stream, OutMediationStream. If both the 'inValue1' and 'inValue2' are given, then the function considers them to be x and y coordinates respectively and returns the calculated arc-tangent value to the output stream, OutMediationStream. For example, atan(12d, 5d) returns 1.1760052070951352.</p>
+
+<h3 id="bin-function">bin <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns a string representation of the p1 argument, that is of either 'integer' or 'long' data type, as an unsigned integer in base 2. It wraps the <code>java.lang.Integer.toBinaryString</code> and java.lang.Long.toBinaryString` methods.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;STRING&gt; math:bin(&lt;INT|LONG&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value in either 'integer' or 'long', that should be converted into an unsigned integer of base 2.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue long); 
+from InValueStream 
+select math:bin(inValue) as binValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function converts it into an unsigned integer in base 2 and directs the output to the output stream, OutMediationStream. For example, bin(9) returns '1001'.</p>
+
+<h3 id="cbrt-function">cbrt <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the cube-root of 'p1' which is in radians. It wraps the <code>java.lang.Math.cbrt()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:cbrt(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose cube-root should be found. Input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:cbrt(inValue) as cbrtValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the cube-root value for the same and directs the output to the output stream, OutMediationStream. For example, cbrt(17d) returns 2.5712815906582356.</p>
+
+<h3 id="ceil-function">ceil <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the smallest double value, i.e., the closest to the negative infinity, that is greater than or equal to the <code>p1</code> argument, and is equal to a mathematical integer. It wraps the <code>java.lang.Math.ceil()</code> method.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:ceil(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose ceiling value is found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:ceil(inValue) as ceilingValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function calculates the ceiling value of the given 'inValue' and directs the result to 'OutMediationStream' output stream. For example, ceil(423.187d) returns 424.0.</p>
+
+<h3 id="conv-function">conv <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function converts <code>a</code> from the <code>fromBase</code> base to the <code>toBase</code> base.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;STRING&gt; math:conv(&lt;STRING&gt; a, &lt;INT&gt; from.base, &lt;INT&gt; to.base)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">a</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value whose base should be changed. Input should be given as a 'String'.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">from.base</td>
+        <td style="vertical-align: top; word-wrap: break-word">The source base of the input parameter 'a'.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">to.base</td>
+        <td style="vertical-align: top; word-wrap: break-word">The target base that the input parameter 'a' should be converted into.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue string,fromBase int,toBase int); 
+from InValueStream 
+select math:conv(inValue,fromBase,toBase) as convertedValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, and the base in which it currently resides in and the base to which it should be converted to is specified, the function converts it into a string in the target base and directs it to the output stream, OutMediationStream. For example, conv("7f", 16, 10) returns "127".</p>
+
+<h3 id="copysign-function">copySign <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns a value of an input with the received <code>magnitude</code> and <code>sign</code> of another input. It wraps the <code>java.lang.Math.copySign()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:copySign(&lt;INT|LONG|FLOAT|DOUBLE&gt; magnitude, &lt;INT|LONG|FLOAT|DOUBLE&gt; sign)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">magnitude</td>
+        <td style="vertical-align: top; word-wrap: break-word">The magnitude of this parameter is used in the output attribute.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">sign</td>
+        <td style="vertical-align: top; word-wrap: break-word">The sign of this parameter is used in the output attribute.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double, inValue2 double); 
+from InValueStream 
+select math:copySign(inValue1,inValue2) as copysignValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If two values are provided as 'inValue1' and 'inValue2', the function copies the magnitude and sign of the second argument into the first one and directs the result to the output stream, OutMediatonStream. For example, copySign(5.6d, -3.0d) returns -5.6.</p>
+
+<h3 id="cos-function">cos <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cos()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:cos(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose cosine value should be found.The input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:cos(inValue) as cosValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cos(6d) returns 0.9601702866503661.</p>
+
+<h3 id="cosh-function">cosh <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the hyperbolic cosine of <code>p1</code> which is in radians. It wraps the <code>java.lang.Math.cosh()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:cosh(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose hyperbolic cosine should be found. The input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:cosh(inValue) as cosValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' is given, the function calculates the hyperbolic cosine value for the same and directs the output to the output stream, OutMediationStream. For example, cosh (6d) returns 201.7156361224559.</p>
+
+<h3 id="e-function">e <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the <code>java.lang.Math.E</code> constant, which is the closest double value to e, where e is the base of the natural logarithms. </p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:e()
+</code></pre>
+
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:e() as eValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function returns the constant, 2.7182818284590452354 which is the closest double value to e and directs the output to 'OutMediationStream' output stream.</p>
+
+<h3 id="exp-function">exp <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the Euler's number <code>e</code> raised to the power of <code>p1</code>. It wraps the <code>java.lang.Math.exp()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:exp(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The power that the Euler's number e is raised to.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:exp(inValue) as expValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the inputstream holds a value, this function calculates the corresponding Euler's number 'e' and directs it to the output stream, OutMediationStream. For example, exp(10.23) returns 27722.51006805505.</p>
+
+<h3 id="floor-function">floor <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function wraps the <code>java.lang.Math.floor()</code> function and returns the largest value, i.e., closest to the positive infinity, that is less than or equal to <code>p1</code>, and is equal to a mathematical integer.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:floor(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose floor value should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:floor(inValue) as floorValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function calculates the floor value of the given 'inValue' input and directs the output to the 'OutMediationStream' output stream. For example, (10.23) returns 10.0.</p>
+
+<h3 id="getexponent-function">getExponent <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the unbiased exponent that is used in the representation of <code>p1</code>. This function wraps the <code>java.lang.Math.getExponent()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;INT&gt; math:getExponent(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of whose unbiased exponent representation should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:getExponent(inValue) as expValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function calculates the unbiased exponent of a given input, 'inValue' and directs the result to the 'OutMediationStream' output stream. For example, getExponent(60984.1) returns 15.</p>
+
+<h3 id="hex-function">hex <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function wraps the <code>java.lang.Double.toHexString() function. It returns a hexadecimal string representation of the input, </code>p1`.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;STRING&gt; math:hex(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose hexadecimal value should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue int); 
+from InValueStream 
+select math:hex(inValue) as hexString 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is provided, the function converts this into its corresponding hexadecimal format and directs the output to the output stream, OutMediationStream. For example, hex(200) returns "c8".</p>
+
+<h3 id="isinfinite-function">isInfinite <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function wraps the <code>java.lang.Float.isInfinite()</code> and <code>java.lang.Double.isInfinite()</code> and returns <code>true</code> if <code>p1</code> is infinitely large in magnitude and <code>false</code> if otherwise.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;BOOL&gt; math:isInfinite(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">This is the value of the parameter that the function determines to be either infinite or finite.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double,inValue2 int); 
+from InValueStream 
+select math:isInfinite(inValue1) as isInfinite 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the value given in the 'inValue' in the input stream is of infinitely large magnitude, the function returns the value, 'true' and directs the result to the output stream, OutMediationStream'. For example, isInfinite(java.lang.Double.POSITIVE_INFINITY) returns true.</p>
+
+<h3 id="isnan-function">isNan <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function wraps the <code>java.lang.Float.isNaN()</code> and <code>java.lang.Double.isNaN()</code> functions and returns <code>true</code> if <code>p1</code> is NaN (Not-a-Number), and returns <code>false</code> if otherwise.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;BOOL&gt; math:isNan(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter which the function determines to be either NaN or a number.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double,inValue2 int); 
+from InValueStream 
+select math:isNan(inValue1) as isNaN 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue1' in the input stream has a value that is undefined, then the function considers it as an 'NaN' value and directs 'True' to the output stream, OutMediationStream. For example, isNan(java.lang.Math.log(-12d)) returns true.</p>
+
+<h3 id="ln-function">ln <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the natural logarithm (base e) of <code>p1</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:ln(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose natural logarithm (base e) should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:ln(inValue) as lnValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates its natural logarithm (base e) and directs the results to the output stream, 'OutMeditionStream'. For example, ln(11.453) returns 2.438251704415579.</p>
+
+<h3 id="log-function">log <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the logarithm of the received <code>number</code> as per the given <code>base</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:log(&lt;INT|LONG|FLOAT|DOUBLE&gt; number, &lt;INT|LONG|FLOAT|DOUBLE&gt; base)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">number</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose base should be changed.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">base</td>
+        <td style="vertical-align: top; word-wrap: break-word">The base value of the ouput.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (number double, base double); 
+from InValueStream 
+select math:log(number, base) as logValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the number and the base to which it has to be converted into is given in the input stream, the function calculates the number to the base specified and directs the result to the output stream, OutMediationStream. For example, log(34, 2f) returns 5.08746284125034.</p>
+
+<h3 id="log10-function">log10 <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the base 10 logarithm of <code>p1</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:log10(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose base 10 logarithm should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:log10(inValue) as lnValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the base 10 logarithm of the same and directs the result to the output stream, OutMediatioStream. For example, log10(19.234) returns 1.2840696117100832.</p>
+
+<h3 id="log2-function">log2 <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the base 2 logarithm of <code>p1</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:log2(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose base 2 logarithm should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:log2(inValue) as lnValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, the function calculates the base 2 logarithm of the same and returns the value to the output stream, OutMediationStream. For example log2(91d) returns 6.507794640198696.</p>
+
+<h3 id="max-function">max <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the greater value of <code>p1</code> and <code>p2</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:max(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1, &lt;INT|LONG|FLOAT|DOUBLE&gt; p2)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">One of the input values to be compared in order to find the larger value of the two</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p2</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input value to be compared with 'p1' in order to find the larger value of the two.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double,inValue2 int); 
+from InValueStream 
+select math:max(inValue1,inValue2) as maxValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If two input values 'inValue1, and 'inValue2' are given, the function compares them and directs the larger value to the output stream, OutMediationStream. For example, max(123.67d, 91) returns 123.67.</p>
+
+<h3 id="min-function">min <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the smaller value of <code>p1</code> and <code>p2</code>.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:min(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1, &lt;INT|LONG|FLOAT|DOUBLE&gt; p2)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">One of the input values that are to be compared in order to find the smaller value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p2</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input value that is to be compared with 'p1' in order to find the smaller value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double,inValue2 int); 
+from InValueStream 
+select math:min(inValue1,inValue2) as minValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If two input values, 'inValue1' and 'inValue2' are given, the function compares them and directs the smaller value of the two to the output stream, OutMediationStream. For example, min(123.67d, 91) returns 91.</p>
+
+<h3 id="oct-function">oct <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function converts the input parameter <code>p1</code> to octal.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;STRING&gt; math:oct(&lt;INT|LONG&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose octal representation should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue long); 
+from InValueStream 
+select math:oct(inValue) as octValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream is given, this function calculates the octal value corresponding to the same and directs it to the output stream, OutMediationStream. For example, oct(99l) returns "143".</p>
+
+<h3 id="parsedouble-function">parseDouble <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the double value of the string received.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:parseDouble(&lt;STRING&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be converted into a double value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue string); 
+from InValueStream 
+select math:parseDouble(inValue) as output 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inValue' in the input stream holds a value, this function converts it into the corresponding double value and directs it to the output stream, OutMediationStream. For example, parseDouble("123") returns 123.0.</p>
+
+<h3 id="parsefloat-function">parseFloat <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the float value of the received string.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;FLOAT&gt; math:parseFloat(&lt;STRING&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be converted into a float value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue string); 
+from InValueStream 
+select math:parseFloat(inValue) as output 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function converts the input value given in 'inValue',into its corresponding float value and directs the result into the output stream, OutMediationStream. For example, parseFloat("123") returns 123.0.</p>
+
+<h3 id="parseint-function">parseInt <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the integer value of the received string.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;INT&gt; math:parseInt(&lt;STRING&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be converted to an integer.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue string); 
+from InValueStream 
+select math:parseInt(inValue) as output 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The  function converts the 'inValue' into its corresponding integer value and directs the output to the output stream, OutMediationStream. For example, parseInt("123") returns 123.</p>
+
+<h3 id="parselong-function">parseLong <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the long value of the string received.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;LONG&gt; math:parseLong(&lt;STRING&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be converted to a long value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">STRING</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue string); 
+from InValueStream 
+select math:parseLong(inValue) as output 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function converts the 'inValue' to its corresponding long value and directs the result to the output stream, OutMediationStream. For example, parseLong("123") returns 123.</p>
+
+<h3 id="pi-function">pi <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the <code>java.lang.Math.PI</code> constant, which is the closest value to pi, i.e., the ratio of the circumference of a circle to its diameter. </p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:pi()
+</code></pre>
+
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:pi() as piValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">pi() always returns 3.141592653589793.</p>
+
+<h3 id="power-function">power <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function raises the given value to a given power.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:power(&lt;INT|LONG|FLOAT|DOUBLE&gt; value, &lt;INT|LONG|FLOAT|DOUBLE&gt; to.power)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">value</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be raised to the power of 'to.power' input parameter.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">to.power</td>
+        <td style="vertical-align: top; word-wrap: break-word">The power to which the 'value' input parameter should be raised.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue1 double, inValue2 double); 
+from InValueStream 
+select math:power(inValue1,inValue2) as powerValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function raises the 'inValue1' to the power of 'inValue2' and directs the output to the output stream, 'OutMediationStream. For example, (5.6d, 3.0d) returns 175.61599999999996.</p>
+
+<h3 id="rand-function">rand <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This returns a stream of pseudo-random numbers when a sequence of calls are sent to the <code>rand()</code>. Optionally, it is possible to define a seed, i.e., <code>rand(seed)</code> using which the pseudo-random numbers are generated. These functions internally use the <code>java.util.Random</code> class.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:rand(&lt;INT|LONG&gt; seed)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">seed</td>
+        <td style="vertical-align: top; word-wrap: break-word">An optional seed value that will be used to generate the random number sequence.</td>
+        <td style="vertical-align: top">defaultSeed</td>
+        <td style="vertical-align: top">INT<br>LONG</td>
+        <td style="vertical-align: top">Yes</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (symbol string, price long, volume long); 
+from InValueStream select symbol, math:rand() as randNumber 
+select math:oct(inValue) as octValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">In the example given above, a random double value between 0 and 1 will be generated using math:rand().</p>
+
+<h3 id="round-function">round <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the value of the input argument rounded off to the closest integer/long value.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;INT|LONG&gt; math:round(&lt;FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be rounded off to the closest integer/long value.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:round(inValue) as roundValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function rounds off 'inValue1' to the closest int/long value and directs the output to the output stream, 'OutMediationStream'. For example, round(3252.353) returns 3252.</p>
+
+<h3 id="signum-function">signum <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This returns +1, 0, or -1 for the given positive, zero and negative values respectively. This function wraps the <code>java.lang.Math.signum()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;INT&gt; math:signum(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value that should be checked to be positive, negative or zero.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:signum(inValue) as sign 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function evaluates the 'inValue' given to be positive, negative or zero and directs the result to the output stream, 'OutMediationStream'. For example, signum(-6.32d) returns -1.</p>
+
+<h3 id="sin-function">sin <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This returns the sine of the value given in radians. This function wraps the <code>java.lang.Math.sin()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:sin(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose sine value should be found. Input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:sin(inValue) as sinValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function calculates the sine value of the given 'inValue' and directs the output to the output stream, 'OutMediationStream. For example, sin(6d) returns -0.27941549819892586.</p>
+
+<h3 id="sinh-function">sinh <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This returns the hyperbolic sine of the value given in radians. This function wraps the <code>java.lang.Math.sinh()</code> function. </p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:sinh(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose hyperbolic sine value should be found. Input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:sinh(inValue) as sinhValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function calculates the hyperbolic sine value of 'inValue' and directs the output to the output stream, 'OutMediationStream'. For example, sinh(6d) returns 201.71315737027922.</p>
+
+<h3 id="sqrt-function">sqrt <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the square-root of the given value. It wraps the <code>java.lang.Math.sqrt()</code>s function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:sqrt(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose square-root value should be found.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:sqrt(inValue) as sqrtValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function calculates the square-root value of the 'inValue' and directs the output to the output stream, 'OutMediationStream'. For example, sqrt(4d) returns 2.</p>
+
+<h3 id="tan-function">tan <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the tan of the given value in radians. It wraps the <code>java.lang.Math.tan()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:tan(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose tan value should be found. Input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:tan(inValue) as tanValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function calculates the tan value of the 'inValue' given and directs the output to the output stream, 'OutMediationStream'. For example, tan(6d) returns -0.29100619138474915.</p>
+
+<h3 id="tanh-function">tanh <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function returns the hyperbolic tangent of the value given in radians. It wraps the <code>java.lang.Math.tanh()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:tanh(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The value of the parameter whose hyperbolic tangent value should be found. Input is required to be in radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:tanh(inValue) as tanhValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">If the 'inVaue' in the input stream is given, this function calculates the hyperbolic tangent value of the same and directs the output to 'OutMediationStream' stream. For example, tanh(6d) returns 0.9999877116507956.</p>
+
+<h3 id="todegrees-function">toDegrees <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function converts the value given in radians to degrees. It wraps the <code>java.lang.Math.toDegrees()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:toDegrees(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input value in radians that should be converted to degrees.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:toDegrees(inValue) as degreesValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">The function converts the 'inValue' in the input stream from radians to degrees and directs the output to 'OutMediationStream' output stream. For example, toDegrees(6d) returns 343.77467707849394.</p>
+
+<h3 id="toradians-function">toRadians <em><a target="_blank" href="https://siddhi.io/en/v5.0/docs/query-guide/#function">(Function)</a></em></h3>
+<p style="word-wrap: break-word">This function converts the value given in degrees to radians. It wraps the <code>java.lang.Math.toRadians()</code> function.</p>
+
+<p><span id="syntax" class="md-typeset" style="display: block; font-weight: bold;">Syntax</span></p>
+<pre><code>&lt;DOUBLE&gt; math:toRadians(&lt;INT|LONG|FLOAT|DOUBLE&gt; p1)
+</code></pre>
+
+<p><span id="query-parameters" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">QUERY PARAMETERS</span>
+<table>
+    <tr>
+        <th>Name</th>
+        <th style="min-width: 20em">Description</th>
+        <th>Default Value</th>
+        <th>Possible Data Types</th>
+        <th>Optional</th>
+        <th>Dynamic</th>
+    </tr>
+    <tr>
+        <td style="vertical-align: top">p1</td>
+        <td style="vertical-align: top; word-wrap: break-word">The input value in degrees that should be converted to radians.</td>
+        <td style="vertical-align: top"></td>
+        <td style="vertical-align: top">INT<br>LONG<br>FLOAT<br>DOUBLE</td>
+        <td style="vertical-align: top">No</td>
+        <td style="vertical-align: top">No</td>
+    </tr>
+</table></p>
+<p><span id="examples" class="md-typeset" style="display: block; font-weight: bold;">Examples</span>
+<span id="example-1" class="md-typeset" style="display: block; color: rgba(0, 0, 0, 0.54); font-size: 12.8px; font-weight: bold;">EXAMPLE 1</span></p>
+<pre><code>define stream InValueStream (inValue double); 
+from InValueStream 
+select math:toRadians(inValue) as radiansValue 
+insert into OutMediationStream;
+</code></pre>
+
+<p style="word-wrap: break-word">This function converts the input, from degrees to radians and directs the result to 'OutMediationStream' output stream. For example, toRadians(6d) returns 0.10471975511965977.</p>
+                
+                  
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../5.0.2/" title="5.0.2" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                5.0.2
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../4.1.1/" title="4.1.1" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                4.1.1
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Siddhi - Documentation
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/siddhi-io/siddhi" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://medium.com/siddhi-io" class="md-footer-social__link fa fa-medium"></a>
+    
+      <a href="https://twitter.com/siddhi_io" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/groups/13553064" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/application.245445c6.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:"../.."}})</script>
+      
+        <script src="../../assets/javascripts/extra.js"></script>
+      
+    
+  </body>
+</html>
