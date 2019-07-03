@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -50,7 +51,12 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                 @Parameter(
                         name = "p1",
                         description = "The input value in radians that should be converted to degrees.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"p1"})
+        },
         returnAttributes = @ReturnAttribute(
                 description = "The value in degrees after converting the input, p1 from radians.",
                 type = {DataType.DOUBLE}),

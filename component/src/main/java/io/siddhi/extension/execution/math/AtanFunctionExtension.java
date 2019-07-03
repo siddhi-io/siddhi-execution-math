@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -54,14 +55,21 @@ import static io.siddhi.extension.execution.math.util.MathUtil.convertToDouble;
                         description = "The value of the parameter whose arc-tangent (inverse tangent) is found. " +
                                 "If the optional second parameter is given this represents the x coordinate of the " +
                                 "(x,y) coordinate pair.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
                 @Parameter(
-                        name = "p1",
+                        name = "p2",
                         description = "This optional parameter represents the y coordinate of the (x,y)" +
                                 " coordinate pair.",
+                        dynamic = true,
                         optional = true,
                         defaultValue = "0D",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})},
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE})
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"p1"}),
+                @ParameterOverload(parameterNames = {"p1", "p2"})
+        },
         returnAttributes = @ReturnAttribute(
                 description = "The arc-tangent (inverse tangent) value of the input. The output is in radian scale.",
                 type = {DataType.DOUBLE}),

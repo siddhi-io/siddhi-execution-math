@@ -20,6 +20,7 @@ package io.siddhi.extension.execution.math;
 
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -40,6 +41,9 @@ import io.siddhi.query.api.definition.Attribute;
         namespace = "math",
         description = "This function returns the `java.lang.Math.E` constant, which is the " +
                 "closest double value to e, where e is the base of the natural logarithms. " ,
+        parameterOverloads = {
+                @ParameterOverload()
+        },
         returnAttributes = @ReturnAttribute(
                 description = "The closest double value to e (e being the base of the natural logarithms).",
                 type = {DataType.DOUBLE}),

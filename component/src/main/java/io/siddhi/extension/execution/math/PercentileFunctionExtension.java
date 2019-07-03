@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -54,12 +55,17 @@ import java.util.Map;
                 @Parameter(
                         name = "arg",
                         description = "The value of the parameter whose percentile should be found.",
-                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE}),
+                        type = {DataType.INT, DataType.LONG, DataType.FLOAT, DataType.DOUBLE},
+                        dynamic = true),
                 @Parameter(
                         name = "p",
                         description = "Estimate of the percentile to be found (pth percentile) " +
                                 "where p is any number greater than 0 or lesser than or equal to 100.",
-                        type = {DataType.DOUBLE})
+                        type = {DataType.DOUBLE},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"arg", "p"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "Estimate of the 'p'th percentile value of the 'arg' values.",

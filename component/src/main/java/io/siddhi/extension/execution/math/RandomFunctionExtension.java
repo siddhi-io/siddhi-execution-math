@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -55,7 +56,13 @@ import java.util.Random;
                         defaultValue = "defaultSeed",
                         description = "An optional seed value that will be used to generate the random" +
                                 " number sequence.",
-                        type = {DataType.INT, DataType.LONG})},
+                        type = {DataType.INT, DataType.LONG},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(),
+                @ParameterOverload(parameterNames = {"seed"})
+        },
         returnAttributes = @ReturnAttribute(
                 description = "A stream of pseudo-random numbers",
                 type = {DataType.DOUBLE}),

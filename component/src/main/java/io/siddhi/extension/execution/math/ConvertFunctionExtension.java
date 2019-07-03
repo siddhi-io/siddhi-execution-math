@@ -21,6 +21,7 @@ package io.siddhi.extension.execution.math;
 import io.siddhi.annotation.Example;
 import io.siddhi.annotation.Extension;
 import io.siddhi.annotation.Parameter;
+import io.siddhi.annotation.ParameterOverload;
 import io.siddhi.annotation.ReturnAttribute;
 import io.siddhi.annotation.util.DataType;
 import io.siddhi.core.config.SiddhiQueryContext;
@@ -46,15 +47,21 @@ import io.siddhi.query.api.exception.SiddhiAppValidationException;
                 @Parameter(
                         name = "a",
                         description = "The value whose base should be changed. Input should be given as a 'String'.",
-                        type = {DataType.STRING}),
+                        type = {DataType.STRING},
+                        dynamic = true),
                 @Parameter(
                         name = "from.base",
                         description = "The source base of the input parameter 'a'.",
-                        type = {DataType.INT}),
+                        type = {DataType.INT},
+                        dynamic = true),
                 @Parameter(
                         name = "to.base",
                         description = "The target base that the input parameter 'a' should be converted into.",
-                        type = {DataType.INT})
+                        type = {DataType.INT},
+                        dynamic = true)
+        },
+        parameterOverloads = {
+                @ParameterOverload(parameterNames = {"a", "from.base", "to.base"})
         },
         returnAttributes = @ReturnAttribute(
                 description = "The value of the parameter 'a' when converted from the source base to the target base." +
