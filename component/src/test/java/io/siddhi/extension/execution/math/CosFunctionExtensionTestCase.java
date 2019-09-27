@@ -110,7 +110,7 @@ public class CosFunctionExtensionTestCase {
                                          + "insert into OutMediationStream;");
         SiddhiAppRuntime siddhiAppRuntime = siddhiManager.createSiddhiAppRuntime(inValueStream +
                                                                                              eventFuseExecutionPlan);
-
+        siddhiAppRuntime.start();
         siddhiAppRuntime.addCallback("query1", new QueryCallback() {
             @Override
             public void receive(long timeStamp, Event[] inEvents,
@@ -122,8 +122,7 @@ public class CosFunctionExtensionTestCase {
                 }
             }
         });
-        InputHandler inputHandler = siddhiAppRuntime
-                .getInputHandler("InValueStream");
+        InputHandler inputHandler = siddhiAppRuntime.getInputHandler("InValueStream");
         inputHandler.send(new Double[]{null});
         Thread.sleep(100);
         AssertJUnit.assertTrue(eventArrived);
