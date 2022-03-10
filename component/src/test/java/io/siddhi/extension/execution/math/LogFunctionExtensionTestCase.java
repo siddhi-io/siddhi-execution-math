@@ -23,18 +23,19 @@ import io.siddhi.core.SiddhiManager;
 import io.siddhi.core.event.Event;
 import io.siddhi.core.exception.SiddhiAppCreationException;
 import io.siddhi.core.query.output.callback.QueryCallback;
-import io.siddhi.core.stream.StreamJunction;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
 import io.siddhi.extension.execution.math.util.UnitTestAppender;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class LogFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
-    private static Logger logger = Logger.getLogger(LogFunctionExtensionTestCase.class);
+    private static Logger logger = (Logger) LogManager.getLogger(LogFunctionExtensionTestCase.class);
     private volatile boolean eventArrived;
 
     @BeforeMethod
@@ -181,9 +182,12 @@ public class LogFunctionExtensionTestCase {
     @Test
     public void exceptionTestCase6() throws Exception {
         logger.info("LogFunctionExtension exceptionTestCase6");
-        UnitTestAppender appender = new UnitTestAppender();
-        logger = Logger.getLogger(StreamJunction.class);
+        UnitTestAppender appender = new UnitTestAppender("UnitTestAppender", null);
+        final Logger logger = (Logger) LogManager.getRootLogger();
+        logger.setLevel(Level.ALL);
         logger.addAppender(appender);
+        appender.start();
+
         siddhiManager = new SiddhiManager();
         String inValueStream = "define stream InValueStream (number double, base double);";
 

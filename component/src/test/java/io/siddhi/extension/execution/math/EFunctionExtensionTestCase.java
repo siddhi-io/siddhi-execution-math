@@ -24,13 +24,14 @@ import io.siddhi.core.event.Event;
 import io.siddhi.core.query.output.callback.QueryCallback;
 import io.siddhi.core.stream.input.InputHandler;
 import io.siddhi.core.util.EventPrinter;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 public class EFunctionExtensionTestCase {
     protected static SiddhiManager siddhiManager;
-    private static Logger logger = Logger.getLogger(EFunctionExtensionTestCase.class);
+    private static Logger logger = LogManager.getLogger(EFunctionExtensionTestCase.class);
 
     @Test
     public void testProcess() throws Exception {
